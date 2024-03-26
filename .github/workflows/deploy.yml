@@ -168,12 +168,12 @@ jobs:
         with:
           name: shark
           path: dist
-      - name: lighthouse 🚀
-        uses: treosh/lighthouse-ci-action@v2
-        with:
-          runs: 5
-          uploadArtifacts: true
-          configPath: './.github/workflows/setup/lighthouse-audit.json'
+#      - name: lighthouse 🚀
+#        uses: treosh/lighthouse-ci-action@v2
+#        with:
+#          runs: 5
+#          uploadArtifacts: true
+#          configPath: './.github/workflows/setup/lighthouse-audit.json'
     needs: build
 
   clean:
