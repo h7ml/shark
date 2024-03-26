@@ -17,7 +17,7 @@ import {
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';
-import { Divider, Space, Tabs, message, theme } from 'antd';
+import { Button, Divider, Space, Tabs, message, theme } from 'antd';
 
 type LoginType = 'phone' | 'account';
 
@@ -178,31 +178,35 @@ const Page: React.FC = () => {
           backgroundColor: 'rgba(0, 0, 0,0.65)',
           backdropFilter: 'blur(4px)',
         }}
-        subTitle="A web application for managing and visualizing shark data"
-        // activityConfig={{
-        //   style: {
-        //     boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.2)',
-        //     color: token.colorTextHeading,
-        //     borderRadius: 8,
-        //     backgroundColor: 'rgba(255,255,255,0.25)',
-        //     backdropFilter: 'blur(4px)',
-        //   },
-        //   title: 'Shark Data App',
-        //   subTitle: 'A web application for managing and visualizing shark data',
-        //   action: (
-        //     <Button
-        //       size="large"
-        //       style={{
-        //         borderRadius: 20,
-        //         background: token.colorBgElevated,
-        //         color: token.colorPrimary,
-        //         width: 120,
-        //       }}
-        //     >
-        //       去看看
-        //     </Button>
-        //   ),
-        // }}
+        subTitle="一个用于管理和可视化鲨鱼数据的 Web 应用程序。"
+        activityConfig={{
+          style: {
+            boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.2)',
+            color: token.colorTextHeading,
+            borderRadius: 8,
+            backgroundColor: 'rgba(255,255,255,0.25)',
+            backdropFilter: 'blur(4px)',
+          },
+          title: 'Shark Data App',
+          subTitle: 'A web application for managing and visualizing shark data',
+          action: (
+            <Button
+              type="primary"
+              onClick={() => {
+                window.open('https://github.com/h7ml/shark');
+              }}
+              size="large"
+              style={{
+                borderRadius: 20,
+                background: token.colorBgElevated,
+                color: token.colorPrimary,
+                width: 120,
+              }}
+            >
+              Github
+            </Button>
+          ),
+        }}
         actions={
           <div
             style={{
