@@ -49,7 +49,7 @@ const SlideIndex = () => {
             style={{ width: defaultSetting.slideWidth }}
           >
             <IconBuguang className="text-blue-500" />
-            <h1 className='text-primary font-bold text-[22px]'>fluxy-admin</h1>
+            <h1 className='text-primary font-bold text-[22px]'>shark</h1>
           </div>
         )}
         headerStyle={{ padding: '24px 0', border: 'none' }}

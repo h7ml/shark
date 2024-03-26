@@ -13,8 +13,13 @@ const config: Configuration = {
     chunkFilename: '[id].chunk.js',
     assetModuleFilename: '[name][ext]'
   },
+  devServer: {
+    historyApiFallback: {
+      index: '/'
+    }
+  },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     alias: {
       '@': path.resolve(__dirname, './src')
     }
@@ -85,9 +90,9 @@ const config: Configuration = {
     }),
     isDev ? new refreshPlugin() : undefined,
     new rspack.CopyRspackPlugin({
-      patterns:[
+      patterns: [
         {
-          from: 'public',
+          from: 'public'
         }
       ]
     })

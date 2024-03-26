@@ -1,5 +1,5 @@
 export default {
-  wbTMzvDM: 'A High Beauty Background Management System',
+  wbTMzvDM: 'A web application for managing and visualizing shark data',
   wVzXBuYs: 'Please enter an account',
   RNISycbR: 'account number',
   DjMcEMAe: 'Please input a password',

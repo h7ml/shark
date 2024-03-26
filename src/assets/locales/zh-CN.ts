@@ -1,5 +1,5 @@
 export default {
-  wbTMzvDM: '一个高颜值后台管理系统',
+  wbTMzvDM: '一个用于管理和可视化鲨鱼数据的 Web 应用程序 ',
   wVzXBuYs: '请输入账号',
   RNISycbR: '账号',
   DjMcEMAe: '请输入密码',
