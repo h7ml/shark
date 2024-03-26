@@ -83,7 +83,14 @@ const config: Configuration = {
     new rspack.HtmlRspackPlugin({
       template: './index.html'
     }),
-    isDev ? new refreshPlugin() : undefined
+    isDev ? new refreshPlugin() : undefined,
+    new rspack.CopyRspackPlugin({
+      patterns:[
+        {
+          from: 'public',
+        }
+      ]
+    })
   ].filter(Boolean)
 }
 
