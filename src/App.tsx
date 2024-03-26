@@ -1,20 +1,18 @@
-import { ConfigProvider } from 'antd';
 import './App.css';
-import Layout from '@/layouts';
-import { useStore } from '@/models/global';
+import { ConfigProvider, ThemeConfig } from 'antd'
+import { RouterProvider } from 'react-router-dom';
 import { useMemo } from 'react';
-import { lightTheme, darkTheme } from '@/config/theme';
-
+import { lightTheme, darkTheme, sharkRouter } from '@/config/theme';
+import { useGlobalStore } from '@/models/global'
 function App() {
-  const darkMode = useStore((state) => state.darkMode);
+  const darkMode = useGlobalStore(state => state.darkMode);
 
-  const curTheme = useMemo(() => (darkMode ? darkTheme : lightTheme), [darkMode]);
+  const curTheme: ThemeConfig = useMemo(() => (darkMode ? darkTheme : lightTheme), [darkMode]);
 
   return (
     <ConfigProvider theme={curTheme}>
-      <div className={darkMode ? 'dark' : 'light'}>
-        <Layout />
-      </div>
+      <RouterProvider router={sharkRouter} />
+
     </ConfigProvider>
   );
 }

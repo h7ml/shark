@@ -1,0 +1,247 @@
+@import '~antd/es/style/themes/default.less';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+  background: @layout-body-background;
+}
+
+.lang {
+  width: 100%;
+  height: 40px;
+  line-height: 44px;
+  text-align: right;
+
+  :global(.ant-dropdown-trigger) {
+    margin-right: 24px;
+  }
+}
+
+.content {
+  flex: 1;
+  padding: 32px 0;
+}
+
+@media (min-width: @screen-md-min) {
+  .container {
+    background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
+    background-repeat: no-repeat;
+    background-position: center 110px;
+    background-size: 100%;
+  }
+
+  .content {
+    padding: 32px 0 24px;
+  }
+}
+
+.top {
+  text-align: center;
+}
+
+.header {
+  height: 44px;
+  line-height: 44px;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.logo {
+  height: 44px;
+  margin-right: 16px;
+  vertical-align: top;
+}
+
+.title {
+  position: relative;
+  top: 2px;
+  color: @heading-color;
+  font-weight: 600;
+  font-size: 33px;
+  font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.desc {
+  margin-top: 12px;
+  margin-bottom: 40px;
+  color: @text-color-secondary;
+  font-size: @font-size-base;
+}
+
+.main {
+  width: 328px;
+  margin: 0 auto;
+
+  @media screen and (max-width: @screen-sm) {
+    width: 95%;
+    max-width: 328px;
+  }
+
+  :global {
+    .@{ant-prefix}-tabs-nav-list {
+      margin: auto;
+      font-size: 16px;
+    }
+  }
+
+  .icon {
+    margin-left: 16px;
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: @primary-color;
+    }
+  }
+
+  .other {
+    margin-top: 24px;
+    line-height: 22px;
+    text-align: left;
+
+    .register {
+      float: right;
+    }
+  }
+
+  .prefixIcon {
+    color: @primary-color;
+    font-size: @font-size-base;
+  }
+}
+
+82 changes: 82 additions & 0 deletions82 src/pages/user/login/index.tsx @@ -0, 0+1, 82 @@ import {
+  IconBuguang
+}
+
+from '@/assets/icons/buguang'
+
+import {
+  LockOutlined,
+  UserOutlined
+}
+
+from '@ant-design/icons';
+
+import {
+  Button,
+  Form,
+  Input
+}
+
+from 'antd';
+
+import {
+  useState
+}
+
+from 'react';
+
+import {
+  useNavigate
+}
+
+from 'react-router-dom';
+
+
+const Login=()=> {
+  const [loading,
+  setLoading]=useState(false);
+
+  const navigate=useNavigate();
+
+  const onFinish=async ()=> {
+    console.log('onFinish');
+    navigate('/home/index');
+  }
+
+  ;
+
+  1 return (<div className="bg-[rgb(238,242,246)] flex justify-center items-center h-[100vh]" > <div className='w-[328px] px-[32px] py-[20px] mt-[-12%] bg-white rounded-md' > <div className='text-center' > <div className='flex justify-center gap-2' > <IconBuguang className='text-[20px] text-blue-500' /> <h1 style= {
+        {
+        marginBottom: '0.2em'
+      }
+    }
+
+    >fluxy-admin</h1> </div> <h3 style= {
+        {
+        color: 'rgba(0,0,0,.45)',
+        marginBottom: '1em',
+        fontSize: '14px',
+        fontWeight: 400,
+      }
+    }
+
+    > 一个高颜值后台管理系统 </h3> </div> <Form name="super-admin"
+    className="login-form"
+
+    initialValues= {
+        {
+        username: 'admin', password: '123456'
+      }
+    }
+
+    onFinish= {
+      onFinish
+    }
+
+    size="large"
+    > <Form.Item name="username"
+
+    rules= {
+      [ {
+        required: true, message: '请输入账号'
+      }
+
+      ]
+    }
+
+    > <Input prefix= {
+      <UserOutlined className="site-form-item-icon" />
+    }
+
+    placeholder="账号"
+
+    /> </Form.Item> <Form.Item name="password"
+    rules= {
+      [ {
+        required: true, message: '请输入密码'
+      }
+
+      ]
+    }
+
+    > <Input prefix= {
+      <LockOutlined className="site-form-item-icon" />
+    }
+
+    type="password"
+    placeholder="密码"
+
+    /> </Form.Item> <Form.Item style= {
+        {
+        marginBottom: 18
+      }
+    }
+
+    > <Button type="primary"
+    htmlType="submit"
+    className="login-form-button"
+
+    loading= {
+      loading
+    }
+
+    block > 登录 </Button> </Form.Item> </Form> </div> </div>);
+}
+
+;
+
+export default Login;

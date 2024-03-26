@@ -1,6 +1,11 @@
 import { ThemeConfig, theme } from 'antd'
 import { colors } from './colors'
 
+import { routeConfig } from '@/config/routes'
+import BasicLayout from '@/layouts'
+import { createBrowserRouter } from 'react-router-dom'
+import Login from '@/pages/user/login'
+
 export const lightTheme: ThemeConfig = {
   token: {
     ...colors
@@ -20,3 +25,15 @@ export const darkTheme: ThemeConfig = {
   },
   algorithm: theme.darkAlgorithm
 }
+
+export const sharkRouter = createBrowserRouter([
+  {
+    path: '/user/login',
+    Component: Login
+  },
+  {
+    path: '/',
+    Component: BasicLayout,
+    children: routeConfig
+  }
+])
