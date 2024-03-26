@@ -1,31 +1,22 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import { ConfigProvider } from 'antd';
+import './App.css';
+import Layout from '@/layouts';
+import { useStore } from '@/models/global';
+import { useMemo } from 'react';
+import { lightTheme, darkTheme } from '@/config/theme';
 
 function App() {
-	const [count, setCount] = useState(0);
+  const darkMode = useStore((state) => state.darkMode);
 
-	return (
-		<div className="App">
-			<div>
-				<a href="https://reactjs.org" target="_blank" rel="noreferrer">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<h1>Rspack + React + TypeScript</h1>
-			<div className="card">
-				<button onClick={() => setCount(count => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Rspack and React logos to learn more
-			</p>
-		</div>
-	);
+  const curTheme = useMemo(() => (darkMode ? darkTheme : lightTheme), [darkMode]);
+
+  return (
+    <ConfigProvider theme={curTheme}>
+      <div className={darkMode ? 'dark' : 'light'}>
+        <Layout />
+      </div>
+    </ConfigProvider>
+  );
 }
 
 export default App;

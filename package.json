@@ -1,15 +1,28 @@
 {
-  "name": "rspack-react-ts-starter",
+  "name": "shark",
+  "description": "A web app for shark",
+  "author": {
+    "name": "h7ml",
+    "email": "h7ml@qq.com",
+    "url": "https://github.com/h7ml"
+  },
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "NODE_ENV=development rspack serve",
+    "dev": "rspack serve",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "build": "NODE_ENV=production rspack build"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.5",
+    "@ant-design/pro-components": "^2.6.52",
     "antd": "^5.15.4",
+    "rc-resize-observer": "^1.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "windicss": "^3.5.6",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@rspack/cli": "0.5.9",
@@ -17,6 +30,16 @@
     "@rspack/plugin-react-refresh": "0.5.9",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
-    "react-refresh": "^0.14.0"
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "postcss": "^8.4.38",
+    "postcss-loader": "^8.1.1",
+    "postcss-windicss": "^1.0.0",
+    "react-refresh": "^0.14.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
   }
 }
