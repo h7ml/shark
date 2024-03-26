@@ -32,4 +32,4 @@ This project is licensed under the Apache-2.0 License - see the [LICENSE](http:/
 
 ---
 
-[查看中文版本](readme-zh.md)
+[查看中文版本](README-ZH.md)

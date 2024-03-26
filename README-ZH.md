@@ -32,4 +32,4 @@ Shark 是一个使用 React、Ant Design 和 Zustand 构建的 Web 应用程序�
 
 ---
 
-[View English Version](readme.md)
+[View English Version](README.md)
