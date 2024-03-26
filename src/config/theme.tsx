@@ -1,6 +1,6 @@
 import { ThemeConfig, theme } from 'antd'
 import { colors } from './colors'
-
+import NotFoundPage from '@/pages/NotFound';
 import { routeConfig } from '@/config/routes'
 import BasicLayout from '@/layouts'
 import { createBrowserRouter } from 'react-router-dom'
@@ -15,13 +15,15 @@ export const lightTheme: ThemeConfig = {
 export const darkTheme: ThemeConfig = {
   token: {
     ...colors,
+    // colorPrimary: 'rgb(103, 58, 183)',
     // colorBgTextHover: '#f0e9f7',
-    // colorBgBase: 'rgb(17, 25, 54)',
+    colorBgBase: 'rgb(17, 25, 54)',
     // colorBgLayout: 'rgb(17, 25, 54)',
     colorBgContainer: 'rgb(26, 34, 63)',
     colorBorder: 'rgba(189, 200, 240, 0.157)',
     colorBgTextHover: 'rgba(124, 77, 255, 0.082)',
-    colorTextHover: 'rgba(124, 77, 255, 0.082)'
+    colorTextHover: 'rgba(124, 77, 255, 0.082)',
+    controlItemBgActive: 'rgba(33, 150, 243, 0.16)',
   },
   algorithm: theme.darkAlgorithm
 }
@@ -34,6 +36,9 @@ export const sharkRouter = createBrowserRouter([
   {
     path: '/',
     Component: BasicLayout,
-    children: routeConfig
+    children: routeConfig,
+  }, {
+    path: '*',
+    Component: NotFoundPage,
   }
 ])

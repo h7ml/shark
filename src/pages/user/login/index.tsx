@@ -18,6 +18,7 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { Button, Divider, Space, Tabs, message, theme } from 'antd';
+import { t } from '@/utils/i18n';
 
 type LoginType = 'phone' | 'account';
 
@@ -35,8 +36,7 @@ const Page: React.FC = () => {
 
   const [loginType, setLoginType] = useState<LoginType>('phone');
   const onFinish = async () => {
-    console.log('onFinish');
-    navigate('/home/index');
+    navigate('/');
   };
 
   const getIconStyle = (color: string): CSSProperties => ({
@@ -83,7 +83,7 @@ const Page: React.FC = () => {
                 />
               ),
             }}
-            placeholder={'密码: ant.design'}
+            placeholder={t("HplkKxdY" /* 密码 */) + ': ant.design'}
             rules={[
               {
                 required: true,
