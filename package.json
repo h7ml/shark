@@ -1,17 +1,42 @@
 {
   "name": "shark",
-  "description": "A web app for shark",
+  "description": "A web application for managing and visualizing shark data. Built with React, Ant Design, and Zustand.",
+  "homepage": "https://shark.h7ml.cn",
   "author": {
     "name": "h7ml",
     "email": "h7ml@qq.com",
-    "url": "https://github.com/h7ml"
+    "github": "https://github.com/h7ml",
+    "url": "https://shark.h7ml.cn"
   },
+  "license": "Apache-2.0",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h7ml/shark.git"
+  },
+  "bugs": {
+    "url": "https://github.com/h7ml/shark/issues"
+  },
+  "keywords": [
+    "shark",
+    "web",
+    "application",
+    "data visualization",
+    "React",
+    "Ant Design",
+    "Zustand"
+  ],
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "rspack serve",
+    "dev": "cross-env NODE_ENV=development rspack serve",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "build": "NODE_ENV=production rspack build"
+    "build": "cross-env NODE_ENV=production rspack build"
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.5",
@@ -32,6 +57,7 @@
     "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",

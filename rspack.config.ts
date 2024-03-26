@@ -8,6 +8,11 @@ const config: Configuration = {
   entry: {
     main: './src/main.tsx'
   },
+  output: {
+    publicPath: '/',
+    chunkFilename: '[id].chunk.js',
+    assetModuleFilename: '[name][ext]'
+  },
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.jsx'],
     alias: {
