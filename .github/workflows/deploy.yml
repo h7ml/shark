@@ -11,21 +11,21 @@ env:
   TZ: Asia/Shanghai
 
 jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Mirror the Github organization repos to Gitee.
-        uses: Yikun/hub-mirror-action@master
-        with:
-          src: github/h7ml
-          dst: gitee/h7ml
-          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-          dst_token: ${{ secrets.GITEE_TOKEN }}
-          white_list: 'shark' # 只同步shark
-          force_update: true
-          account_type: user
-          clone_style: ssh
-          debug: true
+#  sync:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Mirror the Github organization repos to Gitee.
+#        uses: Yikun/hub-mirror-action@master
+#        with:
+#          src: github/h7ml
+#          dst: gitee/h7ml
+#          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+#          dst_token: ${{ secrets.GITEE_TOKEN }}
+#          white_list: 'shark' # 只同步shark
+#          force_update: true
+#          account_type: user
+#          clone_style: ssh
+#          debug: true
   pages:
     # 任务运行的容器类型（虚拟机环境）
     runs-on: ubuntu-latest
@@ -65,7 +65,6 @@ jobs:
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: dist # The folder the action should deploy.
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
-    needs: sync
   build:
     name: build 🚀
     runs-on: ubuntu-latest
