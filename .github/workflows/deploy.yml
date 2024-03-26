@@ -56,15 +56,15 @@ jobs:
           yarn install
           yarn build
         # 构建发布 Github pages
-      - name: Deploy 🚀
-        # 使用github-pages-deploy-action: https://github.com/JamesIves/github-pages-deploy-action/tree/master
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
-        with:
-          # 存储库中要部署的文件夹。
-          # 该步骤会将项目中 FOLDER 指定文件夹下的文件推送到 BRANCH 分支，作为Github Pages 部署的内容。
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: dist # The folder the action should deploy.
-          GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
+#      - name: Deploy 🚀
+#        # 使用github-pages-deploy-action: https://github.com/JamesIves/github-pages-deploy-action/tree/master
+#        uses: JamesIves/github-pages-deploy-action@v4.3.3
+#        with:
+#          # 存储库中要部署的文件夹。
+#          # 该步骤会将项目中 FOLDER 指定文件夹下的文件推送到 BRANCH 分支，作为Github Pages 部署的内容。
+#          BRANCH: gh-pages # The branch the action should deploy to.
+#          FOLDER: dist # The folder the action should deploy.
+#          GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
   build:
     name: build 🚀
     runs-on: ubuntu-latest
@@ -122,7 +122,7 @@ jobs:
       - name: Deploy to surge 🚀
         uses: dswistowski/surge-sh-action@v1
         with:
-          domain: 'shark.surge.sh'
+          domain: 'shark-h7ml.surge.sh'
           project: './dist'
           login: ${{ secrets.surge_login }}
           token: ${{ secrets.surge_token }}
