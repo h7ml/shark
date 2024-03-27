@@ -1,0 +1,10 @@
+version: '3'
+services:
+  h7ml:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/shark
+    ports:
+      - '80:80'
