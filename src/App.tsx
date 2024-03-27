@@ -3,7 +3,7 @@ import { ConfigProvider } from 'antd'
 import { RouterProvider } from 'react-router-dom'
 import { useEffect, useMemo } from 'react'
 import { darkTheme, lightTheme, sharkRouter } from '@/config/theme'
-import { useGlobalStore } from '@/models/global'
+import { useGlobalStore } from '@/store/global'
 
 import { i18n } from '@/utils/i18n'
 

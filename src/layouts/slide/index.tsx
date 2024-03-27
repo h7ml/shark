@@ -4,7 +4,7 @@ import { useUpdateEffect } from 'react-use'
 
 import SlideMenu from './menus'
 import { IconBuguang } from '@/assets/icons/buguang'
-import { useGlobalStore } from '@/models/global'
+import { useGlobalStore } from '@/store/global'
 import { usePCScreen } from '@/hooks/use-pc-screen'
 import { defaultSetting } from '@/default-setting'
 

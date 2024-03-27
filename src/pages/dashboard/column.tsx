@@ -3,7 +3,7 @@ import { Column } from '@ant-design/plots'
 
 import columnDarkTheme from './theme/dark-column-theme.json'
 import columnLightTheme from './theme/light-column-theme.json'
-import { useGlobalStore } from '@/models/global'
+import { useGlobalStore } from '@/store/global'
 
 function DemoColumn() {
   const [data, setData] = useState([])

@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 import { Loading } from '@/components/loading'
 import { defaultSetting } from '@/default-setting'
 import { usePCScreen } from '@/hooks/use-pc-screen'
-import { useGlobalStore } from '@/models/global'
+import { useGlobalStore } from '@/store/global'
 
 const Content: FC<any> = ({ children }) => {
   const isPC = usePCScreen()

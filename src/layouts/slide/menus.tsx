@@ -5,7 +5,7 @@ import { Link, useLocation, useMatches } from 'react-router-dom'
 
 import type { MenuItem } from '@/config/routes'
 import { routeConfig } from '@/config/routes'
-import { useGlobalStore } from '@/models/global'
+import { useGlobalStore } from '@/store/global'
 
 function SlideMenu() {
   const location = useLocation()

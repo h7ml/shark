@@ -8,7 +8,7 @@ import { IconFangdajing } from '@/assets/icons/fangdajing'
 import { IconJiaretaiyang } from '@/assets/icons/jiaretaiyang'
 import { IconShuyi_fanyi36 } from '@/assets/icons/shuyi_fanyi-36'
 import { defaultSetting } from '@/default-setting'
-import { useGlobalStore } from '@/models/global'
+import { useGlobalStore } from '@/store/global'
 import { i18n, t } from '@/utils/i18n'
 
 function Header() {

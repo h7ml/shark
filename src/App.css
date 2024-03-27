@@ -28,12 +28,12 @@
 
 .dark .ant-menu-item:hover {
   color: rgb(124, 77, 255) !important;
-  background-color: rgba(124, 77, 255, 0.082) !important;
+  background-color: rgba(124, 77, 255, 8.2%) !important;
 }
 
 .dark .ant-menu-item-selected {
   color: rgb(124, 77, 255) !important;
-  background-color: rgba(124, 77, 255, 0.082) !important;
+  background-color: rgba(124, 77, 255, 8.2%) !important;
 }
 
 .ant-menu-submenu-title:hover {
@@ -48,17 +48,17 @@
 
 .dark .ant-menu-submenu-title:hover {
   color: rgb(124, 77, 255) !important;
-  background-color: rgba(124, 77, 255, 0.082) !important;
+  background-color: rgba(124, 77, 255, 8.2%) !important;
 }
 
 .dark .ant-menu-item-selected {
   color: rgb(124, 77, 255) !important;
-  background-color: rgba(124, 77, 255, 0.082) !important;
+  background-color: rgba(124, 77, 255, 8.2%) !important;
 }
 
 .ant-menu-inline-collapsed .ant-menu-submenu-selected .ant-menu-submenu-title {
   color: rgb(124, 77, 255) !important;
-  background-color: rgba(124, 77, 255, 0.082) !important;
+  background-color: rgba(124, 77, 255, 8.2%) !important;
 }
 
 .ant-menu-submenu-selected .ant-menu-submenu-title {
@@ -98,7 +98,7 @@
 }
 
 .dark .ant-menu-title-content a {
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
 .dark .ant-menu-item-selected .ant-menu-title-content a {
@@ -106,7 +106,7 @@
 }
 
 .ant-menu-title-content a {
-  color: rgba(0, 0, 0, 0.88) !important;
+  color: rgba(0, 0, 0, 88%) !important;
 }
 
 .light .ant-menu-item-selected .ant-menu-title-content a {
@@ -114,7 +114,7 @@
 }
 
 .light .ant-menu-title-content a {
-  color: rgba(0, 0, 0, 0.88) !important;
+  color: rgba(0, 0, 0, 88%) !important;
 }
 
 .ant-menu-title-content:hover a {
@@ -131,9 +131,9 @@ body.dark {
 
 .ant-btn-primary {
   box-shadow:
-    rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
-    rgba(0, 0, 0, 0.14) 0px 2px 2px 0px,
-    rgba(0, 0, 0, 0.12) 0px 1px 5px 0px !important;
+    rgba(0, 0, 0, 20%) 0 3px 1px -2px,
+    rgba(0, 0, 0, 14%) 0 2px 2px 0,
+    rgba(0, 0, 0, 12%) 0 1px 5px 0 !important;
 }
 
 .ant-menu-item .ant-menu-item-icon {
