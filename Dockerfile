@@ -1,5 +1,5 @@
 # 第一阶段：构建阶段
-FROM gplane/pnpm:8.4.0 as builder
+FROM gplane/pnpm:latest as builder
 
 # 设置工作目录
 WORKDIR /shark
