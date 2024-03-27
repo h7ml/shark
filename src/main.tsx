@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import NProgress from 'nprogress'
 import App from '@/App.tsx'
+import '@/App.css'
 import '@/index.css'
 import 'nprogress/nprogress.css'
 

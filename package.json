@@ -38,8 +38,8 @@
     "build:gh-pages": "cross-env NODE_ENV=production PUBLIC_PATH=/shark/ rspack build",
     "commit": "git-cz",
     "dev": "cross-env NODE_ENV=development rspack serve",
-    "lint": "eslint .",
-    "lint:fix": "prettier --write . & eslint . --fix",
+    "lint": "eslint . --fix",
+    "lint:fix": "prettier --write . && eslint . --fix",
     "prepare": "husky",
     "prettier": "prettier --write ."
   },
@@ -55,7 +55,6 @@
     "rc-resize-observer": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router": "^6.22.3",
     "react-router-dom": "^6.22.3",
     "react-use": "^17.5.0",
     "windicss": "^3.5.6",

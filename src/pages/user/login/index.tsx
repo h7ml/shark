@@ -28,7 +28,18 @@ const iconStyles: CSSProperties = {
   verticalAlign: 'middle',
   cursor: 'pointer',
 }
-
+const TabPaneItem = [
+  {
+    label: '账号密码登录',
+    key: 'account',
+    icon: <UserOutlined />,
+  },
+  {
+    key: 'phone',
+    icon: <MobileOutlined />,
+    label: '手机号登录',
+  },
+]
 const Page: React.FC = () => {
   const navigate = useNavigate()
   const { token } = theme.useToken()
@@ -274,12 +285,11 @@ const Page: React.FC = () => {
         )}
       >
         <Tabs
+          items={TabPaneItem}
           centered
           activeKey={loginType}
           onChange={activeKey => setLoginType(activeKey as LoginType)}
         >
-          <Tabs.TabPane key="account" tab="账号密码登录" />
-          <Tabs.TabPane key="phone" tab="手机号登录" />
         </Tabs>
 
         {renderLoginMethod()}

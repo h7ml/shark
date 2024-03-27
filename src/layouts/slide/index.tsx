@@ -16,7 +16,8 @@ function SlideIndex() {
   useUpdateEffect(() => {
     if (!isPC)
       setCollapsed(true)
-    else setCollapsed(false)
+    else
+      setCollapsed(false)
   }, [isPC])
 
   function renderMenu() {

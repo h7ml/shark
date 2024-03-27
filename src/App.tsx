@@ -1,4 +1,3 @@
-import '@/App.css'
 import type { ThemeConfig } from 'antd'
 import { ConfigProvider } from 'antd'
 import { RouterProvider } from 'react-router-dom'
@@ -18,6 +17,16 @@ function App() {
     () => (darkMode ? darkTheme : lightTheme),
     [darkMode],
   )
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.remove('light')
+      document.body.classList.add('dark')
+    }
+    else {
+      document.body.classList.remove('dark')
+      document.body.classList.add('light')
+    }
+  }, [darkMode])
 
   return (
     <ConfigProvider theme={curTheme}>

@@ -1,6 +1,6 @@
 import type { ThemeConfig } from 'antd'
 import { theme } from 'antd'
-import { createBrowserRouter } from 'react-router-dom'
+import { createHashRouter } from 'react-router-dom'
 import { colors } from './colors'
 import NotFoundPage from '@/pages/NotFound'
 import { routeConfig } from '@/config/routes'
@@ -29,7 +29,7 @@ export const darkTheme: ThemeConfig = {
   algorithm: theme.darkAlgorithm,
 }
 
-export const sharkRouter = createBrowserRouter([
+export const sharkRouter = createHashRouter([
   {
     path: '/user/login',
     Component: Login,

@@ -1,6 +1,6 @@
 import { BellOutlined, MenuOutlined, SettingOutlined } from '@ant-design/icons'
 import { Avatar, Dropdown, Input } from 'antd'
-import { memo, useEffect } from 'react'
+import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Icon3 } from '@/assets/icons/3'
 import { IconBuguang } from '@/assets/icons/buguang'
@@ -16,17 +16,6 @@ function Header() {
 
   const { darkMode, collapsed, setCollapsed, setDarkMode, setLang, lang }
     = useGlobalStore()
-
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.remove('light')
-      document.body.classList.add('dark')
-    }
-    else {
-      document.body.classList.remove('dark')
-      document.body.classList.add('light')
-    }
-  }, [darkMode])
 
   return (
     <div

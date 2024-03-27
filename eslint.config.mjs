@@ -6,6 +6,7 @@ export default antfu({
   formatters: true,
   react: true,
   extends: [
+    'plugin:prettier/recommended',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
