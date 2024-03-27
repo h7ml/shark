@@ -76,14 +76,9 @@ cd shark
 
 ## Installation
 
-````sh
-pnpm install
-
-## Install
-
 ```sh
 pnpm install
-````
+```
 
 ## Usage
 
