@@ -54,11 +54,7 @@ jobs:
       - name: yarn script 🚀
         run: |
           yarn install
-          # 删除publicPath.js
-          rm -rf publicPath.js
-          # 创建 publicPath.js 并 写入 __webpack_public_path__ = '/shark/';
-          echo "__webpack_public_path__ = '/shark/';" > publicPath.js
-          yarn build
+          yarn build:gh-pages
         # 构建发布 Github pages
       - name: Deploy 🚀
         # 使用github-pages-deploy-action: https://github.com/JamesIves/github-pages-deploy-action/tree/master

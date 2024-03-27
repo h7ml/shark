@@ -38,6 +38,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "build": "cross-env NODE_ENV=production rspack build",
+    "build:gh-pages": "cross-env NODE_ENV=production PUBLIC_PATH=/shark/ rspack build",
     "commit": "git-cz"
   },
   "dependencies": {
