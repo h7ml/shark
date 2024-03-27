@@ -152,9 +152,6 @@ const config: Configuration = {
     new rspack.CopyRspackPlugin({
       patterns: [
         {
-          from: 'vercel.json',
-        },
-        {
           from: '*.md',
         },
         {

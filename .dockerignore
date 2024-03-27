@@ -1,9 +1,6 @@
 *node_modules
 npm-debug.log
-.git
-README.md
 .idea
-*.memory-card.json
 *.idea
 *.vscode
 *.iml
@@ -11,6 +8,4 @@ README.md
 .idea/
 node_modules/
 .pnpm-debug.log
-*.log# Layer0 generated build directory
-.layer0
 .eslintcache
