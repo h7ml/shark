@@ -42,6 +42,9 @@
    <a href="https://github.com/h7ml/shark/actions/workflows/deploy.yml" target="_blank">
     <img alt="deploy status" src="https://github.com/h7ml/shark/actions/workflows/deploy.yml/badge.svg" />
   </a>
+  <a href="https://hub.docker.com/repository/docker/h7ml/shark/general" target="_blank">
+    <img alt="docker shark" src="https://img.shields.io/docker/v/h7ml/shark" />
+  </a>
   <a href="https://github.com/h7ml/shark/search?l=TypeScript" target="_blank">
     <img alt="language" src="https://img.shields.io/github/languages/top/h7ml/shark" />
   </a>
