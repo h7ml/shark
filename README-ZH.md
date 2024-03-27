@@ -63,7 +63,7 @@
 
 ## 项目简介
 
-"shark" 是一个 Web 应用，旨在帮助用户管理和可视化鲨鱼数据。该项目使用了 React 框架构建前端界面，利用 Ant Design 提供的组件库来创建用户友好的界面，同时使用 Zustand 管理状态。通过这些技术，"shark" 提供了一个功能强大且易于使用的平台，让用户能够有效地管理和展示鲨鱼数据。此外，项目还采用 rspack 进行构建，以实现项目的打包和优化。
+`shark` 是一个 Web 应用，旨在帮助用户管理和可视化鲨鱼数据。该项目使用了 [React](https://react.dev) 框架构建前端界面，利用 [Ant Design](https://ant.design) 提供的组件库来创建用户友好的界面，同时使用 [Zustand](https://zustand-demo.pmnd.rs) 管理状态。通过这些技术，`shark` 提供了一个功能强大且易于使用的平台，让用户能够有效地管理和展示鲨鱼数据。此外，项目还采用 [rspack](https://rspack.dev/) 进行构建，以实现项目的打包和优化。
 
 ## clone
 

@@ -11,20 +11,20 @@ categories:
     label: doc
 
 autolabeler:
-  - label: 'feat'
+  - label: feat
     title:
-      - '/feat/i'
-  - label: 'fix'
+      - /feat/i
+  - label: fix
     title:
-      - '/fix/i'
-  - label: 'chore'
+      - /fix/i
+  - label: chore
     title:
-      - '/chore/i'
-  - label: 'doc'
+      - /chore/i
+  - label: doc
     title:
-      - '/doc/i'
+      - /doc/i
 
 template: |
 
-  ## 更新记录
-   $CHANGES
+                                                              ## 更新记录
+                                                               $CHANGES

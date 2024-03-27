@@ -1,7 +1,7 @@
 ---
 name: Need help issue
 about: Question for use（问题求助）
-title: ''
+title: ""
 labels: question
 assignees: h7ml
 ---

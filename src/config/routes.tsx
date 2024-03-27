@@ -1,15 +1,15 @@
-import { UserOutlined, DashboardOutlined } from '@ant-design/icons';
-import { lazy } from 'react';
-import { Navigate } from 'react-router';
+import { DashboardOutlined, UserOutlined } from '@ant-design/icons'
+import { lazy } from 'react'
+import { Navigate } from 'react-router'
 
 export interface MenuItem {
-  path: string;
-  title?: string;
-  icon?: any;
-  element?: any;
-  children?: MenuItem[];
-  layout?: boolean;
-  Component?: any;
+  path: string
+  title?: string
+  icon?: any
+  element?: any
+  children?: MenuItem[]
+  layout?: boolean
+  Component?: any
 }
 
 export const routeConfig: MenuItem[] = [
@@ -27,6 +27,6 @@ export const routeConfig: MenuItem[] = [
   },
   {
     path: '/',
-    element: <Navigate to='/dashboard' />,
-  }
+    element: <Navigate to="/dashboard" />,
+  },
 ]

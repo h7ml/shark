@@ -63,7 +63,7 @@
 
 ## Project Introduction
 
-"shark" is a web application designed to help users manage and visualize shark data. The project is built using the React framework for the frontend interface, utilizing the component library provided by Ant Design to create a user-friendly interface, and managing state using Zustand. Through these technologies, "shark" provides a powerful and easy-to-use platform for users to effectively manage and display shark data. Additionally, the project uses rspack for building to achieve project bundling and optimization.
+`shark` is a web application designed to help users manage and visualize shark data. The project is built using the [React](https://reactjs.dev/) framework for the frontend interface, utilizing the component library provided by [Ant Design](https://ant.design/) to create a user-friendly interface, and managing state using [Zustand](https://zustand-demo.pmnd.rs/). Through these technologies, `shark` provides a powerful and easy-to-use platform for users to effectively manage and display shark data. Additionally, the project uses [rspack](https://rspack.dev/) for building to achieve project bundling and optimization.
 
 ## clone
 

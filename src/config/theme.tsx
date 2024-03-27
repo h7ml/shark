@@ -1,15 +1,16 @@
-import { ThemeConfig, theme } from 'antd'
+import type { ThemeConfig } from 'antd'
+import { theme } from 'antd'
+import { createBrowserRouter } from 'react-router-dom'
 import { colors } from './colors'
-import NotFoundPage from '@/pages/NotFound';
+import NotFoundPage from '@/pages/NotFound'
 import { routeConfig } from '@/config/routes'
 import BasicLayout from '@/layouts'
-import { createBrowserRouter } from 'react-router-dom'
 import Login from '@/pages/user/login'
 
 export const lightTheme: ThemeConfig = {
   token: {
-    ...colors
-  }
+    ...colors,
+  },
 }
 
 export const darkTheme: ThemeConfig = {
@@ -25,20 +26,21 @@ export const darkTheme: ThemeConfig = {
     colorTextHover: 'rgba(124, 77, 255, 0.082)',
     controlItemBgActive: 'rgba(33, 150, 243, 0.16)',
   },
-  algorithm: theme.darkAlgorithm
+  algorithm: theme.darkAlgorithm,
 }
 
 export const sharkRouter = createBrowserRouter([
   {
     path: '/user/login',
-    Component: Login
+    Component: Login,
   },
   {
     path: '/',
     Component: BasicLayout,
     children: routeConfig,
-  }, {
+  },
+  {
     path: '*',
     Component: NotFoundPage,
-  }
+  },
 ])

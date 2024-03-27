@@ -3,12 +3,12 @@ export const defaultSetting = {
   languages: [
     {
       key: 'zh',
-      name: '5iwzry'
+      name: '5iwzry',
     },
     {
       key: 'en',
-      name: 'hGtEfNnp'
-    }
+      name: 'hGtEfNnp',
+    },
   ],
-  defaultLang: 'en'
+  defaultLang: 'en',
 }

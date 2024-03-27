@@ -1,7 +1,6 @@
-
-import React, { CSSProperties, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Shark from '@/assets/icons/shark.svg'
+import type { CSSProperties } from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   AlipayOutlined,
   LockOutlined,
@@ -9,41 +8,40 @@ import {
   TaobaoOutlined,
   UserOutlined,
   WeiboOutlined,
-} from '@ant-design/icons';
+} from '@ant-design/icons'
 import {
   LoginFormPage,
   ProConfigProvider,
   ProFormCaptcha,
   ProFormCheckbox,
   ProFormText,
-} from '@ant-design/pro-components';
-import { Button, Divider, Space, Tabs, message, theme } from 'antd';
-import { t } from '@/utils/i18n';
+} from '@ant-design/pro-components'
+import { Button, Divider, Space, Tabs, message, theme } from 'antd'
+import Shark from '@/assets/icons/shark.svg'
+import { t } from '@/utils/i18n'
 
-type LoginType = 'phone' | 'account';
+type LoginType = 'phone' | 'account'
 
 const iconStyles: CSSProperties = {
   color: 'rgba(0, 0, 0, 0.2)',
   fontSize: '18px',
   verticalAlign: 'middle',
   cursor: 'pointer',
-};
+}
 
 const Page: React.FC = () => {
-  const navigate = useNavigate();
-  const { token } = theme.useToken();
+  const navigate = useNavigate()
+  const { token } = theme.useToken()
 
-
-  const [loginType, setLoginType] = useState<LoginType>('phone');
+  const [loginType, setLoginType] = useState<LoginType>('phone')
   const onFinish = async () => {
-    navigate('/');
-  };
+    navigate('/')
+  }
 
   const getIconStyle = (color: string): CSSProperties => ({
     ...iconStyles,
     color,
-  });
-
+  })
 
   const renderLoginMethod = () => {
     if (loginType === 'account') {
@@ -58,11 +56,11 @@ const Page: React.FC = () => {
                   style={{
                     color: token.colorText,
                   }}
-                  className={'prefixIcon'}
+                  className="prefixIcon"
                 />
               ),
             }}
-            placeholder={'用户名: admin or user'}
+            placeholder="用户名: admin or user"
             rules={[
               {
                 required: true,
@@ -79,11 +77,11 @@ const Page: React.FC = () => {
                   style={{
                     color: token.colorText,
                   }}
-                  className={'prefixIcon'}
+                  className="prefixIcon"
                 />
               ),
             }}
-            placeholder={t("HplkKxdY" /* 密码 */) + ': ant.design'}
+            placeholder={`${t('HplkKxdY' /* 密码 */)}: ant.design`}
             rules={[
               {
                 required: true,
@@ -92,8 +90,9 @@ const Page: React.FC = () => {
             ]}
           />
         </>
-      );
-    } else if (loginType === 'phone') {
+      )
+    }
+    else if (loginType === 'phone') {
       return (
         <>
           <ProFormText
@@ -104,12 +103,12 @@ const Page: React.FC = () => {
                   style={{
                     color: token.colorText,
                   }}
-                  className={'prefixIcon'}
+                  className="prefixIcon"
                 />
               ),
             }}
             name="mobile"
-            placeholder={'手机号'}
+            placeholder="手机号"
             rules={[
               {
                 required: true,
@@ -129,19 +128,19 @@ const Page: React.FC = () => {
                   style={{
                     color: token.colorText,
                   }}
-                  className={'prefixIcon'}
+                  className="prefixIcon"
                 />
               ),
             }}
             captchaProps={{
               size: 'large',
             }}
-            placeholder={'请输入验证码'}
+            placeholder="请输入验证码"
             captchaTextRender={(timing, count) => {
-              if (timing) {
-                return `${count} ${'获取验证码'}`;
-              }
-              return '获取验证码';
+              if (timing)
+                return `${count} ${'获取验证码'}`
+
+              return '获取验证码'
             }}
             name="captcha"
             rules={[
@@ -151,14 +150,14 @@ const Page: React.FC = () => {
               },
             ]}
             onGetCaptcha={async () => {
-              message.success('获取验证码成功！验证码为：1234');
+              message.success('获取验证码成功！验证码为：1234')
             }}
           />
         </>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <div
@@ -193,7 +192,7 @@ const Page: React.FC = () => {
             <Button
               type="primary"
               onClick={() => {
-                window.open('https://github.com/h7ml/shark');
+                window.open('https://github.com/h7ml/shark')
               }}
               size="large"
               style={{
@@ -207,7 +206,7 @@ const Page: React.FC = () => {
             </Button>
           ),
         }}
-        actions={
+        actions={(
           <div
             style={{
               display: 'flex',
@@ -236,12 +235,11 @@ const Page: React.FC = () => {
                   flexDirection: 'column',
                   height: 40,
                   width: 40,
-                  border: '1px solid ' + token.colorPrimaryBorder,
+                  border: `1px solid ${token.colorPrimaryBorder}`,
                   borderRadius: '50%',
                 }}
               >
                 <AlipayOutlined style={getIconStyle('#1677FF')} />
-
               </div>
               <div
                 style={{
@@ -251,7 +249,7 @@ const Page: React.FC = () => {
                   flexDirection: 'column',
                   height: 40,
                   width: 40,
-                  border: '1px solid ' + token.colorPrimaryBorder,
+                  border: `1px solid ${token.colorPrimaryBorder}`,
                   borderRadius: '50%',
                 }}
               >
@@ -265,7 +263,7 @@ const Page: React.FC = () => {
                   flexDirection: 'column',
                   height: 40,
                   width: 40,
-                  border: '1px solid ' + token.colorPrimaryBorder,
+                  border: `1px solid ${token.colorPrimaryBorder}`,
                   borderRadius: '50%',
                 }}
               >
@@ -273,15 +271,15 @@ const Page: React.FC = () => {
               </div>
             </Space>
           </div>
-        }
+        )}
       >
         <Tabs
           centered
           activeKey={loginType}
-          onChange={(activeKey) => setLoginType(activeKey as LoginType)}
+          onChange={activeKey => setLoginType(activeKey as LoginType)}
         >
-          <Tabs.TabPane key={'account'} tab={'账号密码登录'} />
-          <Tabs.TabPane key={'phone'} tab={'手机号登录'} />
+          <Tabs.TabPane key="account" tab="账号密码登录" />
+          <Tabs.TabPane key="phone" tab="手机号登录" />
         </Tabs>
 
         {renderLoginMethod()}
@@ -303,13 +301,14 @@ const Page: React.FC = () => {
         </div>
       </LoginFormPage>
     </div>
-  );
-};
+  )
+}
 
-export default () => {
+function loginPage() {
   return (
     <ProConfigProvider dark>
       <Page />
     </ProConfigProvider>
-  );
-};
+  )
+}
+export default loginPage

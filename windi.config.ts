@@ -3,7 +3,7 @@ import { defineConfig } from 'windicss/helpers'
 export default defineConfig({
   preflight: false,
   extract: {
-    include: ['src/**/*.{html,vue,jsx,tsx,svelte}']
+    include: ['src/**/*.{html,vue,jsx,tsx,svelte}'],
   },
   darkMode: 'class',
   shortcuts: {
@@ -15,30 +15,30 @@ export default defineConfig({
     'bg-container':
       'dark:bg-bgContainerColor-dark light:bg-bgContainerColor-light bg-bgContainerColor-light',
     'text-primary':
-      'dark:text-textPrimaryColor-dark light:text-textPrimaryColor-light text-textPrimaryColor-light'
+      'dark:text-textPrimaryColor-dark light:text-textPrimaryColor-light text-textPrimaryColor-light',
   },
   theme: {
     extend: {
       colors: {
         bgPrimaryColor: {
           dark: 'rgb(17, 25, 54)',
-          light: '#ffffff'
+          light: '#ffffff',
         },
         bgContainerColor: {
           dark: 'rgb(26, 34, 63)',
-          light: 'rgb(238, 242, 246)'
+          light: 'rgb(238, 242, 246)',
         },
         textPrimaryColor: {
           dark: '#ffffff',
-          light: '#121926'
-        }
+          light: '#121926',
+        },
       },
       screens: {
         mobile: '300px',
         tablet: '640px',
         laptop: '1024px',
-        desktop: '1280px'
-      }
-    }
-  }
+        desktop: '1280px',
+      },
+    },
+  },
 })

@@ -1,23 +1,19 @@
-import { Spin } from 'antd';
-import NProgress from 'nprogress';
-import { useEffect } from 'react';
+import { Spin } from 'antd'
+import NProgress from 'nprogress'
+import { useEffect } from 'react'
 
-
-export const Loading = () => {
-
-
+export function Loading() {
   useEffect(() => {
-
-    NProgress.start();
+    NProgress.start()
 
     return () => {
-      NProgress.done();
+      NProgress.done()
     }
   }, [])
 
   return (
-    <div className='flex justify-center'>
+    <div className="flex justify-center">
       <Spin />
     </div>
-  );
+  )
 }

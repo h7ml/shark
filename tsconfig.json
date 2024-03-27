@@ -1,26 +1,26 @@
 {
   "compilerOptions": {
     "target": "ES6",
+    "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "baseUrl": "./",
     "module": "CommonJS",
     "moduleResolution": "node",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": true,
-    "declaration": false,
-    "noUnusedParameters": true,
-    "esModuleInterop": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "declaration": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": ["src"]
 }

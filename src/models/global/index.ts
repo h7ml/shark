@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { devtools, persist, createJSONStorage } from 'zustand/middleware'
+import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 
 interface State {
   darkMode: boolean
@@ -23,23 +23,23 @@ export const useGlobalStore = create<State & Action>()(
           lang: 'zh',
           setDarkMode: (darkMode: State['darkMode']) =>
             set({
-              darkMode
+              darkMode,
             }),
           setCollapsed: (collapsed: State['collapsed']) =>
             set({
-              collapsed
+              collapsed,
             }),
           setLang: (lang: State['lang']) =>
             set({
-              lang
-            })
+              lang,
+            }),
         }
       },
       {
         name: 'globalStore',
-        storage: createJSONStorage(() => localStorage)
-      }
+        storage: createJSONStorage(() => localStorage),
+      },
     ),
-    { name: 'globalStore' }
-  )
+    { name: 'globalStore' },
+  ),
 )
