@@ -1,27 +1,8 @@
 {
   "name": "shark",
-  "description": "A web application for managing and visualizing shark data. Built with React, Ant Design, and Zustand.",
-  "homepage": "https://shark.h7ml.cn",
-  "author": {
-    "name": "h7ml",
-    "email": "h7ml@qq.com",
-    "github": "https://github.com/h7ml",
-    "url": "https://shark.h7ml.cn"
-  },
-  "license": "Apache-2.0",
-  "licenses": [
-    {
-      "type": "Apache-2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/h7ml/shark.git"
-  },
-  "bugs": {
-    "url": "https://github.com/h7ml/shark/issues"
-  },
+  "version": "1.0.0",
+  "private": true,
+  "description": "shark is a web application designed to help users manage and visualize shark data. The project is built using the React framework for the frontend interface, utilizing the component library provided by Ant Design to create a user-friendly interface, and managing state using Zustand. Through these technologies, shark provides a powerful and easy-to-use platform for users to effectively manage and display shark data. Additionally, the project uses rspack for building to achieve project bundling and optimization.",
   "keywords": [
     "shark",
     "web",
@@ -31,15 +12,41 @@
     "Ant Design",
     "Zustand"
   ],
-  "private": true,
-  "version": "1.0.0",
+  "homepage": "https://shark.h7ml.cn",
+  "bugs": {
+    "url": "https://github.com/h7ml/shark/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h7ml/shark.git"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "h7ml",
+    "email": "h7ml@qq.com",
+    "url": "https://shark.h7ml.cn",
+    "github": "https://github.com/h7ml"
+  },
   "scripts": {
+    "build": "cross-env NODE_ENV=production rspack build",
+    "build:analyze": "cross-env NODE_ENV=production rspack build --analyze",
+    "build:gh-pages": "cross-env NODE_ENV=production PUBLIC_PATH=/shark/ rspack build",
+    "commit": "git-cz",
     "dev": "cross-env NODE_ENV=development rspack serve",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "build": "cross-env NODE_ENV=production rspack build",
-    "build:gh-pages": "cross-env NODE_ENV=production PUBLIC_PATH=/shark/ rspack build",
-    "commit": "git-cz"
+    "lint:fix": "eslint . --fix"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "node scripts/verify-commit.js"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.5",
@@ -88,16 +95,15 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3"
   },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged",
-    "commit-msg": "node scripts/verify-commit.js"
+  "engines": {
+    "node": ">=20",
+    "pnpm": "8.15.5",
+    "yarn": "1.22.22"
   },
-  "lint-staged": {
-    "*": "eslint --fix"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-git"
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
     }
-  }
+  ]
 }

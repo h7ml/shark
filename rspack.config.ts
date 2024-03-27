@@ -10,18 +10,17 @@ const config: Configuration = {
   mode: isDev ? "development" : "production", // 模式：该选项用于设置 Rspack 的构建模式，以启用对应模式下的默认优化策略。
   output: {
     // 输出：该选项用于指示 Rspack 如何以及在哪里输出生成的文件内容。
-    // assetModuleFilename: "[hash][ext][query]", // 静态资源文件名：该选项用于设置 Rspack 如何命名构建出的静态资源文件。
-    // filename: (pathData) => {
-    //   return pathData?.chunk?.name === "main"
-    //     ? "[name].js"
-    //     : "[name]/[name].js";
-    // },
+    assetModuleFilename: "[hash][ext][query]", // 静态资源文件名：该选项用于设置 Rspack 如何命名构建出的静态资源文件。
+    filename: (pathData) => {
+      return pathData?.chunk?.name === "main"
+        ? "[name].js"
+        : "[name]/[name].js";
+    },
     // 入口文件名：该选项用于设置 Rspack 如何命名构建出的入口文件。
     publicPath: process.env.PUBLIC_PATH ?? "/", // 公共路径：该选项用于设置 Rspack 如何处理构建出的文件中的 URL。
     crossOriginLoading:
       process.env.PUBLIC_PATH == "/shark/" ? "anonymous" : false, // 跨域加载：该选项用于设置 Rspack 如何处理构建出的文件中的 URL。
     path: path.resolve(__dirname, "dist"), // 输出目录：该选项用于设置 Rspack 构建出的文件应该被写入到的目录。
-    // chunkFilename: "[id].chunk.js", // 代码块文件名：该选项用于设置 Rspack 如何命名构建出的代码块文件。
   },
   optimization: {
     minimize: process.env.NODE_ENV === "production",
@@ -82,6 +81,8 @@ const config: Configuration = {
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // devtool: isDev ? "eval-cheap-module-source-map" : false,
+  devtool: false,
   module: {
     rules: [
       {
@@ -151,6 +152,9 @@ const config: Configuration = {
       patterns: [
         {
           from: "vercel.json",
+        },
+        {
+          from: "*.md",
         },
         {
           from: "public",
