@@ -42,7 +42,7 @@
     "pre-commit": "pretty-quick --staged  && npm run stylelint && npm run prettier && npm run eslint",
     "prepare": "husky install && npm run pre-commit",
     "prettier": "prettier --write .",
-    "preview": "rspack preview",
+    "preview": "npm run build && rspack preview",
     "stylelint": "stylelint \"**/*.{css,scss,sass,less}\" --fix --cache"
   },
   "dependencies": {

@@ -4,6 +4,7 @@ import setupMock from '@/utils/setupMock'
 
 if (!isSSR) {
   setupMock({
+    mock: true, // 是否开启mock 默认关闭
     setup: () => {
       Mock.mock('/api/table', {
         'data|1-100': [
