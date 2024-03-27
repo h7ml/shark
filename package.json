@@ -3,6 +3,21 @@
   "version": "1.0.0",
   "private": true,
   "description": "shark is a web application designed to help users manage and visualize shark data. The project is built using the React framework for the frontend interface, utilizing the component library provided by Ant Design to create a user-friendly interface, and managing state using Zustand. Through these technologies, shark provides a powerful and easy-to-use platform for users to effectively manage and display shark data. Additionally, the project uses rspack for building to achieve project bundling and optimization.",
+  "author": {
+    "name": "h7ml",
+    "email": "h7ml@qq.com",
+    "url": "https://shark.h7ml.cn",
+    "github": "https://github.com/h7ml"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://shark.h7ml.cn",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h7ml/shark.git"
+  },
+  "bugs": {
+    "url": "https://github.com/h7ml/shark/issues"
+  },
   "keywords": [
     "shark",
     "web",
@@ -12,20 +27,10 @@
     "Ant Design",
     "Zustand"
   ],
-  "homepage": "https://shark.h7ml.cn",
-  "bugs": {
-    "url": "https://github.com/h7ml/shark/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/h7ml/shark.git"
-  },
-  "license": "Apache-2.0",
-  "author": {
-    "name": "h7ml",
-    "email": "h7ml@qq.com",
-    "url": "https://shark.h7ml.cn",
-    "github": "https://github.com/h7ml"
+  "engines": {
+    "node": ">=20",
+    "pnpm": "8.15.5",
+    "yarn": "1.22.22"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production rspack build",
@@ -35,28 +40,10 @@
     "dev": "cross-env NODE_ENV=development rspack serve",
     "eslint": "eslint . --fix --cache",
     "pre-commit": "pretty-quick --staged  && npm run stylelint && npm run prettier && npm run eslint",
-    "prepare": "husky install && husky add .husky/pre-commit 'npm run pre-commit'",
+    "prepare": "husky install && npm run pre-commit",
     "prettier": "prettier --write .",
     "preview": "rspack preview",
     "stylelint": "stylelint \"**/*.{css,scss,sass,less}\" --fix --cache"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged",
-    "commit-msg": "node scripts/verify-commit.js"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown",
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix --cache"
-    ],
-    "*.{css, less}": [
-      "stylelint --fix"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-git"
-    }
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.5",
@@ -118,10 +105,23 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3"
   },
-  "engines": {
-    "node": ">=20",
-    "pnpm": "8.15.5",
-    "yarn": "1.22.22"
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "node scripts/verify-commit.js"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown",
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix --cache"
+    ],
+    "*.{css, less}": [
+      "stylelint --fix"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
   },
   "licenses": [
     {
