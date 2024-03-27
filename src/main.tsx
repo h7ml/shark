@@ -5,6 +5,7 @@ import App from '@/App.tsx'
 import '@/App.css'
 import '@/index.css'
 import 'nprogress/nprogress.css'
+import '@/mock'
 
 NProgress.configure({
   minimum: 0.3,
