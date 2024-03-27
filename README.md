@@ -28,8 +28,7 @@
     <img alt="stars" src="https://img.shields.io/github/stars/h7ml/shark" />
   </a>
    <a href="https://github.com/h7ml/shark/watchers" target="_blank">
-    <img alt="watchers" src="https://img.shields.io/github/watchers/h7ml/shark
-    " />
+    <img alt="watchers" src="https://img.shields.io/github/watchers/h7ml/shark" />
   </a>
   <a href="https://github.com/h7ml/shark#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
