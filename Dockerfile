@@ -21,10 +21,6 @@ RUN pnpm run build
 # 第二阶段：部署阶段
 FROM nginx:alpine as nginx
 
-# 设置时区
-RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&
-  echo "Asia/Shanghai" >/etc/timezone
-
 # 清空默认的 Nginx 静态文件目录
 RUN rm -rf /usr/share/nginx/html/*
 
