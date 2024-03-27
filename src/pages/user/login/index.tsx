@@ -1,10 +1,11 @@
 import type { CSSProperties } from 'react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   AlipayOutlined,
   LockOutlined,
   MobileOutlined,
+  SafetyOutlined,
   TaobaoOutlined,
   UserOutlined,
   WeiboOutlined,
@@ -16,7 +17,17 @@ import {
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components'
-import { Button, Divider, Space, Tabs, message, theme } from 'antd'
+import {
+  Button,
+  Divider,
+  Form,
+  Input,
+  Space,
+  Tabs,
+  message,
+  theme,
+} from 'antd'
+import axios from 'axios'
 import Shark from '@/assets/icons/shark.svg'
 import { t } from '@/utils/i18n'
 
@@ -40,12 +51,47 @@ const TabPaneItem = [
     label: '手机号登录',
   },
 ]
+
+interface DataType {
+  code?: number | string
+  imageBase64?: string
+}
+
+interface LoginDTO {
+  username: string
+  password: string
+  captcha?: string
+}
+
 const Page: React.FC = () => {
   const navigate = useNavigate()
   const { token } = theme.useToken()
+  const [data, setData] = useState<DataType>({})
+  const refreshCaptcha = () => {
+    console.log(`time  ${Date.now()} refreshCaptcha`)
+    axios
+      .get('/api/auth/captcha')
+      .then((json) => {
+        setData(json.data)
+      })
+      .catch((error: any) => {
+        console.log('fetch data failed', error)
+      })
+  }
 
-  const [loginType, setLoginType] = useState<LoginType>('phone')
-  const onFinish = async () => {
+  useEffect(() => {
+    refreshCaptcha()
+  }, [])
+  const [loginType, setLoginType] = useState<LoginType>('account')
+  const onFinish = async (values: LoginDTO) => {
+    if (!values.captcha)
+      return
+
+    if (values.captcha !== data.code) {
+      message.error('验证码错误')
+      return
+    }
+    message.success('登录成功')
     navigate('/')
   }
 
@@ -72,6 +118,7 @@ const Page: React.FC = () => {
               ),
             }}
             placeholder="用户名: admin or user"
+            initialValue="admin"
             rules={[
               {
                 required: true,
@@ -93,6 +140,7 @@ const Page: React.FC = () => {
               ),
             }}
             placeholder={`${t('HplkKxdY' /* 密码 */)}: ant.design`}
+            initialValue="ant.design"
             rules={[
               {
                 required: true,
@@ -100,6 +148,29 @@ const Page: React.FC = () => {
               },
             ]}
           />
+          <Form.Item
+            name="captcha"
+            rules={[
+              {
+                required: true,
+                message: '请输入验证码',
+                max: 4,
+              },
+            ]}
+          >
+            <Input
+              maxLength={4}
+              prefix={<SafetyOutlined className="text-[20px]" />}
+              placeholder="验证码"
+              suffix={(
+                <img
+                  className="cursor-pointer"
+                  src={data?.imageBase64}
+                  onClick={refreshCaptcha}
+                />
+              )}
+            />
+          </Form.Item>
         </>
       )
     }
