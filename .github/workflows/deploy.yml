@@ -1,7 +1,7 @@
 name: deploy
 on:
   schedule:
-    - cron: '30 06 * * *'
+    - cron: "30 06 * * *"
   push:
     branches: [master, dev]
   workflow_dispatch:
@@ -11,21 +11,21 @@ env:
   TZ: Asia/Shanghai
 
 jobs:
-#  sync:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Mirror the Github organization repos to Gitee.
-#        uses: Yikun/hub-mirror-action@master
-#        with:
-#          src: github/h7ml
-#          dst: gitee/h7ml
-#          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-#          dst_token: ${{ secrets.GITEE_TOKEN }}
-#          white_list: 'shark' # 只同步shark
-#          force_update: true
-#          account_type: user
-#          clone_style: ssh
-#          debug: true
+  #  sync:
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - name: Mirror the Github organization repos to Gitee.
+  #        uses: Yikun/hub-mirror-action@master
+  #        with:
+  #          src: github/h7ml
+  #          dst: gitee/h7ml
+  #          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+  #          dst_token: ${{ secrets.GITEE_TOKEN }}
+  #          white_list: 'shark' # 只同步shark
+  #          force_update: true
+  #          account_type: user
+  #          clone_style: ssh
+  #          debug: true
   pages:
     # 任务运行的容器类型（虚拟机环境）
     runs-on: ubuntu-latest
@@ -47,24 +47,28 @@ jobs:
         env:
           cache-name: cache-yarn-modules
         with:
-          path: '**/node_modules'
+          path: "**/node_modules"
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
       - name: yarn script 🚀
         run: |
           yarn install
+          # 删除publicPath.js
+          rm -rf publicPath.js
+          # 创建 publicPath.js 并 写入 __webpack_public_path__ = '/shark/';
+          echo "__webpack_public_path__ = '/shark/';" > publicPath.js
           yarn build
         # 构建发布 Github pages
-#      - name: Deploy 🚀
-#        # 使用github-pages-deploy-action: https://github.com/JamesIves/github-pages-deploy-action/tree/master
-#        uses: JamesIves/github-pages-deploy-action@v4.3.3
-#        with:
-#          # 存储库中要部署的文件夹。
-#          # 该步骤会将项目中 FOLDER 指定文件夹下的文件推送到 BRANCH 分支，作为Github Pages 部署的内容。
-#          BRANCH: gh-pages # The branch the action should deploy to.
-#          FOLDER: dist # The folder the action should deploy.
-#          GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
+      - name: Deploy 🚀
+        # 使用github-pages-deploy-action: https://github.com/JamesIves/github-pages-deploy-action/tree/master
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          # 存储库中要部署的文件夹。
+          # 该步骤会将项目中 FOLDER 指定文件夹下的文件推送到 BRANCH 分支，作为Github Pages 部署的内容。
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
+          # github_token: ${{ secrets.ACTION_SECRET }}
   build:
     name: build 🚀
     runs-on: ubuntu-latest
@@ -83,7 +87,7 @@ jobs:
         env:
           cache-name: cache-yarn-modules
         with:
-          path: '**/node_modules'
+          path: "**/node_modules"
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
@@ -111,7 +115,7 @@ jobs:
         env:
           cache-name: cache-yarn-modules
         with:
-          path: '**/node_modules'
+          path: "**/node_modules"
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
@@ -122,8 +126,8 @@ jobs:
       - name: Deploy to surge 🚀
         uses: dswistowski/surge-sh-action@v1
         with:
-          domain: 'shark-h7ml.surge.sh'
-          project: './dist'
+          domain: "shark-h7ml.surge.sh"
+          project: "./dist"
           login: ${{ secrets.surge_login }}
           token: ${{ secrets.surge_token }}
       - name: Upload surge service and generate preview URL 🚀
@@ -168,12 +172,12 @@ jobs:
         with:
           name: shark
           path: dist
-#      - name: lighthouse 🚀
-#        uses: treosh/lighthouse-ci-action@v2
-#        with:
-#          runs: 5
-#          uploadArtifacts: true
-#          configPath: './.github/workflows/setup/lighthouse-audit.json'
+    #      - name: lighthouse 🚀
+    #        uses: treosh/lighthouse-ci-action@v2
+    #        with:
+    #          runs: 5
+    #          uploadArtifacts: true
+    #          configPath: './.github/workflows/setup/lighthouse-audit.json'
     needs: build
 
   clean:
@@ -188,11 +192,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: 'Apocalypsor/Workflows-Cleaner'
+          repository: "Apocalypsor/Workflows-Cleaner"
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: "3.9"
       - name: Install pipenv
         run: python -m pip install --upgrade pipenv wheel
       - name: Install dependencies
@@ -203,6 +207,6 @@ jobs:
         env:
           GITHUB_REPO: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
-          EXPIRE_TIME: '12h'
+          EXPIRE_TIME: "12h"
         run: python run.py
     needs: build
