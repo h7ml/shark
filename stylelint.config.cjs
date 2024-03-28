@@ -10,7 +10,6 @@ module.exports = {
   rules: {
     'no-duplicate-selectors': null, // 禁止重复的选择器
     'color-function-notation': null, // 指定颜色函数的使用 "modern(使用 modern 语法)"|"legacy(使用 legacy 语法)"
-    'font-family-no-missing-generic-family-keyword': null, // 禁止在字体族名称列表中缺少通用字体族关键字
     'indentation': null, // 指定缩进空格
     'no-descending-specificity': null, // 禁止在具有较高优先级的选择器后出现被其覆盖的较低优先级的选择器
     'function-url-quotes': 'always', // 要求或禁止 URL 的引号 "always(必须加上引号)"|"never(没有引号)"

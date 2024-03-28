@@ -39,11 +39,11 @@
     "commit": "git-cz",
     "dev": "cross-env NODE_ENV=development rspack serve",
     "eslint": "eslint . --fix --cache",
-    "pre-commit": "pretty-quick --staged  && npm run stylelint && npm run prettier && npm run eslint",
+    "pre-commit": "pretty-quick --staged  && npm run prettier && npm run eslint",
     "prepare": "husky install && npm run pre-commit",
     "prettier": "prettier --write .",
     "preview": "npm run build && rspack preview",
-    "stylelint": "stylelint \"**/*.{css,scss,sass,less}\" --fix --cache"
+    "stylelint": "stylelint \"**/*.{css,scss,sass}\" --fix --cache"
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.5",
@@ -119,9 +119,6 @@
     "**/*": "prettier --write --ignore-unknown",
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix --cache"
-    ],
-    "*.{css, less}": [
-      "stylelint --fix"
     ]
   },
   "config": {

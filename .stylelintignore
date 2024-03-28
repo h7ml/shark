@@ -2,5 +2,6 @@
 **/*.tsx
 **/*.jsx
 **/*.js
+**/*.less
 
 dist
