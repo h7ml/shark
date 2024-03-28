@@ -80,11 +80,6 @@ const AccountPage: React.FC<AccountPageProps> = () => {
     try {
       const response = await axios('/api/user/activities')
       const data = await response.data.list
-      console.log(
-        '%c [ data ]-48',
-        'font-size:13px; background:pink; color:#bf2c9f;',
-        data,
-      )
       setActivitiesData(data)
     }
     catch (error: string | any) {

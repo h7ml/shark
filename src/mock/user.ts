@@ -38,7 +38,8 @@ if (!isSSR) {
           ],
           'notifyCount': '@integer(10, 20)',
           'unreadCount': '@integer(5, 15)',
-          'country': 'China',
+          'country': '@city',
+          'province': '@province',
           'geographic': {
             province: {
               label: '@province',
@@ -49,6 +50,7 @@ if (!isSSR) {
               key: Mock.mock(/\d{5,7}/),
             },
           },
+          'bio': '@cparagraph(3, 5)',
           'address': '@county(true)@cword(4)@natural(1, 100)号',
           'phone': '@integer(1000, 9999)-@integer(10000000, 99999999)',
         })
@@ -112,7 +114,7 @@ if (!isSSR) {
               'name': '@ctitle(3, 5)',
               'count': '@integer(10, 10000)',
               'avatar': 'https://source.unsplash.com/random/64x64?q=1',
-              'tag|3': [{ text: '@ctitle(2, 3)', color: '@color' }],
+              'tag|2': [{ text: '@ctitle(2, 3)', color: '@color' }],
               'status|1': ['激活', '异常', 'normal'],
               'color': '@color',
               'progress': '@integer(10, 100)',

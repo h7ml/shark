@@ -12,7 +12,7 @@ dependencies:
     specifier: ^2.1.15
     version: 2.1.15(lodash-es@4.17.21)(react-dom@18.2.0)(react@18.2.0)
   '@ant-design/pro-components':
-    specifier: ^2.6.52
+    specifier: ^2.7.0
     version: 2.7.0(antd@5.15.4)(rc-field-form@1.42.1)(react-dom@18.2.0)(react@18.2.0)
   '@antv/g2plot':
     specifier: ^2.4.31
@@ -62,8 +62,8 @@ dependencies:
 
 devDependencies:
   '@antfu/eslint-config':
-    specifier: ^2.11.3
-    version: 2.11.3(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.6)(eslint-plugin-react@7.34.1)(eslint@8.57.0)(typescript@5.4.3)
+    specifier: ^2.11.4
+    version: 2.11.4(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.6)(eslint-plugin-react@7.34.1)(eslint@8.57.0)(typescript@5.4.3)
   '@antfu/eslint-plugin-prettier':
     specifier: 5.0.1-1
     version: 5.0.1-1(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.2.5)
@@ -545,8 +545,8 @@ packages:
       throttle-debounce: 5.0.0
     dev: false
 
-  /@antfu/eslint-config@2.11.3(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.6)(eslint-plugin-react@7.34.1)(eslint@8.57.0)(typescript@5.4.3):
-    resolution: {integrity: sha512-ulSX6QWPkaZ7eJO5uQ4nAk9o67ZNlghaEGLZpZhpisBWx3R/fhbpDX6rQRQdCpZ4FsnVafSsRD5uw3uoP1JF6Q==}
+  /@antfu/eslint-config@2.11.4(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.6)(eslint-plugin-react@7.34.1)(eslint@8.57.0)(typescript@5.4.3):
+    resolution: {integrity: sha512-kQC8XFKih5igRodfDBpXIi3KFsjYuCfX2F9VK4hk79+KkDETUF/14ymai4O+Y+vmSNdRFwjtDL5YhcRoaD0rAg==}
     hasBin: true
     peerDependencies:
       '@unocss/eslint-plugin': '>=0.50.0'
@@ -557,7 +557,7 @@ packages:
       eslint-plugin-react: ^7.33.2
       eslint-plugin-react-hooks: ^4.6.0
       eslint-plugin-react-refresh: ^0.4.4
-      eslint-plugin-svelte: ^2.36.0-0
+      eslint-plugin-svelte: ^2.35.1
       prettier-plugin-astro: ^0.13.0
       prettier-plugin-slidev: ^1.0.5
       svelte-eslint-parser: ^0.33.1
