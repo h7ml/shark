@@ -30,6 +30,7 @@ import {
 import axios from 'axios'
 import Shark from '@/assets/icons/shark.svg'
 import { t } from '@/utils/i18n'
+import { useStorage } from '@/hooks'
 
 type LoginType = 'phone' | 'account'
 
@@ -53,7 +54,7 @@ const TabPaneItem = [
 ]
 
 interface DataType {
-  code?: number | string
+  code?: string
   imageBase64?: string
 }
 
@@ -67,10 +68,15 @@ const Page: React.FC = () => {
   const navigate = useNavigate()
   const { token } = theme.useToken()
   const [data, setData] = useState<DataType>({})
-  const refreshCaptcha = () => {
-    console.log(`time  ${Date.now()} refreshCaptcha`)
+  const { setData: setUser } = useStorage('userName')
+
+  // 时间戳
+  const timestamp = Date.now()
+  const refreshCaptcha = (timestamp: number) => {
     axios
-      .get('/api/auth/captcha')
+      .post('/api/auth/captcha', {
+        timestamp,
+      })
       .then((json) => {
         setData(json.data)
       })
@@ -80,18 +86,18 @@ const Page: React.FC = () => {
   }
 
   useEffect(() => {
-    refreshCaptcha()
+    refreshCaptcha(timestamp)
   }, [])
+
   const [loginType, setLoginType] = useState<LoginType>('account')
   const onFinish = async (values: LoginDTO) => {
-    if (!values.captcha)
+    if (!values.captcha || !values.username)
       return
-
-    if (values.captcha !== data.code) {
+    if (values.captcha.toLowerCase() !== data.code?.toLowerCase()) {
       message.error('验证码错误')
       return
     }
-    message.success('登录成功')
+    setUser('userName', values.username)
     navigate('/')
   }
 
@@ -149,6 +155,7 @@ const Page: React.FC = () => {
             ]}
           />
           <Form.Item
+            key={data?.code}
             name="captcha"
             rules={[
               {
@@ -166,7 +173,9 @@ const Page: React.FC = () => {
                 <img
                   className="cursor-pointer"
                   src={data?.imageBase64}
-                  onClick={refreshCaptcha}
+                  onClick={() => {
+                    refreshCaptcha(Date.now())
+                  }}
                 />
               )}
             />

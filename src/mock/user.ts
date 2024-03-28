@@ -1,34 +1,56 @@
 import Mock from 'mockjs'
 import { isSSR } from '@/utils/is'
 import setupMock from '@/utils/setupMock'
-import { generatePermission } from '@/routes'
 
 if (!isSSR) {
   Mock.XHR.prototype.withCredentials = true
 
   setupMock({
+    mock: true, // 是否开启mock 默认关闭
     setup: () => {
       // 用户信息
-      const userRole = window.localStorage.getItem('userRole') || 'admin'
       Mock.mock(new RegExp('/api/user/userInfo'), () => {
         return Mock.mock({
-          name: '王立群',
-          avatar:
-            'https://lf1-xgcdn-tos.pstatp.com/obj/vcloud/vadmin/start.8e0e4855ee346a46ccff8ff3e24db27b.png',
-          email: 'wangliqun@email.com',
-          job: 'frontend',
-          jobName: '前端开发工程师',
-          organization: 'Frontend',
-          organizationName: '前端',
-          location: 'beijing',
-          locationName: '北京',
-          introduction: '王力群并非是一个真实存在的人。',
-          personalWebsite: 'https://www.arco.design',
-          verified: true,
-          phoneNumber: /177[*]{6}[0-9]{2}/,
-          accountId: /[a-z]{4}[-][0-9]{8}/,
-          registrationTime: Mock.Random.datetime('yyyy-MM-dd HH:mm:ss'),
-          permissions: generatePermission(userRole),
+          'name': '@cname',
+          'avatar': 'https://source.unsplash.com/random/64x64',
+          'userid': '@id',
+          'email': 'mock.@domain',
+          'signature': '@cparagraph',
+          'jobName': '@cword(4)',
+          'organization': '@cword(4)',
+          'organizationName': '@cword(2)',
+          'location': '@city(true)',
+          'locationName': '@city(true)',
+          'introduction': '@cparagraph(3, 5)',
+          'personalWebsite': 'https://shark.h7ml.cn',
+          'verified': true,
+          'phoneNumber': Mock.mock(/177[*]{6}[0-9]{2}/),
+          'accountId': Mock.mock(/[a-z]{4}[-][0-9]{8}/),
+          'registrationTime': Mock.Random.datetime('yyyy-MM-dd HH:mm:ss'),
+          // permissions: generatePermission(userRole),
+          'title': '@ctitle(3, 5)',
+          'group': '@cword(4)－@cword(3)－@cword(4)－@cword(3)－@word(4)',
+          'tags|6': [
+            {
+              'key|+1': 0,
+              'label': '@ctitle(4)',
+            },
+          ],
+          'notifyCount': '@integer(10, 20)',
+          'unreadCount': '@integer(5, 15)',
+          'country': 'China',
+          'geographic': {
+            province: {
+              label: '@province',
+              key: Mock.mock(/\d{5,7}/),
+            },
+            city: {
+              label: '@city',
+              key: Mock.mock(/\d{5,7}/),
+            },
+          },
+          'address': '@county(true)@cword(4)@natural(1, 100)号',
+          'phone': '@integer(1000, 9999)-@integer(10000000, 99999999)',
         })
       })
 
@@ -56,6 +78,82 @@ if (!isSSR) {
           status: 'error',
           msg: '账号或者密码错误',
         }
+      })
+
+      // 个人项目
+      Mock.mock(new RegExp('/api/user/projects'), () => {
+        return Mock.mock({
+          'list|6': [
+            {
+              'id|+1': 1,
+              'name': '@ctitle(3, 5)',
+              'desc': '@cparagraph(5, 8)',
+              'updatedAt': '@datetime',
+              'star': '@integer(10, 100)',
+              'status|1': ['active', 'exception', 'normal'],
+              'percent': '@integer(10, 100)',
+              'time': '@datetime',
+              'title': '@cname(3, 5)',
+            },
+          ],
+        })
+      })
+
+      // 团队
+      Mock.mock(new RegExp('/api/user/teams'), () => {
+        return Mock.mock({
+          'list|60-100': [
+            {
+              'id|+1': 1,
+              'title': '@ctitle(2,4)',
+              'subtitle': '@ctitle(3, 5)',
+              'type': '@cword(4)',
+              'content': '@cparagraph(5, 8)',
+              'name': '@ctitle(3, 5)',
+              'count': '@integer(10, 10000)',
+              'avatar': 'https://source.unsplash.com/random/64x64?q=1',
+              'tag|3': [{ text: '@ctitle(2, 3)', color: '@color' }],
+              'status|1': ['激活', '异常', 'normal'],
+              'color': '@color',
+              'progress': '@integer(10, 100)',
+            },
+          ],
+        })
+      })
+
+      // 最新动态。返回新闻列表
+      Mock.mock(new RegExp('/api/user/activities'), () => {
+        return Mock.mock({
+          'list|30-80': [
+            {
+              'id|+1': 1,
+              'title': '@ctitle(6,13)',
+              'time': '@datetime',
+              'href': 'https://shark.h7ml.cn',
+              'desc': '@cparagraph(10, 20)',
+              'avatar': '@image()',
+              'star': '@integer(10, 100)',
+              'like': '@integer(10, 100)',
+              'message': '@integer(10, 100)',
+            },
+          ],
+        })
+      })
+
+      // facet
+      Mock.mock(new RegExp('/api/user/facet'), () => {
+        return Mock.mock({
+          'list|20-60': [
+            {
+              'SepalLength': '@float(0, 10, 0, 2)',
+              'SepalWidth': '@float(0, 10, 0, 2)',
+              'PetalLength': '@float(0, 10, 0, 2)',
+              'PetalWidth': '@float(0, 10, 0, 2)',
+              'Species': '@cname(3, 5)',
+              'id|+1': 1,
+            },
+          ],
+        })
       })
     },
   })

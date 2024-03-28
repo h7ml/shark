@@ -1,6 +1,6 @@
 import { BellOutlined, MenuOutlined, SettingOutlined } from '@ant-design/icons'
 import { Avatar, Dropdown, Input } from 'antd'
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Icon3 } from '@/assets/icons/3'
 import { IconBuguang } from '@/assets/icons/buguang'
@@ -10,13 +10,25 @@ import { IconShuyi_fanyi36 } from '@/assets/icons/shuyi_fanyi-36'
 import { defaultSetting } from '@/default-setting'
 import { useGlobalStore } from '@/store/global'
 import { i18n, t } from '@/utils/i18n'
+import { useStorage } from '@/hooks'
 
 function Header() {
   const navigate = useNavigate()
-
+  const { data: userName = '' } = useStorage('userName')
+  useEffect(() => {
+    console.log(userName)
+  })
   const { darkMode, collapsed, setCollapsed, setDarkMode, setLang, lang }
     = useGlobalStore()
+  const handleLogout = (handerInfo: { key: any }) => {
+    const { key } = handerInfo
+    navigate(`/user/${key}`)
+  }
 
+  const menuItems = [
+    { label: userName, key: 'account' },
+    { label: t('wPqFuoLF' /* 退出登录 */), key: 'login' },
+  ]
   return (
     <div
       style={{ zIndex: 1001 }}
@@ -108,10 +120,8 @@ function Header() {
           </div>
           <Dropdown
             menu={{
-              items: [{ label: t('wPqFuoLF' /* 退出登录 */), key: 'logout' }],
-              onClick: () => {
-                navigate('/user/login')
-              },
+              items: menuItems,
+              onClick: handleLogout,
             }}
             trigger={['click']}
             placement="bottomLeft"

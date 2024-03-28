@@ -1,4 +1,6 @@
 import {
+  AimOutlined,
+  ContactsOutlined,
   DashboardOutlined,
   TableOutlined,
   UserOutlined,
@@ -25,9 +27,23 @@ export const routeConfig: MenuItem[] = [
   },
   {
     path: '/user',
-    Component: lazy(() => import('@/pages/user')),
+    // Component: lazy(() => import('@/pages/user')),
     title: '用户中心',
     icon: <UserOutlined />,
+    children: [
+      {
+        path: '/user/account',
+        title: '个人中心',
+        icon: <AimOutlined />,
+        Component: lazy(() => import('@/pages/user/account')),
+      },
+      {
+        path: '/user/settings',
+        title: '个人设置',
+        icon: <ContactsOutlined />,
+        Component: lazy(() => import('@/pages/user/settings')),
+      },
+    ],
   },
   {
     path: '/table',

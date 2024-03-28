@@ -12,7 +12,7 @@ import DemoColumn from './column'
 import DemoTinyLine from './tiny-line'
 import { t } from '@/utils/i18n'
 
-import './index.css'
+import '@/index.css'
 
 function Dashboard() {
   return (
