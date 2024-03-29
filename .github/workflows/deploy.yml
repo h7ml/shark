@@ -57,6 +57,22 @@ jobs:
             yarn edgio:deploy -- --token=$EDGIO_DEPLOY_TOKEN
         env:
           EDGIO_DEPLOY_TOKEN: ${{secrets.EDGIO_DEPLOY_TOKEN}}
+      - name: Deploy to surge 🚀
+        uses: dswistowski/surge-sh-action@v1
+        with:
+            domain: shark-h7ml.surge.sh
+            project: ./dist
+            login: ${{ secrets.surge_login }}
+            token: ${{ secrets.surge_token }}
+      - name: Upload surge service and generate preview URL 🚀
+        id: deploy
+        run: |
+          export GITHUB_SHA=${{ github.sha }}
+          export GITHUB_SHA_SUB=${GITHUB_SHA: 0: 7 }
+          export DEPLOY_DOMAIN=https://shark-$GITHUB_SHA_SUB.surge.sh
+          npx surge --project ./dist --domain $DEPLOY_DOMAIN --token ${{ secrets.surge_token }}
+          echo the preview URL is $DEPLOY_DOMAIN
+          echo "::set-output name=url::$DEPLOY_DOMAIN"
   sync:
     runs-on: ubuntu-latest
     steps:
@@ -73,76 +89,7 @@ jobs:
           # clone_style: ssh
           debug: true
     needs: pages
-  build:
-    name: build 🚀
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [latest, current, stable]
-    steps:
-      - name: Checkout 🚀
-        uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }} 🚀
-        uses: actions/setup-node@v2
-        with:
-          node-version: 21.6.2
-      - name: Cache yarn modules  🚀
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-yarn-modules
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
-      - name: Install dependencies  🚀
-        run: yarn install
-      - name: Generate files  🚀
-        run: yarn build
-    needs: sync
-  deploy:
-    name: deploy 🚀
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [21.6.2]
-        yarn-version: [1.22.21]
-    steps:
-      - name: Checkout 🚀
-        uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }} 🚀
-        uses: actions/setup-node@v2
-        with:
-          node-version: 21.6.2
-      - name: Cache yarn modules  🚀
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-yarn-modules
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
-      - name: yarn script 🚀
-        run: |
-          yarn install
-          yarn build
-      - name: Deploy to surge 🚀
-        uses: dswistowski/surge-sh-action@v1
-        with:
-          domain: shark-h7ml.surge.sh
-          project: ./dist
-          login: ${{ secrets.surge_login }}
-          token: ${{ secrets.surge_token }}
-      - name: Upload surge service and generate preview URL 🚀
-        id: deploy
-        run: |
-          export GITHUB_SHA=${{ github.sha }}
-          export GITHUB_SHA_SUB=${GITHUB_SHA: 0: 7 }
-          export DEPLOY_DOMAIN=https://shark-$GITHUB_SHA_SUB.surge.sh
-          npx surge --project ./dist --domain $DEPLOY_DOMAIN --token ${{ secrets.surge_token }}
-          echo the preview URL is $DEPLOY_DOMAIN
-          echo "::set-output name=url::$DEPLOY_DOMAIN"
+
       #      - name: Deploy to vercel 🚀
       #        uses: amondnet/vercel-action@v20
       #        with:
@@ -163,26 +110,25 @@ jobs:
       #          envId: ${{ secrets.ENV_ID }}
       #          # Github 项目静态文件的路径
       #          staticSrcPath: ./dev
-      - name: Accurics Scan 🚀
-        id: accurics-scan
-        uses: docker://accurics/terrascan-action:latest
-        with:
-          only_warn: true
-          verbose: true
-          webhook_url: https://app.accurics.com/v1/api/terrascan
-          webhook_token: d73c0d62-aab9-4d65-940d-2e6b690a48a7
-      - name: Upload  🚀
-        uses: actions/upload-artifact@v2
-        with:
-          name: shark
-          path: dist
+      # - name: Accurics Scan 🚀
+      #   id: accurics-scan
+      #   uses: docker://accurics/terrascan-action:latest
+      #   with:
+      #     only_warn: true
+      #     verbose: true
+      #     webhook_url: https://app.accurics.com/v1/api/terrascan
+      #     webhook_token: d73c0d62-aab9-4d65-940d-2e6b690a48a7
+      # - name: Upload  🚀
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: shark
+      #     path: dist
     #      - name: lighthouse 🚀
     #        uses: treosh/lighthouse-ci-action@v2
     #        with:
     #          runs: 5
     #          uploadArtifacts: true
     #          configPath: './.github/workflows/setup/lighthouse-audit.json'
-    needs: build
 
   clean:
     name: Clean
@@ -213,7 +159,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
           EXPIRE_TIME: 12h
         run: python run.py
-    needs: deploy
+    needs: gitee
   gitee:
     runs-on: ubuntu-latest
     steps:
@@ -239,4 +185,6 @@ jobs:
           echo "https://shark.h7ml.cn"
           echo "https://shark-ewe.pages.dev/"
           echo "https://shark.zeabur.app/"
+          echo "https://h7ml-shark-default.glb.edgio.link/"
+          echo "https://shark.up.railway.app/"
     needs: sync
