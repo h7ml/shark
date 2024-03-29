@@ -11,6 +11,51 @@ env:
   TZ: Asia/Shanghai
 
 jobs:
+  pages:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [21.6.2]
+        yarn-version: [1.22.21]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache yarn modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-yarn-edgio
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+      - name: Install dependencies
+        run: yarn install --force --ignore-engines --production=false
+      - name: build static
+        run: yarn build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: static
+          folder: dist
+      - name: build gh-pages
+        run: yarn build:gh-pages
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages
+          folder: dist
+      - name: edgio
+        run:  |
+            yarn add --dev @edgio/cli @edgio/core @edgio/devtools @edgio/prefetch
+            yarn edgio:build
+            yarn edgio:deploy -- --token=$EDGIO_DEPLOY_TOKEN
+        env:
+          EDGIO_DEPLOY_TOKEN: ${{secrets.EDGIO_DEPLOY_TOKEN}}
   sync:
     runs-on: ubuntu-latest
     steps:
@@ -27,35 +72,6 @@ jobs:
           # clone_style: ssh
           debug: true
     needs: pages
-  pages:
-    # 任务运行的容器类型（虚拟机环境）
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [21.6.2]
-        yarn-version: [1.22.21]
-    # 任务执行的步骤
-    steps:
-      # 步骤名称
-      - name: Checkout 🚀
-        uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }} 🚀
-        uses: actions/setup-node@v2
-        with:
-          node-version: 21.6.2
-      - name: Cache yarn modules  🚀
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-yarn-modules
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
-      - name: pnpm script 🚀
-        run: |
-          npm install -g pnpm
-          pnpm install
   build:
     name: build 🚀
     runs-on: ubuntu-latest
@@ -82,7 +98,7 @@ jobs:
         run: yarn install
       - name: Generate files  🚀
         run: yarn build
-    needs: pages
+    needs: sync
   deploy:
     name: deploy 🚀
     runs-on: ubuntu-latest
@@ -196,4 +212,30 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
           EXPIRE_TIME: 12h
         run: python run.py
-    needs: build
+    needs: deploy
+  gitee:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync To Gitee
+        uses: wearerequired/git-mirror-action@master
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+        with:
+          source-repo: git@github.com:h7ml/shark.git
+          destination-repo: git@gitee.com:h7ml/shark.git
+
+      - name: Build Gitee Pages
+        uses: yanglbme/gitee-pages-action@main
+        with:
+          gitee-username: h7ml@qq.com
+          gitee-password: ${{ secrets.GITEE_PASSWORD }}
+          gitee-repo: h7ml/shark
+          branch: gh-pages
+      - name: echo page
+        run: |
+          echo "https://h7ml.gitee.io/shark/"
+          echo "https://h7ml.github.io/shark/"
+          echo "https://shark.h7ml.cn"
+          echo "https://shark-ewe.pages.dev/"
+          echo "https://shark.zeabur.app/"
+    needs: pages
