@@ -1,50 +1,88 @@
 import { Button, Form, Input, Select, message } from 'antd'
-import type { FC } from 'react'
-import { createRef, useEffect } from 'react'
 import {
   EnvironmentOutlined,
   MailOutlined,
   PhoneOutlined,
   UserOutlined,
 } from '@ant-design/icons'
+import type { FC } from 'react'
+import { createRef, useEffect, useState } from 'react'
 
 const { Option } = Select
 
 export interface BasicSettingsFormProps {
   initialValues: {
     email: string
-    name?: string
-    bio?: string
-    country?: string
-    province?: string
-    address?: string
+    name: string
+    bio: string
+    country: string
+    province: string
+    address: string
     phone: string
   }
 }
 
 const BasicSettingsForm: FC<BasicSettingsFormProps> = ({ initialValues }) => {
-  // 表单布局
-  const layout = {
-    labelCol: { span: 3 },
-    wrapperCol: { span: 12 },
+  const [windowSize, setWindowSize] = useState<{
+    innerHeight: number
+    innerWidth: number
+  }>({ innerHeight: window.innerHeight, innerWidth: window.innerWidth })
+
+  // 获取当前窗口大小
+  const getWindowSize = () => ({
+    innerHeight: window.innerHeight,
+    innerWidth: window.innerWidth,
+  })
+
+  // 定义默认布局
+  const [layout, setLayout] = useState<'horizontal' | 'vertical'>('horizontal')
+  const formLayout = {
+    labelCol: {
+      xs: { span: 3 },
+      sm: { span: 4 },
+      xl: { span: 3 },
+      xxl: { span: 1 },
+    },
+    wrapperCol: {
+      xs: { span: 20 },
+      sm: { span: 20 },
+      xl: { span: 20 },
+      xxl: { span: 24 },
+    },
   }
+
+  // 监听窗口变化
+  const handleResize = () => {
+    setWindowSize(getWindowSize())
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [handleResize])
+
+  // useEffect改变布局
+  useEffect(() => {
+    if (windowSize.innerWidth < 1444)
+      setLayout('vertical')
+    else setLayout('horizontal')
+  }, [windowSize])
 
   const formref = createRef<any>()
 
   const handleUpdate = (values: any) => {
-    // 模拟更新数据的操作，这里可以替换成实际的更新数据逻辑
     console.log('更新的基本信息：', values)
-    // 弹出更新成功的提示
     message.success('基本信息更新成功')
   }
 
   useEffect(() => {
-    formref.current.setFieldsValue(initialValues)
-  }, [initialValues])
+    formref.current?.setFieldsValue(initialValues)
+  }, [initialValues, formref])
 
   return (
     <Form
-      {...layout}
+      layout={layout}
+      {...formLayout}
       name="basic"
       initialValues={initialValues}
       ref={formref}

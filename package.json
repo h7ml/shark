@@ -41,7 +41,7 @@
     "eslint": "eslint . --fix --cache",
     "pre-commit": "pretty-quick --staged  && npm run prettier && npm run eslint",
     "prepare": "husky install && npm run pre-commit",
-    "prettier": "prettier --write .",
+    "prettier": "prettier --write . --log-level error",
     "preview": "npm run build && rspack preview",
     "stylelint": "stylelint \"**/*.{css,scss,sass}\" --fix --cache"
   },
@@ -76,7 +76,7 @@
     "@types/mockjs": "^1.0.10",
     "@types/nprogress": "^0.2.3",
     "@types/react": "^18.2.73",
-    "@types/react-dom": "^18.2.22",
+    "@types/react-dom": "^18.2.23",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
     "autoprefixer": "^10.4.19",

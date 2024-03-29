@@ -51,10 +51,10 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
-      - name: yarn script 🚀
+      - name: pnpm script 🚀
         run: |
-          yarn install
-          yarn build:gh-pages
+          pnpm install
+          pnpm build:gh-pages
         # 构建发布 Github pages
       - name: Deploy 🚀
         # 使用github-pages-deploy-action: https://github.com/JamesIves/github-pages-deploy-action/tree/master

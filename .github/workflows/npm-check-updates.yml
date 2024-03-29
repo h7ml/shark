@@ -1,0 +1,41 @@
+name: Update Dependencies
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 21.6.2
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install npm-check-updates
+        run: npm install -g npm-check-updates
+
+      - name: Update Dependencies
+        run: ncu -u
+
+      - name: Install updated dependencies
+        run: pnpm install
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'actions-user'
+          git config --global user.email 'shark@h7ml.cn'
+          git add package.json pnpm-lock.yaml
+          git commit -m "chore: Update dependencies"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ACTION_SECRET }}

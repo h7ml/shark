@@ -31,8 +31,20 @@ const SecurityQuestionsForm: FC<SecurityQuestionsFormProps> = ({
       name="Security"
       initialValues={initialValues}
       onFinish={handleSubmit}
-      labelCol={{ span: 3 }}
-      wrapperCol={{ span: 12 }}
+      labelCol={{
+        xs: { span: 3 },
+        sm: { span: 4 },
+        xl: { span: 3 },
+        xxl: { span: 1 },
+      }}
+      wrapperCol={{
+        xs: {
+          span: 18,
+        },
+        sm: { span: 16 },
+        xl: { span: 18 },
+        xxl: { span: 24 },
+      }}
     >
       <Form.Item
         label="密保问题"
