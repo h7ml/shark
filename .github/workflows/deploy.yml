@@ -50,9 +50,10 @@ jobs:
           branch: gh-pages
           folder: dist
       - name: edgio
-        run:  |
+        run: |
             yarn add --dev @edgio/cli @edgio/core @edgio/devtools @edgio/prefetch
-            yarn edgio:build
+            # yarn edgio:build
+            yarn build
             yarn edgio:deploy -- --token=$EDGIO_DEPLOY_TOKEN
         env:
           EDGIO_DEPLOY_TOKEN: ${{secrets.EDGIO_DEPLOY_TOKEN}}
@@ -66,7 +67,7 @@ jobs:
           dst: gitee/h7ml
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
-          white_list: 'shark' # 只同步shark
+          white_list: shark # 只同步shark
           force_update: true
           account_type: user
           # clone_style: ssh
@@ -238,4 +239,4 @@ jobs:
           echo "https://shark.h7ml.cn"
           echo "https://shark-ewe.pages.dev/"
           echo "https://shark.zeabur.app/"
-    needs: pages
+    needs: sync

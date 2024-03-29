@@ -10,88 +10,87 @@ import {
   Table,
   Tag,
   message,
-} from 'antd'
-import type { ColumnsType } from 'antd/es/table'
-import type { SetStateAction } from 'react'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+} from "antd";
+import type { ColumnsType } from "antd/es/table";
+import type { SetStateAction } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export interface DataType {
-  key: string
-  name: string
-  age: number
-  address: string
-  tags: string[]
+  key: string;
+  name: string;
+  age: number;
+  address: string;
+  tags: string[];
 }
 
 const TablePage: React.FC = () => {
-  const [messageApi, contextHolder] = message.useMessage()
+  const [messageApi, contextHolder] = message.useMessage();
 
-  const [open, setOpen] = useState(false)
-  const [confirmLoading, setConfirmLoading] = useState(false)
-  const [modalText, setModalText] = useState('Content of the modal')
+  const [open, setOpen] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState("Content of the modal");
   const showModal = (record: DataType) => {
-    setModalText(`确定要删除 ${record.name} 吗?`)
-    setOpen(true)
-  }
+    setModalText(`确定要删除 ${record.name} 吗?`);
+    setOpen(true);
+  };
 
   const handleOk = () => {
     messageApi.open({
-      type: 'success',
+      type: "success",
       content: `删除成功`,
       duration: 1,
-    })
-    setConfirmLoading(true)
+    });
+    setConfirmLoading(true);
     setTimeout(() => {
-      setOpen(false)
-      setConfirmLoading(false)
-    }, 2000)
-  }
+      setOpen(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
 
   const handleCancel = () => {
-    console.log('Clicked cancel button')
-    setOpen(false)
-  }
+    console.log("Clicked cancel button");
+    setOpen(false);
+  };
   const columns: ColumnsType<DataType> = [
     {
-      title: '名称',
-      dataIndex: 'name',
-      key: 'name',
-      render: text => <a>{text}</a>,
+      title: "名称",
+      dataIndex: "name",
+      key: "name",
+      render: (text) => <a>{text}</a>,
     },
     {
-      title: '年龄',
-      dataIndex: 'age',
-      key: 'age',
+      title: "年龄",
+      dataIndex: "age",
+      key: "age",
     },
     {
-      title: '地址',
-      dataIndex: 'address',
-      key: 'address',
+      title: "地址",
+      dataIndex: "address",
+      key: "address",
     },
     {
-      title: '职业',
-      key: 'tags',
-      dataIndex: 'tags',
+      title: "职业",
+      key: "tags",
+      dataIndex: "tags",
       render: (_, { tags, id }) => (
         <>
           {tags.map((tag) => {
-            let color = tag.length > 5 ? 'geekblue' : 'green'
-            if (tag === 'loser')
-              color = 'volcano'
+            let color = tag.length > 5 ? "geekblue" : "green";
+            if (tag === "loser") color = "volcano";
 
             return (
               <Tag color={color} key={tag + id}>
                 {tag}
               </Tag>
-            )
+            );
           })}
         </>
       ),
     },
     {
-      title: '操作',
-      key: 'action',
+      title: "操作",
+      key: "action",
       render: (_, record) => (
         <Space size="middle">
           <Button type="primary">编辑</Button>
@@ -99,7 +98,7 @@ const TablePage: React.FC = () => {
             danger
             type="primary"
             onClick={() => {
-              showModal(record)
+              showModal(record);
             }}
           >
             删除
@@ -107,22 +106,22 @@ const TablePage: React.FC = () => {
         </Space>
       ),
     },
-  ]
-  const [data, setData] = useState<DataType[]>([])
+  ];
+  const [data, setData] = useState<DataType[]>([]);
   const asyncFetch = () => {
     axios
-      .get('/api/table')
+      .get("/api/table")
       .then((json: { data: { data: SetStateAction<DataType[]> } }) => {
-        setData(json.data.data)
+        setData(json.data.data);
       })
       .catch((error: any) => {
-        console.log('fetch data failed', error)
-      })
-  }
+        console.log("fetch data failed", error);
+      });
+  };
 
   useEffect(() => {
-    asyncFetch()
-  }, [])
+    asyncFetch();
+  }, []);
   return (
     <div>
       {contextHolder}
@@ -149,7 +148,7 @@ const TablePage: React.FC = () => {
           </Col>
           <Col className="w-[100%]" lg={24} xl={8}>
             <Form.Item name="age" label="年龄">
-              <InputNumber style={{ width: '100%' }} />
+              <InputNumber style={{ width: "100%" }} />
             </Form.Item>
           </Col>
           <Col className="w-[100%] text-right" lg={24} xl={8}>
@@ -169,7 +168,7 @@ const TablePage: React.FC = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TablePage
+export default TablePage;

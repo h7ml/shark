@@ -1,6 +1,6 @@
-import { useMedia } from 'react-use'
+import { useMedia } from "react-use";
 
 export function usePCScreen() {
-  const isPC = useMedia('(min-width: 1024px)')
-  return isPC
+  const isPC = useMedia("(min-width: 1024px)");
+  return isPC;
 }

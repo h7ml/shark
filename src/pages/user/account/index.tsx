@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Button,
@@ -9,99 +9,91 @@ import {
   Space,
   Tag,
   message,
-} from 'antd'
-import axios from 'axios'
+} from "antd";
+import axios from "axios";
 import {
   ProCard,
   ProFormGroup,
   ProFormSwitch,
   ProList,
-} from '@ant-design/pro-components'
-import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons'
-import type { HeaderProps } from './header'
-import UserInfoHeader from './header'
-import DemoColumn from '@/pages/dashboard/column'
+} from "@ant-design/pro-components";
+import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
+import type { HeaderProps } from "./header";
+import UserInfoHeader from "./header";
+import DemoColumn from "@/pages/dashboard/column";
 
 interface AccountPageProps {
-  history: any
-  match: any
+  history: any;
+  match: any;
 }
 
 const AccountPage: React.FC<AccountPageProps> = () => {
-  const [data, setData] = useState<HeaderProps['userInfo']>({})
-  const [loading, setLoading] = useState(true)
-  const [projectData, setProjectData] = useState<any[]>([])
-  const [teamsData, setTeamsData] = useState<any[]>([])
-  const [activitiesData, setActivitiesData] = useState<any[]>([])
+  const [data, setData] = useState<HeaderProps["userInfo"]>({});
+  const [loading, setLoading] = useState(true);
+  const [projectData, setProjectData] = useState<any[]>([]);
+  const [teamsData, setTeamsData] = useState<any[]>([]);
+  const [activitiesData, setActivitiesData] = useState<any[]>([]);
   const fetchUser = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const response = await axios('/api/user/userInfo')
-      const data = await response.data
-      setData(data)
+      const response = await axios("/api/user/userInfo");
+      const data = await response.data;
+      setData(data);
+    } catch (error: string | any) {
+      message.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
-    catch (error: string | any) {
-      message.error('Error fetching data:', error)
-    }
-    finally {
-      setLoading(false)
-    }
-  }
+  };
 
   const fetchProjects = async () => {
     try {
-      const response = await axios('/api/user/projects')
-      const data = await response.data.list
-      setProjectData(data)
+      const response = await axios("/api/user/projects");
+      const data = await response.data.list;
+      setProjectData(data);
+    } catch (error: string | any) {
+      message.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
-    catch (error: string | any) {
-      message.error('Error fetching data:', error)
-    }
-    finally {
-      setLoading(false)
-    }
-  }
+  };
 
   const fetchTeams = async () => {
     try {
-      const response = await axios('/api/user/teams')
-      const data = await response.data.list
-      setTeamsData(data)
+      const response = await axios("/api/user/teams");
+      const data = await response.data.list;
+      setTeamsData(data);
+    } catch (error: string | any) {
+      message.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
-    catch (error: string | any) {
-      message.error('Error fetching data:', error)
-    }
-    finally {
-      setLoading(false)
-    }
-  }
+  };
 
   const fetachActivities = async () => {
     try {
-      const response = await axios('/api/user/activities')
-      const data = await response.data.list
-      setActivitiesData(data)
+      const response = await axios("/api/user/activities");
+      const data = await response.data.list;
+      setActivitiesData(data);
+    } catch (error: string | any) {
+      message.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
-    catch (error: string | any) {
-      message.error('Error fetching data:', error)
-    }
-    finally {
-      setLoading(false)
-    }
-  }
+  };
 
-  const IconText = ({ icon, text }: { icon: React.FC, text: string }) => (
+  const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
     <Space>
       {React.createElement(icon)}
       {text}
     </Space>
-  )
+  );
   useEffect(() => {
-    fetchProjects()
-    fetchUser()
-    fetchTeams()
-    fetachActivities()
-  }, [])
+    fetchProjects();
+    fetchUser();
+    fetchTeams();
+    fetachActivities();
+  }, []);
   return (
     <Row gutter={[16, 16]}>
       <UserInfoHeader userInfo={data} loading={loading} />
@@ -115,7 +107,7 @@ const AccountPage: React.FC<AccountPageProps> = () => {
               <Button
                 type="default"
                 onClick={() => {
-                  fetchProjects()
+                  fetchProjects();
                 }}
               >
                 刷新
@@ -130,19 +122,19 @@ const AccountPage: React.FC<AccountPageProps> = () => {
                   hoverable
                   ghost={true}
                   title={item.title}
-                  extra={(
+                  extra={
                     <ProFormGroup>
                       <ProFormSwitch
                         name="Enable"
                         noStyle
-                        value={item.status === 'active'}
+                        value={item.status === "active"}
                         checkedChildren="启用"
                         unCheckedChildren="禁用"
                       />
                     </ProFormGroup>
-                  )}
+                  }
                   className="cursor-pointer"
-                  style={{ minHeight: '220px', padding: '10px' }}
+                  style={{ minHeight: "220px", padding: "10px" }}
                 >
                   <p className="indent">{item.time}</p>
                   <p className="indent m-4">{item.desc}</p>
@@ -171,7 +163,7 @@ const AccountPage: React.FC<AccountPageProps> = () => {
                         </Tag>
                       ))}
                     </Space>
-                  )
+                  );
                 },
               },
               type: {},
@@ -183,8 +175,8 @@ const AccountPage: React.FC<AccountPageProps> = () => {
                     <div
                       style={{
                         flex: 1,
-                        display: 'flex',
-                        justifyContent: 'flex-end',
+                        display: "flex",
+                        justifyContent: "flex-end",
                       }}
                     >
                       <div
@@ -196,7 +188,7 @@ const AccountPage: React.FC<AccountPageProps> = () => {
                         <Progress percent={row.progress} />
                       </div>
                     </div>
-                  )
+                  );
                 },
               },
               actions: {},
@@ -220,12 +212,12 @@ const AccountPage: React.FC<AccountPageProps> = () => {
             size="large"
             pagination={{
               onChange: (page) => {
-                console.log(page)
+                console.log(page);
               },
               pageSize: 4,
             }}
             dataSource={activitiesData}
-            renderItem={item => (
+            renderItem={(item) => (
               <List.Item
                 key={item.title}
                 actions={[
@@ -268,13 +260,13 @@ const AccountPage: React.FC<AccountPageProps> = () => {
             </span>
           </div>
           <div className="mt-10">
-            {' '}
+            {" "}
             <DemoColumn />
           </div>
         </div>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
-export default AccountPage
+export default AccountPage;

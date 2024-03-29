@@ -1,4 +1,4 @@
-import localforage from 'localforage'
+import localforage from "localforage";
 
 // docs: https://localforage.docschina.org/#api
 
@@ -9,8 +9,8 @@ import localforage from 'localforage'
  * @property {any} data - 要存储的数据
  */
 interface IData {
-  expires: number | null
-  data: any
+  expires: number | null;
+  data: any;
 }
 
 /**
@@ -19,8 +19,8 @@ interface IData {
  * @returns {LocalForage} - 数据库实例
  */
 interface DropInstanceOptions {
-  name?: string // 数据库的名称
-  storeName?: string // 数据仓库的名称
+  name?: string; // 数据库的名称
+  storeName?: string; // 数据仓库的名称
 }
 
 /**
@@ -34,17 +34,16 @@ export default class Storage {
    * @returns {Promise<any | null>} - 返回存储的数据，如果不存在则返回 null
    */
   static async get(key: string): Promise<any | null> {
-    const result = await localforage.getItem<IData>(key)
-    if (result === null)
-      return null
+    const result = await localforage.getItem<IData>(key);
+    if (result === null) return null;
 
     if (result.expires && result.expires < Date.now()) {
       // 过期
-      await Storage.remove(key)
-      return null
+      await Storage.remove(key);
+      return null;
     }
 
-    return result.data
+    return result.data;
   }
 
   /**
@@ -58,23 +57,23 @@ export default class Storage {
     const data: IData = {
       expires: null,
       data: value,
-    }
+    };
     if (dieTime) {
       // 如果有传入过期时间，则记录过期时间戳
-      data.expires = Date.now() + dieTime * 1000
+      data.expires = Date.now() + dieTime * 1000;
     }
-    await localforage.setItem(key, data)
+    await localforage.setItem(key, data);
   }
 
   /**
    * 清除所有数据
    */
-  static clear = localforage.clear
+  static clear = localforage.clear;
 
   /**
    * 获取数据的数量
    */
-  static storeLength = localforage.length
+  static storeLength = localforage.length;
 
   /**
    * 移除单项数据
@@ -82,7 +81,7 @@ export default class Storage {
    * @returns {Promise<void>} - 返回一个 Promise，表示移除操作的完成状态
    */
   static remove(key: string): Promise<void> {
-    return localforage.removeItem(key)
+    return localforage.removeItem(key);
   }
 
   /**
@@ -92,12 +91,11 @@ export default class Storage {
    */
   static async key(index: number): Promise<string | null> {
     try {
-      const keyName = await localforage.key(index)
-      return keyName
-    }
-    catch (err) {
-      console.log(err) // 捕获错误时输出
-      return null
+      const keyName = await localforage.key(index);
+      return keyName;
+    } catch (err) {
+      console.log(err); // 捕获错误时输出
+      return null;
     }
   }
 
@@ -107,11 +105,10 @@ export default class Storage {
    */
   static async keys(): Promise<string[]> {
     try {
-      const keys = await localforage.keys()
-      return keys
-    }
-    catch (err) {
-      return []
+      const keys = await localforage.keys();
+      return keys;
+    } catch (err) {
+      return [];
     }
   }
 
@@ -127,15 +124,14 @@ export default class Storage {
     try {
       const result = await localforage.iterate(
         (value, key, iterationNumber) => {
-          return iteratorCallback(value, key, iterationNumber)
+          return iteratorCallback(value, key, iterationNumber);
         },
-      )
-      successCallback()
-      return result
-    }
-    catch (err) {
-      console.log(err) // 捕获错误时输出
-      return null
+      );
+      successCallback();
+      return result;
+    } catch (err) {
+      console.log(err); // 捕获错误时输出
+      return null;
     }
   }
 
@@ -144,7 +140,7 @@ export default class Storage {
    * @param {string | string[]} driverName - 要设置的驱动名称或驱动名称数组
    */
   static setDriver(driverName: string | string[]): void {
-    localforage.setDriver(driverName)
+    localforage.setDriver(driverName);
   }
 
   /**
@@ -158,14 +154,14 @@ export default class Storage {
    * @param {string} [options.description] - 数据库的描述，一般是提供给开发者的。
    */
   static config(options: {
-    driver?: string | string[]
-    name?: string
-    size?: number
-    storeName?: string
-    version?: number
-    description?: string
+    driver?: string | string[];
+    name?: string;
+    size?: number;
+    storeName?: string;
+    version?: number;
+    description?: string;
   }): void {
-    localforage.config(options)
+    localforage.config(options);
   }
 
   /**
@@ -174,7 +170,7 @@ export default class Storage {
    * @returns {LocalForage} - 返回一个新的 localForage 实例
    */
   static createInstance(options: LocalForageOptions): LocalForage {
-    return localforage.createInstance(options)
+    return localforage.createInstance(options);
   }
 
   /**
@@ -184,7 +180,7 @@ export default class Storage {
   static values(): Promise<any[]> {
     return localforage
       .keys()
-      .then(keys => Promise.all(keys.map(key => Storage.get(key))))
+      .then((keys) => Promise.all(keys.map((key) => Storage.get(key))));
   }
 
   /**
@@ -196,7 +192,7 @@ export default class Storage {
    * @returns {Promise<void>} - 返回一个 Promise，在删除操作完成时解析
    */
   static dropInstance(options?: DropInstanceOptions): Promise<void> {
-    return localforage.dropInstance(options)
+    return localforage.dropInstance(options);
   }
 
   /**
@@ -204,17 +200,16 @@ export default class Storage {
    * @returns {Promise<[string, any][]>} - 返回一个 Promise，包含所有键值对的数组
    */
   static entries(): Promise<[string, any][]> {
-    return localforage.keys().then(keys =>
+    return localforage.keys().then((keys) =>
       Promise.all(
-        keys.map(key =>
+        keys.map((key) =>
           Storage.get(key).then((value) => {
-            if (value !== null)
-              return [key, value] as [string, any]
+            if (value !== null) return [key, value] as [string, any];
 
-            return [key, null] as [string, any]
+            return [key, null] as [string, any];
           }),
         ),
       ),
-    )
+    );
   }
 }

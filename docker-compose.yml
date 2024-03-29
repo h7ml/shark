@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   h7ml:
     build:
@@ -7,4 +7,4 @@ services:
     volumes:
       - .:/shark
     ports:
-      - '80:80'
+      - "80:80"
