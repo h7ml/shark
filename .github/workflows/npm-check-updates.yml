@@ -20,7 +20,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install npm-check-updates
-        run: npm install -g npm-check-updates
+        run: npm install -g npm-check-updates pnpm
 
       - name: Update Dependencies
         run: ncu -u
