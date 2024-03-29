@@ -1,9 +1,9 @@
-import type { FC } from "react";
+import type { FC } from 'react'
 
 interface Props {
-  height?: number;
-  children?: any;
-  color?: string;
+  height?: number
+  children?: any
+  color?: string
 }
 
 const BgCard: FC<Props> = ({ height, children }) => {
@@ -14,7 +14,7 @@ const BgCard: FC<Props> = ({ height, children }) => {
     >
       {children}
     </div>
-  );
-};
+  )
+}
 
-export default BgCard;
+export default BgCard

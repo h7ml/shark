@@ -1,12 +1,12 @@
 module.exports = {
   // 箭头函数只有一个参数的时候可以忽略括号
-  arrowParens: "avoid",
+  arrowParens: 'avoid',
   // 括号内部不要出现空格
   bracketSpacing: true,
   // 行结束符使用 Unix 格式
-  endOfLine: "lf",
+  endOfLine: 'lf',
   // 换行方式
-  proseWrap: "preserve",
+  proseWrap: 'preserve',
   // 分号
   semi: true,
   // 使用单引号
@@ -16,12 +16,12 @@ module.exports = {
   // 使用 tab 缩进
   useTabs: false,
   // 后置逗号，多行对象、数组在最后一行增加逗号
-  trailingComma: "all",
-  parser: "typescript",
+  trailingComma: 'all',
+  parser: 'typescript',
   // 一行最多 100 字符
   printWidth: 100,
   // 对象的 key 仅在必要时用引号
-  quoteProps: "as-needed",
+  quoteProps: 'as-needed',
   // jsx 不使用单引号，而使用双引号
   jsxSingleQuote: true,
   // jsx 标签的反尖括号需要换行
@@ -34,5 +34,5 @@ module.exports = {
   // 不需要自动在文件开头插入 @prettier
   insertPragma: false,
   // 根据显示样式决定 html 要不要折行
-  htmlWhitespaceSensitivity: "css",
-};
+  htmlWhitespaceSensitivity: 'css',
+}

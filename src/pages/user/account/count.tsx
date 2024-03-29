@@ -1,30 +1,50 @@
-import { TinyLine } from "@antv/g2plot";
-import { useLayoutEffect, useRef } from "react";
+import { TinyLine } from '@antv/g2plot'
+import { useLayoutEffect, useRef } from 'react'
 
 function CountTinyLine() {
-  const containerRef = useRef(null);
+  const containerRef = useRef(null)
 
   useLayoutEffect(() => {
     const data = [
-      264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513,
-      546, 983, 340, 539, 243, 226, 192,
-    ];
+      264,
+      417,
+      438,
+      887,
+      309,
+      397,
+      550,
+      575,
+      563,
+      430,
+      525,
+      592,
+      492,
+      467,
+      513,
+      546,
+      983,
+      340,
+      539,
+      243,
+      226,
+      192,
+    ]
     const tinyLine = new TinyLine(containerRef.current!, {
       height: 50,
       autoFit: true,
       data,
       smooth: true,
-      color: "#ffffff",
-    });
+      color: '#ffffff',
+    })
 
-    tinyLine.render();
+    tinyLine.render()
 
     return () => {
-      tinyLine.destroy();
-    };
-  }, []);
+      tinyLine.destroy()
+    }
+  }, [])
 
-  return <div ref={containerRef} className="w-[100%]" />;
+  return <div ref={containerRef} className="w-[100%]" />
 }
 
-export default CountTinyLine;
+export default CountTinyLine

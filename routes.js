@@ -1,9 +1,9 @@
 // This file was added by edgio init.
 // You should commit this file to source control.
 
-import { Router } from "@edgio/core/router";
+import { Router } from '@edgio/core/router'
 
-export default new Router().static("dist", ({ cache }) => {
+export default new Router().static('dist', ({ cache }) => {
   cache({
     edge: {
       maxAgeSeconds: 60 * 60 * 60 * 365,
@@ -13,5 +13,5 @@ export default new Router().static("dist", ({ cache }) => {
       maxAgeSeconds: 0,
       serviceWorkerSeconds: 60 * 60 * 24,
     },
-  });
-});
+  })
+})

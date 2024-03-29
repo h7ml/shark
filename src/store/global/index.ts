@@ -1,16 +1,16 @@
-import { create } from "zustand";
-import { createJSONStorage, devtools, persist } from "zustand/middleware";
+import { create } from 'zustand'
+import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 
 interface State {
-  darkMode: boolean;
-  collapsed: boolean;
-  lang: string;
+  darkMode: boolean
+  collapsed: boolean
+  lang: string
 }
 
 interface Action {
-  setDarkMode: (darkMode: State["darkMode"]) => void;
-  setCollapsed: (collapsed: State["collapsed"]) => void;
-  setLang: (lang: State["lang"]) => void;
+  setDarkMode: (darkMode: State['darkMode']) => void
+  setCollapsed: (collapsed: State['collapsed']) => void
+  setLang: (lang: State['lang']) => void
 }
 
 export const useGlobalStore = create<State & Action>()(
@@ -20,26 +20,26 @@ export const useGlobalStore = create<State & Action>()(
         return {
           darkMode: false,
           collapsed: false,
-          lang: "zh",
-          setDarkMode: (darkMode: State["darkMode"]) =>
+          lang: 'zh',
+          setDarkMode: (darkMode: State['darkMode']) =>
             set({
               darkMode,
             }),
-          setCollapsed: (collapsed: State["collapsed"]) =>
+          setCollapsed: (collapsed: State['collapsed']) =>
             set({
               collapsed,
             }),
-          setLang: (lang: State["lang"]) =>
+          setLang: (lang: State['lang']) =>
             set({
               lang,
             }),
-        };
+        }
       },
       {
-        name: "globalStore",
+        name: 'globalStore',
         storage: createJSONStorage(() => localStorage),
       },
     ),
-    { name: "globalStore" },
+    { name: 'globalStore' },
   ),
-);
+)

@@ -1,1 +1,1 @@
-import "./encrypt";
+import './encrypt'

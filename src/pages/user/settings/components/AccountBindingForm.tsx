@@ -1,45 +1,45 @@
-import { Button, List, message } from "antd";
+import { Button, List, message } from 'antd'
 import {
   AlipayCircleOutlined,
   DingdingOutlined,
   TaobaoCircleOutlined,
-} from "@ant-design/icons";
-import type { FC } from "react";
+} from '@ant-design/icons'
+import type { FC } from 'react'
 
 const AccountBindingForm: FC = () => {
   const handleBinding = (type: string) => {
     // 处理绑定操作
-    message.info(`开始绑定${type}`);
-  };
+    message.info(`开始绑定${type}`)
+  }
 
   const accountBindings = [
     {
-      label: "淘宝",
-      description: "当前未绑定淘宝账号",
-      actionText: "绑定",
+      label: '淘宝',
+      description: '当前未绑定淘宝账号',
+      actionText: '绑定',
       icon: <TaobaoCircleOutlined />,
-      onClick: () => handleBinding("淘宝"),
+      onClick: () => handleBinding('淘宝'),
     },
     {
-      label: "支付宝",
-      description: "当前未绑定支付宝账号",
-      actionText: "绑定",
+      label: '支付宝',
+      description: '当前未绑定支付宝账号',
+      actionText: '绑定',
       icon: <AlipayCircleOutlined />,
-      onClick: () => handleBinding("支付宝"),
+      onClick: () => handleBinding('支付宝'),
     },
     {
-      label: "钉钉",
-      description: "当前未绑定钉钉账号",
-      actionText: "绑定",
+      label: '钉钉',
+      description: '当前未绑定钉钉账号',
+      actionText: '绑定',
       icon: <DingdingOutlined />,
-      onClick: () => handleBinding("钉钉"),
+      onClick: () => handleBinding('钉钉'),
     },
-  ];
+  ]
 
   return (
     <List
       dataSource={accountBindings}
-      renderItem={(item) => (
+      renderItem={item => (
         <List.Item
           actions={[
             <Button
@@ -60,7 +60,7 @@ const AccountBindingForm: FC = () => {
         </List.Item>
       )}
     />
-  );
-};
+  )
+}
 
-export default AccountBindingForm;
+export default AccountBindingForm

@@ -1,25 +1,26 @@
-import { memo } from "react";
-import { Drawer } from "antd";
-import { useUpdateEffect } from "react-use";
+import { memo } from 'react'
+import { Drawer } from 'antd'
+import { useUpdateEffect } from 'react-use'
 
-import SlideMenu from "./menus";
-import { IconBuguang } from "@/assets/icons/buguang";
-import { useGlobalStore } from "@/store/global";
-import { usePCScreen } from "@/hooks/use-pc-screen";
-import { defaultSetting } from "@/default-setting";
+import SlideMenu from './menus'
+import { IconBuguang } from '@/assets/icons/buguang'
+import { useGlobalStore } from '@/store/global'
+import { usePCScreen } from '@/hooks/use-pc-screen'
+import { defaultSetting } from '@/default-setting'
 
 function SlideIndex() {
-  const isPC = usePCScreen();
+  const isPC = usePCScreen()
 
-  const { collapsed, setCollapsed } = useGlobalStore();
+  const { collapsed, setCollapsed } = useGlobalStore()
 
   useUpdateEffect(() => {
-    if (!isPC) setCollapsed(true);
-    else setCollapsed(false);
-  }, [isPC]);
+    if (!isPC)
+      setCollapsed(true)
+    else setCollapsed(false)
+  }, [isPC])
 
   function renderMenu() {
-    return <SlideMenu />;
+    return <SlideMenu />
   }
 
   if (!isPC) {
@@ -32,7 +33,7 @@ function SlideIndex() {
         className="bg-primary"
         zIndex={10001}
         closable={false}
-        title={
+        title={(
           <div
             className="flex items-center gap-[4px] text-[20px] justify-center"
             style={{ width: defaultSetting.slideWidth }}
@@ -40,16 +41,16 @@ function SlideIndex() {
             <IconBuguang className="text-blue-500" />
             <h1 className="text-primary font-bold text-[22px]">shark</h1>
           </div>
-        }
-        headerStyle={{ padding: "24px 0", border: "none" }}
-        bodyStyle={{ padding: "0 16px" }}
+        )}
+        headerStyle={{ padding: '24px 0', border: 'none' }}
+        bodyStyle={{ padding: '0 16px' }}
         onClose={() => {
-          setCollapsed(true);
+          setCollapsed(true)
         }}
       >
         {renderMenu()}
       </Drawer>
-    );
+    )
   }
 
   return (
@@ -59,7 +60,7 @@ function SlideIndex() {
     >
       {renderMenu()}
     </div>
-  );
+  )
 }
 
-export default memo(SlideIndex);
+export default memo(SlideIndex)

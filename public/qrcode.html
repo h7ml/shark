@@ -30,54 +30,54 @@
     <script src="https://webqr.com/llqrcode.js"></script>
 
     <script>
-      var timer = null;
-      var stream = null;
-      var video = document.querySelector("#video");
-      var canvas = document.querySelector("#canvas");
-      canvas.style.width = window.innerWidth;
-      canvas.style.height = window.innerHeight;
+      var timer = null
+      var stream = null
+      var video = document.querySelector('#video')
+      var canvas = document.querySelector('#canvas')
+      canvas.style.width = window.innerWidth
+      canvas.style.height = window.innerHeight
       document
-        .querySelector("#start")
-        .addEventListener("click", async function () {
+        .querySelector('#start')
+        .addEventListener('click', async function () {
           try {
             stream = await navigator.mediaDevices.getUserMedia({
-              video: { facingMode: "environment" },
+              video: { facingMode: 'environment' },
               audio: false,
-            });
+            })
           } catch (error) {
-            alert(error.message);
-            return;
+            alert(error.message)
+            return
           }
-          video.requestFullscreen();
-          video.srcObject = stream;
-          video.style.display = "block";
+          video.requestFullscreen()
+          video.srcObject = stream
+          video.style.display = 'block'
 
-          clearInterval(timer);
+          clearInterval(timer)
           timer = setInterval(function () {
             canvas
-              .getContext("2d")
-              .drawImage(video, 0, 0, canvas.width, canvas.height);
-            var image_data_url = canvas.toDataURL("image/jpeg");
-            qrcode.decode(image_data_url);
+              .getContext('2d')
+              .drawImage(video, 0, 0, canvas.width, canvas.height)
+            var image_data_url = canvas.toDataURL('image/jpeg')
+            qrcode.decode(image_data_url)
             qrcode.callback = function (msg) {
               if (!msg.match(/^error/)) {
-                clearInterval(timer);
-                document.exitFullscreen();
-                alert(msg);
+                clearInterval(timer)
+                document.exitFullscreen()
+                alert(msg)
               }
-            };
-          }, 500);
-        });
+            }
+          }, 500)
+        })
 
-      document.addEventListener("fullscreenchange", function (event) {
+      document.addEventListener('fullscreenchange', function (event) {
         // 关闭全屏时还原
         if (!document.fullscreenElement) {
-          clearInterval(timer);
-          video.srcObject = null;
-          video.style.display = "none";
-          stream.getTracks().forEach((track) => track.stop());
+          clearInterval(timer)
+          video.srcObject = null
+          video.style.display = 'none'
+          stream.getTracks().forEach((track) => track.stop())
         }
-      });
+      })
     </script>
   </body>
 </html>
