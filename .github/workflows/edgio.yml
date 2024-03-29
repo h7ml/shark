@@ -1,10 +1,8 @@
 name: Deploy to Edgio
 
 on:
-  schedule:
-    - cron: '30 06 * * *'
   push:
-    branches: [master, dev]
+    branches: [master]
   workflow_dispatch:
 
 # 设置上海时区
@@ -35,15 +33,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
       - name: Install dependencies
-        run: |
-          yarn install --force --ignore-engines --production=false
-          yarn add --dev @edgio/cli @edgio/core @edgio/devtools @edgio/prefetch
-      - name: Build and Deploy
-        run: |
-          yarn edgio:build
-          yarn edgio:deploy -- --token=$EDGIO_DEPLOY_TOKEN
-        env:
-          EDGIO_DEPLOY_TOKEN: ${{secrets.EDGIO_DEPLOY_TOKEN}}
+        run: yarn install --force --ignore-engines --production=false
       - name: build static
         run: yarn build
       - name: Deploy
@@ -51,3 +41,18 @@ jobs:
         with:
             branch: static
             folder: dist
+      - name: build gh-pages
+        run: yarn build:gh-pages
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages
+          folder: dist
+      - name: edgio
+        run:  |
+          yarn install --force --ignore-engines --production=false
+          yarn add --dev @edgio/cli @edgio/core @edgio/devtools @edgio/prefetch
+          yarn edgio:build
+          yarn edgio:deploy -- --token=$EDGIO_DEPLOY_TOKEN
+        env:
+          EDGIO_DEPLOY_TOKEN: ${{secrets.EDGIO_DEPLOY_TOKEN}}
