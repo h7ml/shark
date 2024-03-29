@@ -27,11 +27,6 @@
     "Ant Design",
     "Zustand"
   ],
-  "engines": {
-    "node": ">=20",
-    "pnpm": "8.15.5",
-    "yarn": "1.22.22"
-  },
   "scripts": {
     "build": "cross-env NODE_ENV=production rspack build",
     "build:analyze": "cross-env NODE_ENV=production rspack build --analyze",
