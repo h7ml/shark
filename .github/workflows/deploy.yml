@@ -53,6 +53,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
       - name: pnpm script 🚀
         run: |
+          npm install -g pnpm
           pnpm install
           pnpm build:gh-pages
         # 构建发布 Github pages
