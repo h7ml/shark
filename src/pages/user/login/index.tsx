@@ -87,6 +87,7 @@ const Page: React.FC = () => {
 
   useEffect(() => {
     refreshCaptcha(timestamp)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const [loginType, setLoginType] = useState<LoginType>('account')

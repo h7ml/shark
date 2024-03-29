@@ -27,17 +27,15 @@
     "Ant Design",
     "Zustand"
   ],
-  "engines": {
-    "node": ">=20",
-    "pnpm": "8.15.5",
-    "yarn": "1.22.22"
-  },
   "scripts": {
     "build": "cross-env NODE_ENV=production rspack build",
     "build:analyze": "cross-env NODE_ENV=production rspack build --analyze",
     "build:gh-pages": "cross-env NODE_ENV=production PUBLIC_PATH=/shark/ rspack build",
     "commit": "git-cz",
     "dev": "cross-env NODE_ENV=development rspack serve",
+    "edgio:build": "edgio build",
+    "edgio:deploy": "edgio deploy",
+    "edgio:dev": "edgio dev",
     "eslint": "eslint . --fix --cache",
     "pre-commit": "pretty-quick --staged  && npm run prettier && npm run eslint",
     "prepare": "husky install && npm run pre-commit",

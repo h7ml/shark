@@ -1,0 +1,46 @@
+name: Deploy to Edgio
+
+on:
+  schedule:
+    - cron: '30 06 * * *'
+  push:
+    branches: [master, dev]
+  workflow_dispatch:
+
+# 设置上海时区
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  deploy-to-edgio:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [21.6.2]
+        yarn-version: [1.22.21]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 21.6.2
+      - name: Cache yarn modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-yarn-edgio
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+      - name: Install dependencies
+        run: |
+          yarn install --force --ignore-engines --production=false
+          yarn add --dev @edgio/cli @edgio/core @edgio/devtools @edgio/prefetch
+      - name: Build and Deploy
+        run: |
+          yarn edgio:build
+          yarn edgio:deploy -- --token=$EDGIO_DEPLOY_TOKEN
+        env:
+          EDGIO_DEPLOY_TOKEN: ${{secrets.EDGIO_DEPLOY_TOKEN}}

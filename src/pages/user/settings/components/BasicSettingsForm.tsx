@@ -52,6 +52,7 @@ const BasicSettingsForm: FC<BasicSettingsFormProps> = ({ initialValues }) => {
   }
 
   // 监听窗口变化
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = () => {
     setWindowSize(getWindowSize())
   }

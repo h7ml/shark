@@ -53,6 +53,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
       - name: pnpm script 🚀
         run: |
+          npm install -g pnpm
           pnpm install
           pnpm build:gh-pages
         # 构建发布 Github pages
@@ -91,6 +92,15 @@ jobs:
         run: yarn install
       - name: Generate files  🚀
         run: yarn build
+      - name: Deploy 🚀
+        # 使用github-pages-deploy-action: https://github.com/JamesIves/github-pages-deploy-action/tree/master
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          # 存储库中要部署的文件夹。
+          # 该步骤会将项目中 FOLDER 指定文件夹下的文件推送到 BRANCH 分支，作为Github Pages 部署的内容。
+          branch: static # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
+          # github_token: ${{ secrets.ACTION_SECRET }}
     needs: pages
   deploy:
     name: deploy 🚀
