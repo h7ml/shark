@@ -1,0 +1,34 @@
+name: deploy
+
+on:
+  push:
+    branches: [gh-pages]
+  pull_request:
+    branches: [gh-pages]
+
+jobs:
+  gitee:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync To Gitee
+        uses: wearerequired/git-mirror-action@master
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+        with:
+          source-repo: git@github.com:h7ml/shark.git
+          destination-repo: git@gitee.com:h7ml/shark.git
+
+      - name: Build Gitee Pages
+        uses: yanglbme/gitee-pages-action@main
+        with:
+          gitee-username: h7ml@qq.com
+          gitee-password: ${{ secrets.GITEE_PASSWORD }}
+          gitee-repo: h7ml/shark
+          branch: gh-pages
+      - name: echo page
+        run: |
+          echo "https://h7ml.gitee.io/shark/"
+          echo "https://h7ml.github.io/shark/"
+          echo "https://shark.h7ml.cn"
+          echo "https://shark-ewe.pages.dev/"
+          echo "https://shark.zeabur.app/"

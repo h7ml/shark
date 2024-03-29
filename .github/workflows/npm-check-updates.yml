@@ -23,7 +23,7 @@ jobs:
         run: npm install -g npm-check-updates pnpm
 
       - name: Update Dependencies
-        run: ncu -u
+        run: npx ncu -u
 
       - name: Install updated dependencies
         run: pnpm install
@@ -33,7 +33,9 @@ jobs:
         run: |
           if git diff --quiet --exit-code package.json pnpm-lock.yaml; then
             echo "No changes in package.json or pnpm-lock.yaml. Exiting."
-            exit 1
+            exit 0
+          else
+            echo "Changes detected. Proceeding with commit and push."
           fi
 
       - name: Commit changes
@@ -42,7 +44,7 @@ jobs:
           git config --global user.name 'actions-user'
           git config --global user.email 'shark@h7ml.cn'
           git add package.json pnpm-lock.yaml
-          git commit -m "chore: Update dependencies"
+          git commit -m "chore: Update dependencies" || exit 0
 
       - name: Push changes
         if: steps.check_changes.outcome == 'success'
