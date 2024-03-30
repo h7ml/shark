@@ -17,6 +17,7 @@ import {
   message,
 } from 'antd'
 import axios from 'axios'
+import type { FC } from 'react'
 import React, { useEffect, useState } from 'react'
 
 import type { HeaderProps } from './header'
@@ -28,7 +29,7 @@ interface AccountPageProps {
   match: any
 }
 
-const AccountPage: React.FC<AccountPageProps> = () => {
+const AccountPage: FC<AccountPageProps> = () => {
   const [data, setData] = useState<HeaderProps['userInfo']>({})
   const [loading, setLoading] = useState(true)
   const [projectData, setProjectData] = useState<any[]>([])
@@ -91,7 +92,7 @@ const AccountPage: React.FC<AccountPageProps> = () => {
     }
   }
 
-  const IconText = ({ icon, text }: { icon: React.FC, text: string }) => (
+  const IconText = ({ icon, text }: { icon: FC, text: string }) => (
     <Space>
       {React.createElement(icon)}
       {text}

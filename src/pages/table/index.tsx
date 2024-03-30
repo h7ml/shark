@@ -13,7 +13,7 @@ import {
 } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import axios from 'axios'
-import type { SetStateAction } from 'react'
+import type { FC, SetStateAction } from 'react'
 import { useEffect, useState } from 'react'
 
 export interface DataType {
@@ -24,7 +24,7 @@ export interface DataType {
   tags: string[]
 }
 
-const TablePage: React.FC = () => {
+const TablePage: FC = () => {
   const [messageApi, contextHolder] = message.useMessage()
 
   const [open, setOpen] = useState(false)

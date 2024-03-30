@@ -1,5 +1,7 @@
+import { InfoCircleOutlined } from '@ant-design/icons'
 import { Column } from '@antv/g2plot'
-import { Card } from 'antd'
+import { Col, Divider, Tooltip } from 'antd'
+import { t } from 'i18next'
 import type { FC } from 'react'
 import { useEffect, useRef } from 'react'
 
@@ -22,11 +24,28 @@ const UserRetention: FC<UserRetentionProps> = ({ data }) => {
       isGroup: true,
       xField: 'month',
       yField: 'sales',
+      color: ['#5B8FF9', '#5AD8A6', '#a66100'], // 柱子颜色
+      //
+
       seriesField: 'name',
       // 分组柱状图 组内柱子间的间距 (像素级别)
       dodgePadding: 2,
       // 分组柱状图 组间的间距 (像素级别)
       intervalPadding: 20,
+      tooltip: {
+        formatter: datum => ({
+          name: `${datum.name}`,
+          value: datum.sales,
+        }),
+      },
+      legend: {
+        itemName: {
+          style: {
+            fill: '#fff',
+            fontSize: 12,
+          },
+        },
+      },
       label: {
         // 可手动配置 label 数据标签位置
         position: 'middle', // 'top', 'middle', 'bottom'
@@ -49,9 +68,28 @@ const UserRetention: FC<UserRetentionProps> = ({ data }) => {
     }
   }, [data])
   return (
-    <Card title="用户留存量" className="user-retention">
-      <div ref={container} className="w-full h-[150px]" key={data.length} />
-    </Card>
+    <Col xl={6} lg={12} className="w-[100%]">
+      <div className="dark:bg-[rgb(33,41,70)] w-[100%] bg-[rgb(94,53,177)] overflow-hidden h-[241px] relative rounded-md bg-card p-[32px] box-border">
+        <div className="absolute top-[24px] right-[24px] z-10">
+          <Tooltip title={t('iLyPEqwQ' /* 指标说明 */)}>
+            <InfoCircleOutlined className="text-[rgb(179,157,219)] text-[20px]" />
+          </Tooltip>
+        </div>
+        <div className="text-white text-[16px]">
+          用户留存量
+          {' '}
+          {data[0]?.sales}
+        </div>
+        <div className="mt-[10px] text-[rgba(229,224,216,0.85)] text-[16px] flex gap-[24px]">
+          <div ref={container} className="w-full h-[150px]" key={data.length} />
+        </div>
+        <Divider className="dark:bg-[rgb(189,200,240)] bg-[rgb(227,232,239)] opacity-[0.2] my-[16px]" />
+        <div className="text-[rgba(229,224,216,0.85)] text-[16px]">
+          <span>{t('sehypRaO' /* 日访问量 */)}</span>
+          <span className="ml-[8px]">9,431</span>
+        </div>
+      </div>
+    </Col>
   )
 }
 

@@ -47,7 +47,7 @@ if (!isSSR) {
         // 用户留存趋势（呈上升趋势
         'userRetention|30-50': ['@integer(10, 300)'],
         // 用户留存量
-        'userRetentionData|30-100': [
+        'userRetentionData|5-12': [
           {
             'key|+1': 1,
             'name|1': ['新增用户', '活跃用户', '留存用户'],

@@ -6,7 +6,6 @@ import { RouterProvider } from 'react-router-dom'
 import { darkTheme, lightTheme, sharkRouter } from '@/config/theme'
 import { useGlobalStore } from '@/store/global'
 import { i18n } from '@/utils'
-
 function App() {
   const { darkMode, lang } = useGlobalStore()
   useEffect(() => {

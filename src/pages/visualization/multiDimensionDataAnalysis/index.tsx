@@ -16,8 +16,7 @@ import type { ContentDistributionDataItem } from './components/ContentDistributi
 import type { ContentSourceProps } from './components/ContentSource'
 import type { DataItem } from './components/OverviewStatistics'
 import type { TodayDataItem } from './components/TodayMetrics'
-
-const MultiDimensionDataAnalysis: React.FC = () => {
+const MultiDimensionDataAnalysis: FC = () => {
   const [overviewData, setOverviewData] = useState<DataItem[]>([])
   const [todayData, setTodayData] = useState<TodayDataItem[]>([]) // 今日数据
   const [contentDistributionData, setContentDistributionData] = useState<
@@ -67,15 +66,15 @@ const MultiDimensionDataAnalysis: React.FC = () => {
     <div className="multi-dimension-data-analysis w-full h-full">
       <Row gutter={[16, 16]} className="mb-8">
         {/* 上部分 */}
-        <Col span={18}>
+        <Col span={18} lg={24} xl={18} xs={24} className="w-[100%]">
           <OverviewStatistics data={overviewData} />
         </Col>
-        <Col span={6}>
+        <Col span={6} lg={24} xl={6} xs={24} className="w-[100%]">
           <Row gutter={[16, 16]}>
-            <Col span={24}>
+            <Col span={24} xs={24} sm={24} lg={12} xl={24}>
               <TodayMetrics data={todayData} />
             </Col>
-            <Col span={24}>
+            <Col span={24} xs={24} sm={24} lg={12} xl={24}>
               <ContentDistribution data={contentDistributionData} />
             </Col>
           </Row>
@@ -83,21 +82,18 @@ const MultiDimensionDataAnalysis: React.FC = () => {
       </Row>
       <Row gutter={[16, 16]} className="mb-8">
         {/* 中部分 */}
-        <Col span={6}>
-          <UserRetentionTrend data={userRetention} />
-        </Col>
-        <Col span={6}>
-          <UserRetention data={userRetentionData} />
-        </Col>
-        <Col span={6}>
-          <ContentConsumptionTrend data={contentConsumption} />
-        </Col>
-        <Col span={6}>
-          <ContentConsumption data={contentConsumptionData} />
-        </Col>
+        <UserRetentionTrend data={userRetention} />
+        <UserRetention data={userRetentionData} />
+        <ContentConsumptionTrend data={contentConsumption} />
+        <ContentConsumption data={contentConsumptionData} />
       </Row>
       {/* 下部分 */}
-      <ContentSource data={contentSourceData} />
+      <Row gutter={[16, 16]} className="mb-8">
+        {/* 中部分 */}
+        <Col lg={24} xl={24} className="w-[100%]">
+          <ContentSource data={contentSourceData} />
+        </Col>
+      </Row>
     </div>
   )
 }

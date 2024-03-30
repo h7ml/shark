@@ -20,6 +20,17 @@ export default antfu({
     'plugin:react-hooks/recommended',
   ],
   rules: {
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+      },
+    ],
+    'import/no-unused-modules': 0,
     'simple-import-sort/imports': 0,
     'simple-import-sort/exports': 0,
     'import/first': 0,

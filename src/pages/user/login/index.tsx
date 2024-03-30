@@ -25,7 +25,7 @@ import {
   theme,
 } from 'antd'
 import axios from 'axios'
-import type { CSSProperties } from 'react'
+import type { CSSProperties, FC } from 'react'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -65,7 +65,7 @@ interface LoginDTO {
   captcha?: string
 }
 
-const Page: React.FC = () => {
+const Page: FC = () => {
   const navigate = useNavigate()
   const { token } = theme.useToken()
   const [data, setData] = useState<DataType>({})

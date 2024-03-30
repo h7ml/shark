@@ -1,4 +1,5 @@
 name: deploy
+
 on:
   schedule:
     - cron: '30 06 * * *'
@@ -6,7 +7,6 @@ on:
     branches: [master, dev]
   workflow_dispatch:
 
-# 设置上海时区
 env:
   TZ: Asia/Shanghai
 
@@ -17,123 +17,87 @@ jobs:
       matrix:
         node-version: [21.6.2]
         yarn-version: [1.22.21]
+        pnpm-version: [8.15.5]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js and dependencies
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Cache yarn modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-yarn-edgio
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
-      - name: Install dependencies
-        run: yarn install --force --ignore-engines --production=false
-      - name: build static
-        run: yarn build
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
-        with:
-          branch: static
-          folder: dist
-      - name: build gh-pages
-        run: yarn build:gh-pages
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
-        with:
-          branch: gh-pages
-          folder: dist
-      - name: edgio
+          version: ${{ matrix.pnpm-version }}
+          run_install: false
+
+      - name: Get pnpm store directory
         run: |
-            yarn add --dev @edgio/cli @edgio/core @edgio/devtools @edgio/prefetch
-            # yarn edgio:build
-            yarn build
-            yarn edgio:deploy -- --token=$EDGIO_DEPLOY_TOKEN
-        env:
-          EDGIO_DEPLOY_TOKEN: ${{secrets.EDGIO_DEPLOY_TOKEN}}
-      - name: Deploy to surge 🚀
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ matrix.node-version }}-${{ matrix.pnpm-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-${{ matrix.node-version }}-${{ matrix.pnpm-version }}-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build static
+        run: pnpm build
+
+      - name: Deploy to surge
         uses: dswistowski/surge-sh-action@v1
         with:
-            domain: shark-h7ml.surge.sh
-            project: ./dist
-            login: ${{ secrets.surge_login }}
-            token: ${{ secrets.surge_token }}
-      - name: Upload surge service and generate preview URL 🚀
+          domain: shark-h7ml.surge.sh
+          project: ./dist
+          login: ${{ secrets.surge_login }}
+          token: ${{ secrets.surge_token }}
+
+      - name: Upload surge service and generate preview URL
         id: deploy
         run: |
           export GITHUB_SHA=${{ github.sha }}
-          export GITHUB_SHA_SUB=${GITHUB_SHA: 0: 7 }
+          export GITHUB_SHA_SUB=${GITHUB_SHA:0:7}
           export DEPLOY_DOMAIN=https://shark-$GITHUB_SHA_SUB.surge.sh
           npx surge --project ./dist --domain $DEPLOY_DOMAIN --token ${{ secrets.surge_token }}
           echo the preview URL is $DEPLOY_DOMAIN
           echo "::set-output name=url::$DEPLOY_DOMAIN"
+
+      - name: Build gh-pages
+        run: pnpm build:gh-pages
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages
+          folder: dist
+
   sync:
     runs-on: ubuntu-latest
+    needs: pages
     steps:
-      - name: Mirror the Github organization repos to Gitee.
+      - name: Mirror the GitHub organization repos to Gitee
         uses: Yikun/hub-mirror-action@master
         with:
           src: github/h7ml
           dst: gitee/h7ml
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
-          white_list: shark # 只同步shark
+          white_list: shark
           force_update: true
           account_type: user
-          # clone_style: ssh
           debug: true
-    needs: pages
-
-      #      - name: Deploy to vercel 🚀
-      #        uses: amondnet/vercel-action@v20
-      #        with:
-      #          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-      #          github-token: ${{ secrets.GIT_TOKEN }}
-      #          vercel-args: '--prod' #Optional
-      #          vercel-org-id: ${{ secrets.ORG_ID}}
-      #          vercel-project-id: ${{ secrets.PROJECT_ID}}
-      #          working-directory: ./dev
-      #      # 使用云开发 Github Action 部署
-      #      - name: Deploy CloudBase 🚀
-      #        uses: TencentCloudBase/cloudbase-action@v1.1.0
-      #        with:
-      #          # 云开发的访问密钥 secretId 和 secretKey
-      #          secretId: ${{ secrets.SECRET_ID }}
-      #          secretKey: ${{ secrets.SECRET_KEY }}
-      #          # 云开发的环境id
-      #          envId: ${{ secrets.ENV_ID }}
-      #          # Github 项目静态文件的路径
-      #          staticSrcPath: ./dev
-      # - name: Accurics Scan 🚀
-      #   id: accurics-scan
-      #   uses: docker://accurics/terrascan-action:latest
-      #   with:
-      #     only_warn: true
-      #     verbose: true
-      #     webhook_url: https://app.accurics.com/v1/api/terrascan
-      #     webhook_token: d73c0d62-aab9-4d65-940d-2e6b690a48a7
-      # - name: Upload  🚀
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: shark
-      #     path: dist
-    #      - name: lighthouse 🚀
-    #        uses: treosh/lighthouse-ci-action@v2
-    #        with:
-    #          runs: 5
-    #          uploadArtifacts: true
-    #          configPath: './.github/workflows/setup/lighthouse-audit.json'
 
   clean:
     name: Clean
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    needs: sync
     steps:
       - name: Setup timezone
         uses: zcong1993/setup-timezone@master
@@ -159,9 +123,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
           EXPIRE_TIME: 12h
         run: python run.py
-    needs: gitee
+
   gitee:
     runs-on: ubuntu-latest
+    needs: sync
     steps:
       - name: Sync To Gitee
         uses: wearerequired/git-mirror-action@master
@@ -178,7 +143,8 @@ jobs:
           gitee-password: ${{ secrets.GITEE_PASSWORD }}
           gitee-repo: h7ml/shark
           branch: gh-pages
-      - name: echo page
+
+      - name: Echo page
         run: |
           echo "https://h7ml.gitee.io/shark/"
           echo "https://h7ml.github.io/shark/"
@@ -187,4 +153,3 @@ jobs:
           echo "https://shark.zeabur.app/"
           echo "https://h7ml-shark-default.glb.edgio.link/"
           echo "https://shark.up.railway.app/"
-    needs: sync
