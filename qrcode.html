@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      video {
+        display: none;
+      }
+      canvas {
+        position: absolute;
+        top: -99999px;
+        left: -9999px;
+        z-index: -999;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="start">拍照</button>
+    <video id="video" autoplay muted playsinline></video>
+    <canvas id="canvas"></canvas>
+
+    <script src="https://webqr.com/llqrcode.js"></script>
+
+    <script>
+      var timer = null
+      var stream = null
+      var video = document.querySelector('#video')
+      var canvas = document.querySelector('#canvas')
+      canvas.style.width = window.innerWidth
+      canvas.style.height = window.innerHeight
+      document
+        .querySelector('#start')
+        .addEventListener('click', async function () {
+          try {
+            stream = await navigator.mediaDevices.getUserMedia({
+              video: { facingMode: 'environment' },
+              audio: false,
+            })
+          } catch (error) {
+            alert(error.message)
+            return
+          }
+          video.requestFullscreen()
+          video.srcObject = stream
+          video.style.display = 'block'
+
+          clearInterval(timer)
+          timer = setInterval(function () {
+            canvas
+              .getContext('2d')
+              .drawImage(video, 0, 0, canvas.width, canvas.height)
+            var image_data_url = canvas.toDataURL('image/jpeg')
+            qrcode.decode(image_data_url)
+            qrcode.callback = function (msg) {
+              if (!msg.match(/^error/)) {
+                clearInterval(timer)
+                document.exitFullscreen()
+                alert(msg)
+              }
+            }
+          }, 500)
+        })
+
+      document.addEventListener('fullscreenchange', function (event) {
+        // 关闭全屏时还原
+        if (!document.fullscreenElement) {
+          clearInterval(timer)
+          video.srcObject = null
+          video.style.display = 'none'
+          stream.getTracks().forEach((track) => track.stop())
+        }
+      })
+    </script>
+  </body>
+</html>
