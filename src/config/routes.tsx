@@ -1,11 +1,15 @@
 import {
   AimOutlined,
+  BugOutlined,
   ContactsOutlined,
   DashboardOutlined,
   DeploymentUnitOutlined,
   EyeOutlined,
+  FileUnknownOutlined,
+  LockOutlined,
   TableOutlined,
   UserOutlined,
+  WarningOutlined,
 } from '@ant-design/icons'
 import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
@@ -67,6 +71,31 @@ export const routeConfig: MenuItem[] = [
     Component: lazy(() => import('@/pages/table')),
     title: '表格',
     icon: <TableOutlined />,
+  },
+  {
+    path: '/exception',
+    title: '异常页',
+    icon: <WarningOutlined />,
+    children: [
+      {
+        path: '/exception/403',
+        title: '403',
+        icon: <LockOutlined />,
+        Component: lazy(() => import('@/pages/exception/ForbiddenPage')),
+      },
+      {
+        path: '/exception/404',
+        title: '404',
+        icon: <FileUnknownOutlined />,
+        Component: lazy(() => import('@/pages/exception/NotFoundPage')),
+      },
+      {
+        path: '/exception/500',
+        title: '500',
+        icon: <BugOutlined />,
+        Component: lazy(() => import('@/pages/exception/ServerErrorPage')),
+      },
+    ],
   },
   {
     path: '/',

@@ -49,6 +49,11 @@ jobs:
 
       - name: Build static
         run: pnpm build
+      - name: Deploy to GitHub static
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: static
+          folder: dist
 
       - name: Deploy to surge
         uses: dswistowski/surge-sh-action@v1

@@ -5,7 +5,7 @@ import { createHashRouter } from 'react-router-dom'
 import { colors } from './colors'
 import { routeConfig } from '@/config/routes'
 import BasicLayout from '@/layouts'
-import NotFoundPage from '@/pages/NotFound'
+import NotFoundPage from '@/pages/exception/NotFoundPage'
 import Login from '@/pages/user/login'
 
 export const lightTheme: ThemeConfig = {
