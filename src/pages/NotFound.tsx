@@ -1,17 +1,17 @@
-import { Button, Result } from "antd";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Button, Result } from 'antd'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const NotFoundPage: React.FC = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleGoBack = () => {
-    navigate(-1); // 返回上一页
-  };
+    navigate(-1) // 返回上一页
+  }
 
   const handleGoHome = () => {
-    navigate("/"); // 返回首页
-  };
+    navigate('/') // 返回首页
+  }
 
   return (
     <Result
@@ -27,7 +27,7 @@ const NotFoundPage: React.FC = () => {
         </Button>,
       ]}
     />
-  );
-};
+  )
+}
 
-export default NotFoundPage;
+export default NotFoundPage

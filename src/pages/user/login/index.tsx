@@ -6,14 +6,14 @@ import {
   TaobaoOutlined,
   UserOutlined,
   WeiboOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons'
 import {
   LoginFormPage,
   ProConfigProvider,
   ProFormCaptcha,
   ProFormCheckbox,
   ProFormText,
-} from "@ant-design/pro-components";
+} from '@ant-design/pro-components'
 import {
   Button,
   Divider,
@@ -23,98 +23,99 @@ import {
   Tabs,
   message,
   theme,
-} from "antd";
-import axios from "axios";
-import type { CSSProperties } from "react";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+} from 'antd'
+import axios from 'axios'
+import type { CSSProperties } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import Shark from "@/assets/icons/shark.svg";
-import { useStorage } from "@/hooks";
-import { t } from "@/utils";
+import Shark from '@/assets/icons/shark.svg'
+import { useStorage } from '@/hooks'
+import { t } from '@/utils'
 
-type LoginType = "phone" | "account";
+type LoginType = 'phone' | 'account'
 
 const iconStyles: CSSProperties = {
-  color: "rgba(0, 0, 0, 0.2)",
-  fontSize: "18px",
-  verticalAlign: "middle",
-  cursor: "pointer",
-};
+  color: 'rgba(0, 0, 0, 0.2)',
+  fontSize: '18px',
+  verticalAlign: 'middle',
+  cursor: 'pointer',
+}
 const TabPaneItem = [
   {
-    label: "账号密码登录",
-    key: "account",
+    label: '账号密码登录',
+    key: 'account',
     icon: <UserOutlined />,
   },
   {
-    key: "phone",
+    key: 'phone',
     icon: <MobileOutlined />,
-    label: "手机号登录",
+    label: '手机号登录',
   },
-];
+]
 
 interface DataType {
-  code?: string;
-  imageBase64?: string;
+  code?: string
+  imageBase64?: string
 }
 
 interface LoginDTO {
-  username: string;
-  password: string;
-  captcha?: string;
+  username: string
+  password: string
+  captcha?: string
 }
 
 const Page: React.FC = () => {
-  const navigate = useNavigate();
-  const { token } = theme.useToken();
-  const [data, setData] = useState<DataType>({});
-  const { setData: setUser } = useStorage("userName");
+  const navigate = useNavigate()
+  const { token } = theme.useToken()
+  const [data, setData] = useState<DataType>({})
+  const { setData: setUser } = useStorage('userName')
 
   // 时间戳
-  const timestamp = Date.now();
+  const timestamp = Date.now()
   const refreshCaptcha = (timestamp: number) => {
     axios
-      .post("/api/auth/captcha", {
+      .post('/api/auth/captcha', {
         timestamp,
       })
       .then((json) => {
-        setData(json.data);
+        setData(json.data)
       })
       .catch((error: any) => {
-        console.log("fetch data failed", error);
-      });
-  };
+        console.log('fetch data failed', error)
+      })
+  }
 
   useEffect(() => {
-    refreshCaptcha(timestamp);
+    refreshCaptcha(timestamp)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
-  const [loginType, setLoginType] = useState<LoginType>("account");
+  const [loginType, setLoginType] = useState<LoginType>('account')
   const onFinish = async (values: LoginDTO) => {
-    if (!values.captcha || !values.username) return;
+    if (!values.captcha || !values.username)
+      return
     if (values.captcha.toLowerCase() !== data.code?.toLowerCase()) {
-      message.error("验证码错误");
-      return;
+      message.error('验证码错误')
+      return
     }
-    setUser("userName", values.username);
-    navigate("/");
-  };
+    setUser('userName', values.username)
+    navigate('/')
+  }
 
   const getIconStyle = (color: string): CSSProperties => ({
     ...iconStyles,
     color,
-  });
+  })
 
   const renderLoginMethod = () => {
-    if (loginType === "account") {
+    if (loginType === 'account') {
       return (
         <>
           <ProFormText
             name="username"
             fieldProps={{
-              size: "large",
+              size: 'large',
               prefix: (
                 <UserOutlined
                   style={{
@@ -129,14 +130,14 @@ const Page: React.FC = () => {
             rules={[
               {
                 required: true,
-                message: "请输入用户名!",
+                message: '请输入用户名!',
               },
             ]}
           />
           <ProFormText.Password
             name="password"
             fieldProps={{
-              size: "large",
+              size: 'large',
               prefix: (
                 <LockOutlined
                   style={{
@@ -146,12 +147,12 @@ const Page: React.FC = () => {
                 />
               ),
             }}
-            placeholder={`${t("HplkKxdY" /* 密码 */)}: ant.design`}
+            placeholder={`${t('HplkKxdY' /* 密码 */)}: ant.design`}
             initialValue="ant.design"
             rules={[
               {
                 required: true,
-                message: "请输入密码！",
+                message: '请输入密码！',
               },
             ]}
           />
@@ -161,7 +162,7 @@ const Page: React.FC = () => {
             rules={[
               {
                 required: true,
-                message: "请输入验证码",
+                message: '请输入验证码',
                 max: 4,
               },
             ]}
@@ -170,25 +171,26 @@ const Page: React.FC = () => {
               maxLength={4}
               prefix={<SafetyOutlined className="text-[20px]" />}
               placeholder="验证码"
-              suffix={
+              suffix={(
                 <img
                   className="cursor-pointer"
                   src={data?.imageBase64}
                   onClick={() => {
-                    refreshCaptcha(Date.now());
+                    refreshCaptcha(Date.now())
                   }}
                 />
-              }
+              )}
             />
           </Form.Item>
         </>
-      );
-    } else if (loginType === "phone") {
+      )
+    }
+    else if (loginType === 'phone') {
       return (
         <>
           <ProFormText
             fieldProps={{
-              size: "large",
+              size: 'large',
               prefix: (
                 <MobileOutlined
                   style={{
@@ -203,17 +205,17 @@ const Page: React.FC = () => {
             rules={[
               {
                 required: true,
-                message: "请输入手机号！",
+                message: '请输入手机号！',
               },
               {
                 pattern: /^1\d{10}$/,
-                message: "手机号格式错误！",
+                message: '手机号格式错误！',
               },
             ]}
           />
           <ProFormCaptcha
             fieldProps={{
-              size: "large",
+              size: 'large',
               prefix: (
                 <LockOutlined
                   style={{
@@ -224,36 +226,37 @@ const Page: React.FC = () => {
               ),
             }}
             captchaProps={{
-              size: "large",
+              size: 'large',
             }}
             placeholder="请输入验证码"
             captchaTextRender={(timing, count) => {
-              if (timing) return `${count} ${"获取验证码"}`;
+              if (timing)
+                return `${count} ${'获取验证码'}`
 
-              return "获取验证码";
+              return '获取验证码'
             }}
             name="captcha"
             rules={[
               {
                 required: true,
-                message: "请输入验证码！",
+                message: '请输入验证码！',
               },
             ]}
             onGetCaptcha={async () => {
-              message.success("获取验证码成功！验证码为：1234");
+              message.success('获取验证码成功！验证码为：1234')
             }}
           />
         </>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <div
       style={{
-        backgroundColor: "white",
-        height: "100vh",
+        backgroundColor: 'white',
+        height: '100vh',
       }}
     >
       {/* https://pro-components.antdigital.dev/components/login-form#%E9%A1%B5%E9%9D%A2%E7%BA%A7%E5%88%AB%E7%9A%84%E7%99%BB%E5%BD%95%E8%A1%A8%E5%8D%95 */}
@@ -264,25 +267,25 @@ const Page: React.FC = () => {
         title="shark"
         onFinish={onFinish}
         containerStyle={{
-          backgroundColor: "rgba(0, 0, 0,0.65)",
-          backdropFilter: "blur(4px)",
+          backgroundColor: 'rgba(0, 0, 0,0.65)',
+          backdropFilter: 'blur(4px)',
         }}
         subTitle="一个用于管理和可视化鲨鱼数据的 Web 应用程序。"
         activityConfig={{
           style: {
-            boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
+            boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.2)',
             color: token.colorTextHeading,
             borderRadius: 8,
-            backgroundColor: "rgba(255,255,255,0.25)",
-            backdropFilter: "blur(4px)",
+            backgroundColor: 'rgba(255,255,255,0.25)',
+            backdropFilter: 'blur(4px)',
           },
-          title: "Shark Data App",
-          subTitle: "A web application for managing and visualizing shark data",
+          title: 'Shark Data App',
+          subTitle: 'A web application for managing and visualizing shark data',
           action: (
             <Button
               type="primary"
               onClick={() => {
-                window.open("https://github.com/h7ml/shark");
+                window.open('https://github.com/h7ml/shark')
               }}
               size="large"
               style={{
@@ -296,20 +299,20 @@ const Page: React.FC = () => {
             </Button>
           ),
         }}
-        actions={
+        actions={(
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
             }}
           >
             <Divider plain>
               <span
                 style={{
                   color: token.colorTextPlaceholder,
-                  fontWeight: "normal",
+                  fontWeight: 'normal',
                   fontSize: 14,
                 }}
               >
@@ -319,56 +322,57 @@ const Page: React.FC = () => {
             <Space align="center" size={24}>
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
                   height: 40,
                   width: 40,
                   border: `1px solid ${token.colorPrimaryBorder}`,
-                  borderRadius: "50%",
+                  borderRadius: '50%',
                 }}
               >
-                <AlipayOutlined style={getIconStyle("#1677FF")} />
+                <AlipayOutlined style={getIconStyle('#1677FF')} />
               </div>
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
                   height: 40,
                   width: 40,
                   border: `1px solid ${token.colorPrimaryBorder}`,
-                  borderRadius: "50%",
+                  borderRadius: '50%',
                 }}
               >
-                <TaobaoOutlined style={{ ...iconStyles, color: "#FF6A10" }} />
+                <TaobaoOutlined style={{ ...iconStyles, color: '#FF6A10' }} />
               </div>
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
                   height: 40,
                   width: 40,
                   border: `1px solid ${token.colorPrimaryBorder}`,
-                  borderRadius: "50%",
+                  borderRadius: '50%',
                 }}
               >
-                <WeiboOutlined style={{ ...iconStyles, color: "#1890ff" }} />
+                <WeiboOutlined style={{ ...iconStyles, color: '#1890ff' }} />
               </div>
             </Space>
           </div>
-        }
+        )}
       >
         <Tabs
           items={TabPaneItem}
           centered
           activeKey={loginType}
-          onChange={(activeKey) => setLoginType(activeKey as LoginType)}
-        ></Tabs>
+          onChange={activeKey => setLoginType(activeKey as LoginType)}
+        >
+        </Tabs>
 
         {renderLoginMethod()}
         <div
@@ -381,7 +385,7 @@ const Page: React.FC = () => {
           </ProFormCheckbox>
           <a
             style={{
-              float: "right",
+              float: 'right',
             }}
           >
             忘记密码
@@ -389,14 +393,14 @@ const Page: React.FC = () => {
         </div>
       </LoginFormPage>
     </div>
-  );
-};
+  )
+}
 
 function loginPage() {
   return (
     <ProConfigProvider dark>
       <Page />
     </ProConfigProvider>
-  );
+  )
 }
-export default loginPage;
+export default loginPage

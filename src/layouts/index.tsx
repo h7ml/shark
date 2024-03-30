@@ -1,8 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom'
 
-import Content from "@/layouts/content";
-import Header from "@/layouts/header";
-import Slide from "@/layouts/slide";
+import Content from '@/layouts/content'
+import Header from '@/layouts/header'
+import Slide from '@/layouts/slide'
 
 const BasicLayout: React.FC = () => {
   return (
@@ -13,6 +13,6 @@ const BasicLayout: React.FC = () => {
         <Outlet />
       </Content>
     </div>
-  );
-};
-export default BasicLayout;
+  )
+}
+export default BasicLayout
