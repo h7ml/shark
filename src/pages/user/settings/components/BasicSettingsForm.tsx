@@ -1,41 +1,41 @@
-import { Button, Form, Input, Select, message } from 'antd'
 import {
   EnvironmentOutlined,
   MailOutlined,
   PhoneOutlined,
   UserOutlined,
-} from '@ant-design/icons'
-import type { FC } from 'react'
-import { createRef, useEffect, useState } from 'react'
+} from "@ant-design/icons";
+import { Button, Form, Input, Select, message } from "antd";
+import type { FC } from "react";
+import { createRef, useEffect, useState } from "react";
 
-const { Option } = Select
+const { Option } = Select;
 
 export interface BasicSettingsFormProps {
   initialValues: {
-    email: string
-    name: string
-    bio: string
-    country: string
-    province: string
-    address: string
-    phone: string
-  }
+    email: string;
+    name: string;
+    bio: string;
+    country: string;
+    province: string;
+    address: string;
+    phone: string;
+  };
 }
 
 const BasicSettingsForm: FC<BasicSettingsFormProps> = ({ initialValues }) => {
   const [windowSize, setWindowSize] = useState<{
-    innerHeight: number
-    innerWidth: number
-  }>({ innerHeight: window.innerHeight, innerWidth: window.innerWidth })
+    innerHeight: number;
+    innerWidth: number;
+  }>({ innerHeight: window.innerHeight, innerWidth: window.innerWidth });
 
   // 获取当前窗口大小
   const getWindowSize = () => ({
     innerHeight: window.innerHeight,
     innerWidth: window.innerWidth,
-  })
+  });
 
   // 定义默认布局
-  const [layout, setLayout] = useState<'horizontal' | 'vertical'>('horizontal')
+  const [layout, setLayout] = useState<"horizontal" | "vertical">("horizontal");
   const formLayout = {
     labelCol: {
       xs: { span: 3 },
@@ -49,36 +49,35 @@ const BasicSettingsForm: FC<BasicSettingsFormProps> = ({ initialValues }) => {
       xl: { span: 20 },
       xxl: { span: 24 },
     },
-  }
+  };
 
   // 监听窗口变化
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = () => {
-    setWindowSize(getWindowSize())
-  }
+    setWindowSize(getWindowSize());
+  };
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [handleResize])
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [handleResize]);
 
   // useEffect改变布局
   useEffect(() => {
-    if (windowSize.innerWidth < 1444)
-      setLayout('vertical')
-    else setLayout('horizontal')
-  }, [windowSize])
+    if (windowSize.innerWidth < 1444) setLayout("vertical");
+    else setLayout("horizontal");
+  }, [windowSize]);
 
-  const formref = createRef<any>()
+  const formref = createRef<any>();
 
   const handleUpdate = (values: any) => {
-    console.log('更新的基本信息：', values)
-    message.success('基本信息更新成功')
-  }
+    console.log("更新的基本信息：", values);
+    message.success("基本信息更新成功");
+  };
 
   useEffect(() => {
-    formref.current?.setFieldsValue(initialValues)
-  }, [initialValues, formref])
+    formref.current?.setFieldsValue(initialValues);
+  }, [initialValues, formref]);
 
   return (
     <Form
@@ -139,7 +138,7 @@ const BasicSettingsForm: FC<BasicSettingsFormProps> = ({ initialValues }) => {
         </Button>
       </Form.Item>
     </Form>
-  )
-}
+  );
+};
 
-export default BasicSettingsForm
+export default BasicSettingsForm;

@@ -1,13 +1,13 @@
-import { List, Switch, message } from 'antd'
-import { FileDoneOutlined, NotificationOutlined } from '@ant-design/icons'
-import type { FC } from 'react'
+import { FileDoneOutlined, NotificationOutlined } from "@ant-design/icons";
+import { List, Switch, message } from "antd";
+import type { FC } from "react";
 
 const OtherSettingsForm: FC = () => {
   const handleSwitchChange = (checked: boolean) => {
     // 处理开关状态变化
-    console.log('开关状态变化：', checked)
-    message.success(checked ? '功能已启用' : '功能已关闭')
-  }
+    console.log("开关状态变化：", checked);
+    message.success(checked ? "功能已启用" : "功能已关闭");
+  };
 
   // const handleSave = () => {
   //   // 处理保存设置操作
@@ -16,22 +16,22 @@ const OtherSettingsForm: FC = () => {
 
   const settings = [
     {
-      label: '自动保存草稿',
+      label: "自动保存草稿",
       icon: <FileDoneOutlined />,
-      switchName: 'autoSave',
+      switchName: "autoSave",
     },
     {
-      label: '接收推送通知',
+      label: "接收推送通知",
       icon: <NotificationOutlined />,
-      switchName: 'pushNotification',
+      switchName: "pushNotification",
     },
-  ]
+  ];
 
   return (
     <List
       itemLayout="horizontal"
       dataSource={settings}
-      renderItem={item => (
+      renderItem={(item) => (
         <List.Item
           actions={[
             <Switch key={item.switchName} onChange={handleSwitchChange} />,
@@ -41,7 +41,7 @@ const OtherSettingsForm: FC = () => {
         </List.Item>
       )}
     />
-  )
-}
+  );
+};
 
-export default OtherSettingsForm
+export default OtherSettingsForm;
