@@ -1,5 +1,5 @@
 export const defaultSetting = {
-  slideWidth: 280,
+  slideWidth: 220,
   languages: [
     {
       key: 'zh',

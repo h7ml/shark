@@ -1,11 +1,9 @@
 import {
-  AlipayOutlined,
+  GithubOutlined,
   LockOutlined,
   MobileOutlined,
   SafetyOutlined,
-  TaobaoOutlined,
   UserOutlined,
-  WeiboOutlined,
 } from '@ant-design/icons'
 import {
   LoginFormPage,
@@ -16,6 +14,7 @@ import {
 } from '@ant-design/pro-components'
 import {
   Button,
+  Col,
   Divider,
   Form,
   Input,
@@ -26,12 +25,13 @@ import {
 } from 'antd'
 import axios from 'axios'
 import type { CSSProperties, FC } from 'react'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Shark from '@/assets/icons/shark.svg'
 import { useStorage } from '@/hooks'
 import { t } from '@/utils'
+import { IconGitee } from '@/assets/icons/gitee'
 
 type LoginType = 'phone' | 'account'
 
@@ -65,6 +65,7 @@ interface LoginDTO {
   captcha?: string
 }
 
+type AuthType = 'github' | 'gitee'
 const Page: FC = () => {
   const navigate = useNavigate()
   const { token } = theme.useToken()
@@ -252,6 +253,17 @@ const Page: FC = () => {
     return null
   }
 
+  const handleAuth = (type: AuthType) => {
+    const redirect_uri = encodeURIComponent('https://shark.h7ml.cn')
+
+    const AuthUrl = {
+      gitee: `https://gitee.com/oauth/authorize?client_id=28a98fa051266a304805ab7f8c562475136e6b0fab1bd61d0c5bdf6349a830fd&redirect_uri=${redirect_uri}&response_type=code`,
+      github:
+        'https://github.com/login/oauth/authorize?client_id=2a315440d44092e42065&redirect_uri=https://shark.h7ml.cn&scope=user&state=75223d30d27f03a5565103f5f87a00d7bde18664',
+    }
+    window.open(AuthUrl[type], '_blank') //
+  }
+
   return (
     <div
       style={{
@@ -320,7 +332,10 @@ const Page: FC = () => {
               </span>
             </Divider>
             <Space align="center" size={24}>
-              <div
+              <Col
+                onClick={() => {
+                  handleAuth('gitee')
+                }}
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
@@ -332,9 +347,12 @@ const Page: FC = () => {
                   borderRadius: '50%',
                 }}
               >
-                <AlipayOutlined style={getIconStyle('#1677FF')} />
-              </div>
-              <div
+                <IconGitee style={getIconStyle('#1677FF')} />
+              </Col>
+              <Col
+                onClick={() => {
+                  handleAuth('github')
+                }}
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
@@ -346,22 +364,8 @@ const Page: FC = () => {
                   borderRadius: '50%',
                 }}
               >
-                <TaobaoOutlined style={{ ...iconStyles, color: '#FF6A10' }} />
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  height: 40,
-                  width: 40,
-                  border: `1px solid ${token.colorPrimaryBorder}`,
-                  borderRadius: '50%',
-                }}
-              >
-                <WeiboOutlined style={{ ...iconStyles, color: '#1890ff' }} />
-              </div>
+                <GithubOutlined style={{ ...iconStyles, color: '#FF6A10' }} />
+              </Col>
             </Space>
           </div>
         )}
