@@ -41,7 +41,8 @@
     "prepare": "husky install && npm run pre-commit",
     "prettier": "prettier --write . --log-level error",
     "preview": "npm run build && rspack preview",
-    "stylelint": "stylelint \"**/*.{css,scss,sass}\" --fix --cache"
+    "stylelint": "stylelint \"**/*.{css,scss,sass}\" --fix --cache",
+    "release": "release-it"
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.5",
@@ -60,12 +61,14 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "react-use": "^17.5.0",
+    "release-it": "^17.1.1",
     "windicss": "^3.5.6",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.11.4",
     "@antfu/eslint-plugin-prettier": "5.0.1-1",
+    "@release-it/conventional-changelog": "^8.0.1",
     "@rspack/cli": "0.5.9",
     "@rspack/core": "0.5.9",
     "@rspack/plugin-minify": "^0.5.9",
