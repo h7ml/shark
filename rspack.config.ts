@@ -3,8 +3,9 @@ import path from 'node:path'
 import type { Configuration } from '@rspack/cli'
 import rspack from '@rspack/core'
 import refreshPlugin from '@rspack/plugin-react-refresh'
-
+import { sentryWebpackPlugin } from '@sentry/webpack-plugin'
 const isDev: boolean = process.env.NODE_ENV === 'development'
+const isGithubPath: boolean = process.env.PUBLIC_PATH === '/shark/'
 const config: Configuration = {
   context: __dirname, // 基础目录：该选项用于设置 Rspack 构建时所依赖的基础路径。
   entry: './src/main.tsx', // 入口文件：该选项用于设置 Rspack 构建时所依赖的入口文件。单个入口
@@ -19,8 +20,7 @@ const config: Configuration = {
     },
     // 入口文件名：该选项用于设置 Rspack 如何命名构建出的入口文件。
     publicPath: process.env.PUBLIC_PATH ?? '/', // 公共路径：该选项用于设置 Rspack 如何处理构建出的文件中的 URL。
-    crossOriginLoading:
-      process.env.PUBLIC_PATH === '/shark/' ? 'anonymous' : false, // 跨域加载：该选项用于设置 Rspack 如何处理构建出的文件中的 URL。
+    crossOriginLoading: isGithubPath ? 'anonymous' : false, // 跨域加载：该选项用于设置 Rspack 如何处理构建出的文件中的 URL。
     path: path.resolve(__dirname, 'dist'), // 输出目录：该选项用于设置 Rspack 构建出的文件应该被写入到的目录。
   },
   optimization: {
@@ -83,7 +83,8 @@ const config: Configuration = {
     },
   },
   // devtool: isDev ? "eval-cheap-module-source-map" : false,
-  devtool: false,
+  devtool: !isDev && !isGithubPath ? 'source-map' : false,
+  // devtool: false,
   module: {
     rules: [
       {
@@ -160,6 +161,15 @@ const config: Configuration = {
         },
       ],
     }),
+    !isDev && !isGithubPath
+      ? sentryWebpackPlugin({
+        org: 'h7ml',
+        project: 'shark',
+        // Auth tokens can be obtained from https://sentry.io/orgredirect/organizations/:orgslug/settings/auth-tokens/
+        authToken:
+            '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',
+      })
+      : false,
   ].filter(Boolean),
 }
 

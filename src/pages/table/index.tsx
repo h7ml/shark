@@ -57,21 +57,25 @@ const TablePage: FC = () => {
       title: '名称',
       dataIndex: 'name',
       key: 'name',
+      align: 'center',
       render: text => <a>{text}</a>,
     },
     {
       title: '年龄',
       dataIndex: 'age',
+      align: 'center',
       key: 'age',
     },
     {
       title: '地址',
+      align: 'center',
       dataIndex: 'address',
       key: 'address',
     },
     {
-      title: '职业',
+      title: '城市',
       key: 'tags',
+      align: 'center',
       dataIndex: 'tags',
       render: (_, { tags, id }) => (
         <>
@@ -79,7 +83,6 @@ const TablePage: FC = () => {
             let color = tag.length > 5 ? 'geekblue' : 'green'
             if (tag === 'loser')
               color = 'volcano'
-
             return (
               <Tag color={color} key={tag + id}>
                 {tag}
@@ -92,6 +95,7 @@ const TablePage: FC = () => {
     {
       title: '操作',
       key: 'action',
+      align: 'center',
       render: (_, record) => (
         <Space size="middle">
           <Button type="primary">编辑</Button>
