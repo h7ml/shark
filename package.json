@@ -49,6 +49,7 @@
     "@ant-design/plots": "^2.1.15",
     "@ant-design/pro-components": "^2.7.0",
     "@antv/g2plot": "^2.4.31",
+    "@sentry/react": "^7.109.0",
     "ahooks": "^3.7.10",
     "antd": "^5.15.4",
     "axios": "^1.6.8",
