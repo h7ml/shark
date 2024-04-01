@@ -1,9 +1,9 @@
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { TinyLine } from '@antv/g2plot'
 import { Col, Divider, Tooltip } from 'antd'
-import { t } from 'i18next'
 import type { FC } from 'react'
 import { useEffect, useRef } from 'react'
+import { t } from '@/utils'
 
 export interface UserRetentionTrendProps {
   data: number[]

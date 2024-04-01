@@ -127,4 +127,6 @@ async function registerCommands() {
 
 module.exports = {
   registerCommands,
+  joinPath,
+  readTranslationFile,
 }
