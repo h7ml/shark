@@ -98,9 +98,8 @@ async function processNestedKeys(zhObj, enObj) {
     if (zhObj.hasOwnProperty(key)) {
       if (typeof zhObj[key] === 'object')
         await processNestedKeys(zhObj[key], enObj[key])
-      else
-        if (zhObj[key])
-          enObj[key] = await translateText(zhObj[key], 'en')
+      else if (zhObj[key])
+        enObj[key] = await translateText(zhObj[key], 'en')
     }
   }
 }
