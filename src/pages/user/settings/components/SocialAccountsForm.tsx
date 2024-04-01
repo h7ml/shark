@@ -1,3 +1,4 @@
+import { t } from '@/utils'
 import { QqOutlined, WechatOutlined, WeiboOutlined } from '@ant-design/icons'
 import { Button, List, message } from 'antd'
 import type { FC } from 'react'

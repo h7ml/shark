@@ -1,3 +1,4 @@
+import { t } from '@/utils'
 import { Radar } from '@antv/g2plot'
 import { Card } from 'antd'
 import type { FC } from 'react'

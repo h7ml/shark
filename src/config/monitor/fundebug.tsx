@@ -1,3 +1,4 @@
+import { t } from '@/utils'
 import fundebug from 'fundebug-javascript'
 import 'fundebug-revideo'
 import React from 'react'

@@ -4,7 +4,7 @@ const ora = require('ora')
 const chalk = require('chalk')
 const { joinPath, readTranslationFile } = require('./lib/core/command')
 
-const loading = null
+let loading = null
 /**
  * 生成指定长度的英文字符串
  * @param {number} length - 字符串长度

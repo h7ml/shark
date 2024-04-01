@@ -1,3 +1,4 @@
+import { t } from '@/utils'
 import * as Sentry from '@sentry/react'
 import type { FC, ReactNode } from 'react'
 import '@/config/nprogress'

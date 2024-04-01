@@ -1,3 +1,4 @@
+import { t } from '@/utils'
 import { Card } from 'antd'
 import type { FC } from 'react'
 import React from 'react'

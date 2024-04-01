@@ -1,3 +1,4 @@
+import { t } from '@/utils'
 import {
   Button,
   Col,

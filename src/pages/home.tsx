@@ -1,3 +1,4 @@
+import { t } from '@/utils'
 import { ProCard, StatisticCard } from '@ant-design/pro-components'
 import RcResizeObserver from 'rc-resize-observer'
 import { useEffect, useRef, useState } from 'react'

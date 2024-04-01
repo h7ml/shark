@@ -1,3 +1,4 @@
+import { t } from '@/utils'
 import { useEffect, useState } from 'react'
 
 import { Storage } from '@/utils'

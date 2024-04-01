@@ -1,3 +1,4 @@
+import { t } from '@/utils'
 import { BellOutlined, MenuOutlined, SettingOutlined } from '@ant-design/icons'
 import { Avatar, Dropdown, Input } from 'antd'
 import { memo, useEffect } from 'react'
