@@ -26,16 +26,22 @@ jobs:
         run: npx ncu -u
 
       - name: Install updated dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build and test
+        id: build_and_test
+        run: |
+          pnpm build && pnpm tp
+          echo "::set-output name=status::success"
 
       - name: Check for changes
         id: check_changes
         run: |
-          if git diff --quiet --exit-code package.json pnpm-lock.yaml; then
-            echo "No changes in package.json or pnpm-lock.yaml. Exiting."
-            exit 0
+          if [ "${{ steps.build_and_test.outputs.status }}" == "success" ]; then
+            echo "Changes detected and build successful. Proceeding with commit and push."
           else
-            echo "Changes detected. Proceeding with commit and push."
+            echo "Build failed or no changes detected. Exiting."
+            exit 1
           fi
 
       - name: Commit changes
