@@ -41,5 +41,6 @@ export default antfu({
     'react-refresh/only-export-components': 0,
     'no-console': isDev ? 'warn' : 0,
     'prefer-regex-literals': 0,
+    'no-prototype-builtins': 0
   },
 })

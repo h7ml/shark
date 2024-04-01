@@ -1,4 +1,3 @@
-import { t } from '@/utils'
 import { BellOutlined, MenuOutlined, SettingOutlined } from '@ant-design/icons'
 import { Avatar, Dropdown, Input } from 'antd'
 import { memo, useEffect } from 'react'
@@ -111,10 +110,10 @@ function Header() {
               {lang === 'zh'
                 ? (
                   <IconShuyi_fanyi36 />
-                  )
+                )
                 : (
                   <span className="text-[14px]">{lang.toUpperCase()}</span>
-                  )}
+                )}
             </div>
           </Dropdown>
           <div className="btn-icon">

@@ -61,16 +61,16 @@ async function checkAndInsertContent(
  */
 
 // eslint-disable unused-imports/no-unused-vars
-async function readFileContent(filePath) {
-  try {
-    loading.succeed(chalk.green(`读取 ${filePath}`))
-    return await fs.readFile(filePath, 'utf8')
-  }
-  catch (err) {
-    loading.fail(chalk.red(`读取 ${filePath} 出错： ${err.message}`))
-    // throw new Error(`Error reading file ${filePath}: ${err.message}`);
-  }
-}
+// async function readFileContent(filePath) {
+//   try {
+//     loading.succeed(chalk.green(`读取 ${filePath}`))
+//     return await fs.readFile(filePath, 'utf8')
+//   }
+//   catch (err) {
+//     loading.fail(chalk.red(`读取 ${filePath} 出错： ${err.message}`))
+//     // throw new Error(`Error reading file ${filePath}: ${err.message}`);
+//   }
+// }
 
 /**
  * 写入文件内容
