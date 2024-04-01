@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/react'
-import { ReactNode } from 'react'
+import type { FC, ReactNode } from 'react'
 import '@/config/nprogress'
 Sentry.init({
   dsn: 'https://41ab9ee3a8eb92a3bdfdb1526de176ce@o933014.ingest.us.sentry.io/4507003679145984',
@@ -26,26 +26,23 @@ Sentry.init({
  * @returns 返回一个包含提示信息的 JSX.Element 对象
  */
 function FallbackComponent() {
-  return (
-    <>
-      <h2>请刷新页面重新操作</h2>
-    </>
-  )
+  return <h2>请刷新页面重新操作</h2>
 }
 
+interface SentryMonitorProps {
+  children: ReactNode
+}
 /**
  * Sentry监控组件
- *
- * @param children React节点，需要被Sentry监控的子组件
- * @returns React.ReactNode 返回被Sentry监控的子组件
+ * @param {object} props 组件属性
+ * @param {ReactNode} props.children React节点，需要被Sentry监控的子组件
+ * @returns {React.ReactNode} 返回被Sentry监控的子组件
  */
-function SentryMonitor({ children }: { children: ReactNode }) {
+const SentryMonitor: FC<SentryMonitorProps> = ({ children }) => {
   return (
-    <>
-      <Sentry.ErrorBoundary fallback={FallbackComponent}>
-        {children}
-      </Sentry.ErrorBoundary>
-    </>
+    <Sentry.ErrorBoundary fallback={FallbackComponent}>
+      {children}
+    </Sentry.ErrorBoundary>
   )
 }
 

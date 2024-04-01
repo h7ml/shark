@@ -43,7 +43,7 @@ const iconStyles: CSSProperties = {
 }
 const TabPaneItem = [
   {
-    label: '账号密码登录',
+    label: t('qPkNCnDl'),
     key: 'account',
     icon: <UserOutlined />,
   },
@@ -282,7 +282,9 @@ const Page: FC = () => {
           backgroundColor: 'rgba(0, 0, 0,0.65)',
           backdropFilter: 'blur(4px)',
         }}
-        subTitle="一个用于管理和可视化鲨鱼数据的 Web 应用程序。"
+        subTitle={t(
+          'wbTMzvDM' /* 一个用于管理和可视化鲨鱼数据的 Web 应用程序 */,
+        )}
         activityConfig={{
           style: {
             boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.2)',

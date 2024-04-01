@@ -1,17 +1,19 @@
-import { ReactNode } from 'react'
+import type { FC, ReactNode } from 'react'
 import SentryMonitor from './sentry'
 import RollbarMonitor from './rollbar'
 import FundebugMonitor from './fundebug'
-function Monitor({ children }: { children: ReactNode }) {
-  return <>
+
+interface MonitorProps {
+  children: ReactNode
+}
+
+const Monitor: FC<MonitorProps> = ({ children }) => {
+  return (
     <SentryMonitor>
       <RollbarMonitor>
-        <FundebugMonitor>
-          {children}
-        </FundebugMonitor>
+        <FundebugMonitor>{children}</FundebugMonitor>
       </RollbarMonitor>
-
     </SentryMonitor>
-  </>
+  )
 }
 export default Monitor

@@ -124,7 +124,7 @@ function Dashboard() {
                 ]}
                 defaultValue="today"
                 size="large"
-                dropdownMatchSelectWidth={false}
+                popupMatchSelectWidth={false}
                 placement="bottomRight"
               />
             </div>

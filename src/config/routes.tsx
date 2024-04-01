@@ -13,6 +13,7 @@ import {
 } from '@ant-design/icons'
 import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
+import { t } from '@/utils'
 
 export interface MenuItem {
   path: string
@@ -27,25 +28,25 @@ export interface MenuItem {
 export const routeConfig: MenuItem[] = [
   {
     path: '/dashboard',
-    title: '驾驶舱',
+    title: t('router.dashboard'),
     icon: <DashboardOutlined />,
     Component: lazy(() => import('@/pages/dashboard')),
   },
   {
     path: '/user',
     // Component: lazy(() => import('@/pages/user')),
-    title: '用户中心',
+    title: t('router.ueiriPPJ'),
     icon: <UserOutlined />,
     children: [
       {
         path: '/user/account',
-        title: '个人中心',
+        title: t('router.pUWDlNFY'),
         icon: <AimOutlined />,
         Component: lazy(() => import('@/pages/user/account')),
       },
       {
         path: '/user/settings',
-        title: '个人设置',
+        title: t('router.nKmJjYdX'),
         icon: <ContactsOutlined />,
         Component: lazy(() => import('@/pages/user/settings')),
       },
@@ -53,12 +54,12 @@ export const routeConfig: MenuItem[] = [
   },
   {
     path: '/visualization',
-    title: '数据可视化',
+    title: t('router.oViTwVZs'),
     icon: <EyeOutlined />,
     children: [
       {
         path: '/visualization/multiDimensionDataAnalysis',
-        title: '多维数据分析',
+        title: t('router.ZGzgIIjL'),
         icon: <DeploymentUnitOutlined />,
         Component: lazy(
           () => import('@/pages/visualization/multiDimensionDataAnalysis'),
@@ -69,12 +70,12 @@ export const routeConfig: MenuItem[] = [
   {
     path: '/table',
     Component: lazy(() => import('@/pages/table')),
-    title: '表格',
+    title: t('router.nFPoUFZq'),
     icon: <TableOutlined />,
   },
   {
     path: '/exception',
-    title: '异常页',
+    title: t('router.mVCBkHUZ'),
     icon: <WarningOutlined />,
     children: [
       {

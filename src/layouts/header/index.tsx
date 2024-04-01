@@ -29,7 +29,7 @@ function Header() {
   const menuItems = [
     { label: userName, key: 'account' },
     { label: t('wPqFuoLF' /* 退出登录 */), key: 'login' },
-  ]
+  ].filter(item => item.label)
   return (
     <div
       style={{ zIndex: 1001 }}
