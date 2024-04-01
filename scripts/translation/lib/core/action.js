@@ -43,37 +43,48 @@ async function translationAcion(message) {
       console.log(err)
     })
 }
-async function translateText(text) {
-  const { baidu } = translationBase
 
-  const sign = md5String(baidu.appid + text + baidu.salt + baidu.key)
-
+// https://api.fanyi.baidu.com/product/113
+async function translateText(q, to = 'en') {
+  const {
+    baidu: { appid, salt, key, from },
+  } = translationBase
+  const sign = md5String(appid + q + salt + key)
   try {
     const response = await axios.get(
       'https://api.fanyi.baidu.com/api/trans/vip/translate',
       {
         params: {
-          q: text,
-          appid: translationBase.baidu.appid,
-          salt: translationBase.baidu.salt,
+          q,
+          appid,
+          salt,
           sign,
-          from: 'zh',
-          to: 'en',
-        },
-        headers: {
-          Connection: 'keep-alive',
+          from,
+          to,
         },
       },
     )
 
     const responseData = response.data
-    return responseData.trans_result[0].dst // 返回数据给调用方
+
+    if (responseData.trans_result && responseData.trans_result.length > 0) {
+      return responseData.trans_result[0].dst
+    }
+    else {
+      throw new Error('翻译结果为空')
+      console.log(
+        '%c [ responseData ]-70',
+        'font-size:13px; background:pink; color:#bf2c9f;',
+        responseData,
+      )
+    }
   }
   catch (error) {
     console.error('请求错误:', error)
     throw error // 抛出错误给调用方处理
   }
 }
+
 module.exports = {
   translateText,
   translationAcion,

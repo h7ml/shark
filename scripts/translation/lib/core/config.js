@@ -7,6 +7,7 @@ const translationBase = {
     appid: '20220626001257099',
     salt: '121',
     key: 'UzAECNbrxoNxLZSF9bnk',
+    from: 'zh',
   },
 }
 const TIMEOUT = 10000
