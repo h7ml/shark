@@ -7,6 +7,7 @@ import {
 import { Button, Form, Input, Select, message } from 'antd'
 import type { FC } from 'react'
 import { createRef, useEffect, useState } from 'react'
+import { t } from '@/utils'
 
 const { Option } = Select
 
@@ -72,8 +73,8 @@ const BasicSettingsForm: FC<BasicSettingsFormProps> = ({ initialValues }) => {
   const formref = createRef<any>()
 
   const handleUpdate = (values: any) => {
-    console.log('更新的基本信息：', values)
-    message.success('基本信息更新成功')
+    console.log(t('hnZlncWV'), values)
+    message.success(t('NKuxNtiN'))
   }
 
   useEffect(() => {
@@ -89,53 +90,45 @@ const BasicSettingsForm: FC<BasicSettingsFormProps> = ({ initialValues }) => {
       ref={formref}
       onFinish={handleUpdate}
     >
-      {/* 邮箱 */}
-      <Form.Item label="邮箱" name="email">
+      <Form.Item label={t('SNAGFLKG')} name="email">
         <Input prefix={<MailOutlined />} />
       </Form.Item>
 
-      {/* 昵称 */}
-      <Form.Item label="昵称" name="name">
+      <Form.Item label={t('zftzxIbQ')} name="name">
         <Input prefix={<UserOutlined />} />
       </Form.Item>
 
-      {/* 个人简介 */}
-      <Form.Item label="个人简介" name="bio">
+      <Form.Item label={t('evHCncJl')} name="bio">
         <Input.TextArea />
       </Form.Item>
 
-      {/* 国家/地区 */}
-      <Form.Item label="国家/地区" name="country">
+      <Form.Item label={t('cBceotBD') + t('ayJmpoqD')} name="country">
         <Select>
-          <Option value="china">中国</Option>
-          <Option value="usa">美国</Option>
-          <Option value="uk">英国</Option>
+          <Option value="china">{t('vGmQmAMk')}</Option>
+          <Option value="usa">{t('XGgjnViF')}</Option>
+          <Option value="uk">{t('TsbWmGuB')}</Option>
         </Select>
       </Form.Item>
 
-      {/* 所在省市 */}
-      <Form.Item label="所在省市" name="province">
+      <Form.Item label={t('XEqazrEB')} name="province">
         <Select>
-          <Option value="hangzhou">杭州</Option>
-          <Option value="beijing">北京</Option>
-          <Option value="shanghai">上海</Option>
+          <Option value="hangzhou">{t('eOUPbcki')}</Option>
+          <Option value="beijing">{t('tltsmvNI')}</Option>
+          <Option value="shanghai">{t('sKbUhUHI')}</Option>
         </Select>
       </Form.Item>
 
-      {/* 街道地址 */}
-      <Form.Item label="街道地址" name="address">
+      <Form.Item label={t('oenWOwMj')} name="address">
         <Input prefix={<EnvironmentOutlined />} />
       </Form.Item>
 
-      {/* 联系电话 */}
-      <Form.Item label="联系电话" name="phone">
+      <Form.Item label={t('gOmjGYWq')} name="phone">
         <Input prefix={<PhoneOutlined />} />
       </Form.Item>
 
-      {/* 更新按钮 */}
       <Form.Item wrapperCol={{ offset: 6, span: 12 }}>
         <Button type="primary" htmlType="submit">
-          更新基本信息
+          {t('RHLEUfmJ')}
         </Button>
       </Form.Item>
     </Form>

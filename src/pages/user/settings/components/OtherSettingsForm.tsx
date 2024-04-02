@@ -1,27 +1,28 @@
 import { FileDoneOutlined, NotificationOutlined } from '@ant-design/icons'
 import { List, Switch, message } from 'antd'
 import type { FC } from 'react'
+import { t } from '@/utils'
 
 const OtherSettingsForm: FC = () => {
   const handleSwitchChange = (checked: boolean) => {
     // 处理开关状态变化
-    console.log('开关状态变化：', checked)
-    message.success(checked ? '功能已启用' : '功能已关闭')
+    console.log(t('rTBudEaE'), checked)
+    message.success(checked ? t('FphnGMoe') : t('SEpzlmTu'))
   }
 
   // const handleSave = () => {
   //   // 处理保存设置操作
-  //   message.success('设置已保存')
+  //   message.success(t('dRiZCVUP'))
   // }
 
   const settings = [
     {
-      label: '自动保存草稿',
+      label: t('ISgGbAfg'),
       icon: <FileDoneOutlined />,
       switchName: 'autoSave',
     },
     {
-      label: '接收推送通知',
+      label: t('YtxCurUj'),
       icon: <NotificationOutlined />,
       switchName: 'pushNotification',
     },

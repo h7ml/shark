@@ -2,7 +2,6 @@ import { BellOutlined, MenuOutlined, SettingOutlined } from '@ant-design/icons'
 import { Avatar, Dropdown, Input } from 'antd'
 import { memo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { Icon3 } from '@/assets/icons/3'
 import { IconBuguang } from '@/assets/icons/buguang'
 import { IconFangdajing } from '@/assets/icons/fangdajing'
@@ -28,7 +27,7 @@ function Header() {
 
   const menuItems = [
     { label: userName, key: 'account' },
-    { label: t('wPqFuoLF' /* 退出登录 */), key: 'login' },
+    { label: t('wPqFuoLF'), key: 'login' },
   ].filter(item => item.label)
   return (
     <div
@@ -69,7 +68,7 @@ function Header() {
               }}
             />
           )}
-          placeholder={t('jhqxJPbn' /* 搜索菜单 */)}
+          placeholder={t('jhqxJPbn')}
           allowClear
         />
         <div className="pl-[20px] lg:hidden">
@@ -99,6 +98,9 @@ function Header() {
               })),
               onClick: async ({ key }) => {
                 await i18n.changeLanguage(key)
+                // 切换语言后，重新渲染页面
+                // 刷新当前页面
+                window.location.reload()
                 setLang(key)
               },
             }}

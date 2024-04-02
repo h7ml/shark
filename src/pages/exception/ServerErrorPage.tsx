@@ -2,6 +2,7 @@ import type { FC } from 'react'
 import { Button, Result } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { BugOutlined } from '@ant-design/icons'
+import { t } from '@/utils'
 
 const ServerErrorPage: FC = () => {
   const navigate = useNavigate()
@@ -17,15 +18,15 @@ const ServerErrorPage: FC = () => {
   return (
     <Result
       status="500"
-      title="500 Internal Server Error"
-      subTitle="Sorry, something went wrong with the server."
+      title={`500${t('QmUoCGnX')}`}
+      subTitle={`500${t('RafAcOOH')}`}
       icon={<BugOutlined />}
       extra={[
         <Button key="goBack" onClick={handleGoBack}>
-          Go Back
+          {t('nWeztsqz')}
         </Button>,
         <Button key="goHome" type="primary" onClick={handleGoHome}>
-          Go Home
+          {t('bJlOPeuE')}
         </Button>,
       ]}
     />

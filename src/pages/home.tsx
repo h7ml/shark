@@ -1,6 +1,7 @@
 import { ProCard, StatisticCard } from '@ant-design/pro-components'
 import RcResizeObserver from 'rc-resize-observer'
 import { useEffect, useRef, useState } from 'react'
+import { t } from '@/utils'
 
 const { Statistic } = StatisticCard
 
@@ -12,7 +13,7 @@ function Home() {
   // 优化时间格式化操作
   const formatDateTime = () => {
     const now = new Date()
-    return `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日 ${now.getHours()}时${now.getMinutes()}分${now.getSeconds()}秒`
+    return `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}-${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
   }
 
   useEffect(() => {
@@ -68,11 +69,11 @@ function Home() {
             <ProCard split="vertical">
               <StatisticCard
                 statistic={{
-                  title: '昨日全部流量',
+                  title: t('qDFtEOIR'),
                   value: 234,
                   description: (
                     <Statistic
-                      title="较本月平均流量"
+                      title={t('TKVmcZrC')}
                       value="8.04%"
                       trend="down"
                     />
@@ -81,10 +82,10 @@ function Home() {
               />
               <StatisticCard
                 statistic={{
-                  title: '本月累计流量',
+                  title: t('iMzlGPDr'),
                   value: 234,
                   description: (
-                    <Statistic title="月同比" value="8.04%" trend="up" />
+                    <Statistic title={t('PtRRKuBl')} value="8.04%" trend="up" />
                   ),
                 }}
               />
@@ -92,16 +93,16 @@ function Home() {
             <ProCard split="vertical">
               <StatisticCard
                 statistic={{
-                  title: '运行中实验',
+                  title: t('QiznfbIw'),
                   value: '12/56',
-                  suffix: '个',
+                  suffix: t('ksynzFGa'),
                 }}
               />
               <StatisticCard
                 statistic={{
-                  title: '历史实验总数',
+                  title: t('lVFlJVyT'),
                   value: '134',
-                  suffix: '个',
+                  suffix: t('ksynzFGa'),
                 }}
               />
             </ProCard>

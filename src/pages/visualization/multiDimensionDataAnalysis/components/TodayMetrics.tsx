@@ -2,7 +2,7 @@ import { Bar } from '@antv/g2plot'
 import { Card } from 'antd'
 import type { FC } from 'react'
 import { useEffect, useRef } from 'react'
-
+import { t } from '@/utils'
 export interface TodayDataItem {
   type: string
   sales: number
@@ -37,7 +37,7 @@ const TodayMetrics: FC<TodayMetricsProps> = ({ data }) => {
     }
   }, [data])
   return (
-    <Card title="今日转赞评统计" bordered={false} className="today-metrics">
+    <Card title={t('CupRZibN')} bordered={false} className="today-metrics">
       <div ref={container} className="w-full h-[150px]" key={data.length} />
     </Card>
   )

@@ -19,9 +19,9 @@ import {
 import axios from 'axios'
 import type { FC } from 'react'
 import React, { useEffect, useState } from 'react'
-
 import type { HeaderProps } from './header'
 import UserInfoHeader from './header'
+import { t } from '@/utils'
 import DemoColumn from '@/pages/dashboard/column'
 
 interface AccountPageProps {
@@ -111,7 +111,7 @@ const AccountPage: FC<AccountPageProps> = () => {
         <div className="dark:bg-[rgb(33,41,70)] bg-white h-[550px] rounded-md p-[24px] relative">
           <div className="flex justify-between items-center">
             <div className="flex-1">
-              <h1 className="text-2xl font-bold">个人中心</h1>
+              <h1 className="text-2xl font-bold">{t('pUWDlNFY')}</h1>
             </div>
             <div>
               <Button
@@ -120,7 +120,7 @@ const AccountPage: FC<AccountPageProps> = () => {
                   fetchProjects()
                 }}
               >
-                刷新
+                {t('ePjvKKGm')}
               </Button>
             </div>
           </div>
@@ -203,7 +203,7 @@ const AccountPage: FC<AccountPageProps> = () => {
               },
               actions: {},
             }}
-            headerTitle={<h2>我的团队</h2>}
+            headerTitle={<h2>{t('fEYkyzjq')}</h2>}
             dataSource={teamsData}
           />
         </div>
@@ -213,7 +213,7 @@ const AccountPage: FC<AccountPageProps> = () => {
         <div className="dark:bg-[rgb(33,41,70)] bg-white h-[550px] rounded-md p-[24px] relative overflow-scroll">
           <div className="flex justify-between items-center">
             <div className="flex-1">
-              <h1 className="text-2xl font-bold">最新动态</h1>
+              <h1 className="text-2xl font-bold">{t('qaPwtonK')}</h1>
             </div>
           </div>
           <List
@@ -266,7 +266,7 @@ const AccountPage: FC<AccountPageProps> = () => {
         <div className="dark:bg-[rgb(33,41,70)]  h-[480px] rounded-md p-[24px] relative">
           <div className="flex justify-between">
             <span className="dark:text-[rgb(215,220,236)] text-[18px] text-[rgb(18,25,38)]">
-              个人信息
+              {t('EJUKJjId')}
             </span>
           </div>
           <div className="mt-10">

@@ -76,7 +76,7 @@ const UserRetention: FC<UserRetentionProps> = ({ data }) => {
           </Tooltip>
         </div>
         <div className="text-white text-[16px]">
-          用户留存量
+          {t('JyQfodSl')}
           {' '}
           {data[0]?.sales}
         </div>

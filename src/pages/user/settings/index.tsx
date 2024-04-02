@@ -23,6 +23,7 @@ import {
   SocialAccountsForm,
 } from './components'
 import type { BasicSettingsFormProps } from './components/BasicSettingsForm'
+import { t } from '@/utils'
 
 function SettingsPage() {
   const [data, setData] = useState<BasicSettingsFormProps['initialValues']>({})
@@ -67,42 +68,42 @@ function SettingsPage() {
         items={[
           {
             key: 'basic',
-            label: `基本设置`,
+            label: t('LMAHHmyg'),
             icon: <UserOutlined />,
             children: <BasicSettingsForm initialValues={data} />,
           },
           {
             key: 'security',
-            label: `安全设置`,
+            label: t('LvKCwApB'),
             icon: <LockOutlined />,
             children: <SecuritySettingsForm initialValues={data} />,
           },
           {
             key: 'account',
-            label: `账号绑定`,
+            label: t('fPrWgsff'),
             icon: <GoogleOutlined />,
             children: <AccountBindingForm />,
           },
           {
             key: 'notification',
-            label: `新消息通知`,
+            label: t('HHAcBCvx'),
             icon: <SoundOutlined />,
             children: <NotificationSettingsForm />,
           },
           {
             key: 'privacy',
-            label: `隐私设置`,
+            label: t('tAgmoaue'),
             icon: <EyeOutlined />,
             children: <PrivacySettingsForm />,
           },
           {
             key: 'Security',
-            label: `密保设置`,
+            label: t('PLxZtTEi'),
             icon: <SafetyCertificateOutlined />,
             children: (
               <SecurityQuestionsForm
                 initialValues={{
-                  securityQuestion: '您的生日是？',
+                  securityQuestion: t('emmgqHVG'),
                   securityAnswer: '1990-01-01',
                 }}
               />
@@ -110,13 +111,13 @@ function SettingsPage() {
           },
           {
             key: 'social',
-            label: `社交账号`,
+            label: t('JEjeIsXn'),
             icon: <AppstoreOutlined />,
             children: <SocialAccountsForm />,
           },
           {
             key: 'other',
-            label: `其他设置`,
+            label: t('guKNpWmX'),
             icon: <SettingOutlined />,
             children: <OtherSettingsForm />,
           },

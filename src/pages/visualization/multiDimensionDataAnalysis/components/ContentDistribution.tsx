@@ -2,6 +2,7 @@ import { Radar } from '@antv/g2plot'
 import { Card } from 'antd'
 import type { FC } from 'react'
 import { useEffect, useRef } from 'react'
+import { t } from '@/utils'
 
 export interface ContentDistributionDataItem {
   item: string
@@ -36,7 +37,7 @@ const ContentDistribution: FC<ContentDistributionProps> = ({ data }) => {
     }
   }, [data])
   return (
-    <Card title="内容题材分布" className="content-distribution">
+    <Card title={t('qxzPAQtH')} className="content-distribution">
       <div ref={container} className="w-full h-[150px]" key={data.length} />
     </Card>
   )

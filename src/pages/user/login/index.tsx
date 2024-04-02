@@ -41,18 +41,6 @@ const iconStyles: CSSProperties = {
   verticalAlign: 'middle',
   cursor: 'pointer',
 }
-const TabPaneItem = [
-  {
-    label: t('qPkNCnDl'),
-    key: 'account',
-    icon: <UserOutlined />,
-  },
-  {
-    key: 'phone',
-    icon: <MobileOutlined />,
-    label: '手机号登录',
-  },
-]
 
 interface DataType {
   code?: string
@@ -97,7 +85,7 @@ const Page: FC = () => {
     if (!values.captcha || !values.username)
       return
     if (values.captcha.toLowerCase() !== data.code?.toLowerCase()) {
-      message.error('验证码错误')
+      message.error(t('PsXEMkqN'))
       return
     }
     setUser('userName', values.username)
@@ -131,7 +119,7 @@ const Page: FC = () => {
             rules={[
               {
                 required: true,
-                message: '请输入用户名!',
+                message: t('yaItPdgK'),
               },
             ]}
           />
@@ -153,7 +141,7 @@ const Page: FC = () => {
             rules={[
               {
                 required: true,
-                message: '请输入密码！',
+                message: t('DjMcEMAe'),
               },
             ]}
           />
@@ -163,7 +151,7 @@ const Page: FC = () => {
             rules={[
               {
                 required: true,
-                message: '请输入验证码',
+                message: t('AiCRsRRY'),
                 max: 4,
               },
             ]}
@@ -206,11 +194,11 @@ const Page: FC = () => {
             rules={[
               {
                 required: true,
-                message: '请输入手机号！',
+                message: t('JuLbycyD'),
               },
               {
                 pattern: /^1\d{10}$/,
-                message: '手机号格式错误！',
+                message: t('lpFRkXwM'),
               },
             ]}
           />
@@ -232,19 +220,20 @@ const Page: FC = () => {
             placeholder="请输入验证码"
             captchaTextRender={(timing, count) => {
               if (timing)
-                return `${count} ${'获取验证码'}`
+                return `${count} ${t('sekEcgEb')}`
 
-              return '获取验证码'
+              return t('sekEcgEb')
             }}
             name="captcha"
             rules={[
               {
                 required: true,
-                message: '请输入验证码！',
+                message: t('AiCRsRRY'),
               },
             ]}
             onGetCaptcha={async () => {
-              message.success('获取验证码成功！验证码为：1234')
+              const messageText = `${t('gTqSmcGA') + t('PxwlwFAw')}1234`
+              message.success(messageText)
             }}
           />
         </>
@@ -330,7 +319,7 @@ const Page: FC = () => {
                   fontSize: 14,
                 }}
               >
-                其他登录方式
+                {t('ZuFSBNBR')}
               </span>
             </Divider>
             <Space align="center" size={24}>
@@ -373,7 +362,18 @@ const Page: FC = () => {
         )}
       >
         <Tabs
-          items={TabPaneItem}
+          items={[
+            {
+              label: t('qPkNCnDl'),
+              key: 'account',
+              icon: <UserOutlined />,
+            },
+            {
+              key: 'phone',
+              icon: <MobileOutlined />,
+              label: t('jJIiZmVN'),
+            },
+          ]}
           centered
           activeKey={loginType}
           onChange={activeKey => setLoginType(activeKey as LoginType)}
@@ -387,14 +387,14 @@ const Page: FC = () => {
           }}
         >
           <ProFormCheckbox noStyle name="autoLogin">
-            自动登录
+            {t('jppgmQsa')}
           </ProFormCheckbox>
           <a
             style={{
               float: 'right',
             }}
           >
-            忘记密码
+            {t('tCJkfSMg')}
           </a>
         </div>
       </LoginFormPage>

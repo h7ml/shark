@@ -1,43 +1,44 @@
 import { QqOutlined, WechatOutlined, WeiboOutlined } from '@ant-design/icons'
 import { Button, List, message } from 'antd'
 import type { FC } from 'react'
+import { t } from '@/utils'
 
 const SocialAccountsForm: FC = () => {
   const handleBind = (accountType: string) => {
     // 处理绑定社交账号操作
-    message.info(`开始绑定${accountType}`)
+    message.info(t('SgVWDhMx') + accountType)
   }
 
   const handleUnbind = (accountType: string) => {
     // 处理解绑社交账号操作
-    message.info(`开始解绑${accountType}`)
+    message.info(t('PxMuznqD') + accountType)
   }
 
   const socialAccounts = [
     {
-      label: '微信',
-      description: '当前未绑定微信账号',
-      bindActionText: '绑定',
-      bindOnClick: () => handleBind('微信'),
-      unbindActionText: '解绑',
-      unbindOnClick: () => handleUnbind('微信'),
+      label: t('XSSuwAHE'),
+      description: t('nIogWQHm'),
+      bindActionText: t('xPHnIQKB'),
+      bindOnClick: () => handleBind(t('XSSuwAHE')),
+      unbindActionText: t('CNsvKxfN'),
+      unbindOnClick: () => handleUnbind(t('XSSuwAHE')),
       icon: <WechatOutlined />,
     },
     {
-      label: '微博',
-      description: '当前未绑定微博账号',
-      bindActionText: '绑定',
-      bindOnClick: () => handleBind('微博'),
-      unbindActionText: '解绑',
-      unbindOnClick: () => handleUnbind('微博'),
+      label: t('jPDlVQkL'),
+      description: t('mKAhwTQX'),
+      bindActionText: t('xPHnIQKB'),
+      bindOnClick: () => handleBind(t('jPDlVQkL')),
+      unbindActionText: t('CNsvKxfN'),
+      unbindOnClick: () => handleUnbind(t('jPDlVQkL')),
       icon: <WeiboOutlined />,
     },
     {
       label: 'QQ',
-      description: '当前未绑定QQ账号',
-      bindActionText: '绑定',
+      description: `${t('HAUaYkwY')}QQ${t('RNISycbR')}`,
+      bindActionText: t('xPHnIQKB'),
       bindOnClick: () => handleBind('QQ'),
-      unbindActionText: '解绑',
+      unbindActionText: t('CNsvKxfN'),
       unbindOnClick: () => handleUnbind('QQ'),
       icon: <QqOutlined />,
     },

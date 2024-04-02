@@ -1,6 +1,7 @@
 import { Col, Row, message } from 'antd'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import type { FC } from 'react'
+import { useEffect, useState } from 'react'
 
 import {
   ContentConsumption,
@@ -27,8 +28,8 @@ const MultiDimensionDataAnalysis: FC = () => {
   const [contentSourceData, setContentSourceData] = useState<
     ContentSourceProps['data']
   >({}) // 内容来源数据
-  const [userRetention, setUserRetention] = useState([]) // 用户留存趋势
-  const [contentConsumption, setContentConsumption] = useState([]) // 内容消费趋势
+  const [userRetention, setUserRetention] = useState([]) // {t('wpVTrIbg')}
+  const [contentConsumption, setContentConsumption] = useState([]) // {t('fHAcoQib')}
   const fetchOverData = async () => {
     try {
       const {

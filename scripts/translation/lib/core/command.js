@@ -73,11 +73,6 @@ async function translation(config, zhObj, enObj) {
     loading.succeed(chalk.green('翻译完成...'))
   }
   catch (error) {
-    console.log(
-      '%c [ error ]-77',
-      'font-size:13px; background:pink; color:#bf2c9f;',
-      error,
-    )
     loading.fail(chalk.red('翻译失败：'))
   }
 

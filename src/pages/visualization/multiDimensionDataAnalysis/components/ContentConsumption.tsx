@@ -67,7 +67,7 @@ const ContentConsumption: FC<ContentConsumptionProps> = ({ data }) => {
           </Tooltip>
         </div>
         <div className="text-white text-[16px]">
-          内容消费量
+          {t('pqONtvkK')}
           {' '}
           {data[0]?.sales}
         </div>

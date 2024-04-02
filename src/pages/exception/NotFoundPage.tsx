@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import { Button, Result } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { CloseCircleOutlined } from '@ant-design/icons'
-
+import { t } from '@/utils'
 const NotFoundPage: FC = () => {
   const navigate = useNavigate()
 
@@ -18,14 +18,14 @@ const NotFoundPage: FC = () => {
     <Result
       status="404"
       title="404"
-      subTitle="抱歉，您访问的页面不存在。"
+      subTitle={t('zvYCCdiI') + t('VMQdldGM')}
       icon={<CloseCircleOutlined />}
       extra={[
         <Button type="primary" key="back" onClick={handleGoBack}>
-          返回上一页
+          {t('nWeztsqz')}
         </Button>,
         <Button key="home" onClick={handleGoHome}>
-          返回首页
+          {t('bJlOPeuE')}
         </Button>,
       ]}
     />

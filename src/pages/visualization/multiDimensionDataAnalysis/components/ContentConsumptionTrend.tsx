@@ -39,7 +39,7 @@ const ContentConsumptionTrend: FC<ContentConsumptionTrendProps> = ({
             <InfoCircleOutlined className="text-[rgb(179,157,219)] text-[20px]" />
           </Tooltip>
         </div>
-        <div className="text-white text-[16px]">内容消费趋势</div>
+        <div className="text-white text-[16px]">{t('fHAcoQib')}</div>
         <div className="text-white text-2xl mt-[20px] text-[30px]">520</div>
         <div className="mt-[20px] text-[rgba(229,224,216,0.85)] text-[16px] flex gap-[24px]">
           <div ref={container} className="w-full h-[150px]" key={data.length} />
