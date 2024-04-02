@@ -36,7 +36,6 @@
     "edgio:build": "edgio build",
     "edgio:deploy": "edgio deploy",
     "edgio:dev": "edgio dev",
-    "tp": "node scripts/translation",
     "eslint": "eslint . --fix --cache",
     "pre-commit": "pretty-quick --staged  && npm run prettier && npm run eslint",
     "prepare": "husky install && npm run pre-commit",
@@ -44,7 +43,11 @@
     "preview": "npm run build && rspack preview",
     "stylelint": "stylelint \"**/*.{css,scss,sass}\" --fix --cache",
     "release": "release-it",
-    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org h7ml --project shark dist && sentry-cli sourcemaps upload --org h7ml --project shark dist"
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org h7ml --project shark dist && sentry-cli sourcemaps upload --org h7ml --project shark dist",
+    "i18n": "npm run i18n:extract && npm run i18n:replace && npm run i18n:translation",
+    "i18n:extract": "node scripts/translation/extract.js",
+    "i18n:replace": "node scripts/translation/replace.js",
+    "i18n:translation": "node scripts/translation"
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.6",
@@ -66,6 +69,7 @@
     "i18next": "^23.10.1",
     "localforage": "^1.10.0",
     "mockjs": "^1.1.0",
+    "npm-run-all2": "^6.1.2",
     "nprogress": "^0.2.0",
     "ora": "^5.4.1",
     "qs": "^6.12.0",

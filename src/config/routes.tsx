@@ -28,25 +28,25 @@ export interface MenuItem {
 export const routeConfig: MenuItem[] = [
   {
     path: '/dashboard',
-    title: t('router.dashboard'),
+    title: t('dashboard'),
     icon: <DashboardOutlined />,
     Component: lazy(() => import('@/pages/dashboard')),
   },
   {
     path: '/user',
     // Component: lazy(() => import('@/pages/user')),
-    title: t('router.ueiriPPJ'),
+    title: t('ueiriPPJ'),
     icon: <UserOutlined />,
     children: [
       {
         path: '/user/account',
-        title: t('router.pUWDlNFY'),
+        title: t('pUWDlNFY'),
         icon: <AimOutlined />,
         Component: lazy(() => import('@/pages/user/account')),
       },
       {
         path: '/user/settings',
-        title: t('router.nKmJjYdX'),
+        title: t('nKmJjYdX'),
         icon: <ContactsOutlined />,
         Component: lazy(() => import('@/pages/user/settings')),
       },
@@ -54,12 +54,12 @@ export const routeConfig: MenuItem[] = [
   },
   {
     path: '/visualization',
-    title: t('router.oViTwVZs'),
+    title: t('oViTwVZs'),
     icon: <EyeOutlined />,
     children: [
       {
         path: '/visualization/multiDimensionDataAnalysis',
-        title: t('router.ZGzgIIjL'),
+        title: t('ZGzgIIjL'),
         icon: <DeploymentUnitOutlined />,
         Component: lazy(
           () => import('@/pages/visualization/multiDimensionDataAnalysis'),
@@ -70,12 +70,12 @@ export const routeConfig: MenuItem[] = [
   {
     path: '/table',
     Component: lazy(() => import('@/pages/table')),
-    title: t('router.nFPoUFZq'),
+    title: t('nFPoUFZq'),
     icon: <TableOutlined />,
   },
   {
     path: '/exception',
-    title: t('router.mVCBkHUZ'),
+    title: t('mVCBkHUZ'),
     icon: <WarningOutlined />,
     children: [
       {

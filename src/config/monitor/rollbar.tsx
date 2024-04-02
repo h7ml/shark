@@ -1,4 +1,3 @@
-import { t } from '@/utils'
 import { ErrorBoundary, Provider } from '@rollbar/react'
 import type { FC, ReactNode } from 'react'
 

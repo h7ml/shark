@@ -1,4 +1,3 @@
-import { t } from '@/utils'
 import { Bar } from '@antv/g2plot'
 import { Card } from 'antd'
 import type { FC } from 'react'

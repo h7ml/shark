@@ -1,4 +1,3 @@
-import { t } from '@/utils'
 import { FileDoneOutlined, NotificationOutlined } from '@ant-design/icons'
 import { List, Switch, message } from 'antd'
 import type { FC } from 'react'

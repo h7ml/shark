@@ -110,10 +110,10 @@ function Header() {
               {lang === 'zh'
                 ? (
                   <IconShuyi_fanyi36 />
-                )
+                  )
                 : (
                   <span className="text-[14px]">{lang.toUpperCase()}</span>
-                )}
+                  )}
             </div>
           </Dropdown>
           <div className="btn-icon">

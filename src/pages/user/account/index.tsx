@@ -1,4 +1,3 @@
-import { t } from '@/utils'
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons'
 import {
   ProCard,

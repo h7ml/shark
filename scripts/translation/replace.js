@@ -115,8 +115,20 @@ async function updateZhJson(processedContent) {
     path.join('src', 'assets', 'locales', 'zh-CN.json'),
   )
   const zhContent = await readTranslationFile(zhJson)
-  const writeContent = { ...zhContent, ...processedContent }
-  const updatedEnContent = `${JSON.stringify(writeContent, null, 2)}\n`
+  const updatedContent = { ...zhContent, ...processedContent }
+  // 去除值中的重复项
+  const uniqueValues = Array.from(new Set(Object.values(updatedContent)))
+
+  // 根据值的唯一性更新键值对关系
+  const updatedContentWithoutDuplicates = {}
+  for (const [key, value] of Object.entries(updatedContent)) {
+    if (uniqueValues.includes(value)) {
+      updatedContentWithoutDuplicates[key] = value
+      uniqueValues.splice(uniqueValues.indexOf(value), 1)
+    }
+  }
+
+  const updatedEnContent = `${JSON.stringify(updatedContentWithoutDuplicates, null, 2)}\n`
   await writeFileContent(zhJson, updatedEnContent)
   loading.succeed(chalk.green('zhCN.json 文件更新完成'))
 }

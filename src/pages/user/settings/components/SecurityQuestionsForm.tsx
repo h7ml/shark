@@ -1,4 +1,3 @@
-import { t } from '@/utils'
 import { LockOutlined, SafetyCertificateOutlined } from '@ant-design/icons' // 导入所需图标
 import { Button, Form, Input, message } from 'antd'
 import type { FC } from 'react'

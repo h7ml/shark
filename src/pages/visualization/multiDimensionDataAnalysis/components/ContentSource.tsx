@@ -1,4 +1,3 @@
-import { t } from '@/utils'
 import { Pie } from '@antv/g2plot'
 import { Card, Col, Row } from 'antd'
 import type { FC } from 'react'

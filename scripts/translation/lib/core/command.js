@@ -94,7 +94,6 @@ async function translation(config, zhObj, enObj) {
  */
 async function processNestedKeys(zhObj, enObj) {
   for (const key in zhObj) {
-    // eslint-disable-next-line no-prototype-builtins
     if (zhObj.hasOwnProperty(key)) {
       if (typeof zhObj[key] === 'object')
         await processNestedKeys(zhObj[key], enObj[key])

@@ -1,4 +1,3 @@
-import { t } from '@/utils'
 import {
   EnvironmentOutlined,
   MailOutlined,
