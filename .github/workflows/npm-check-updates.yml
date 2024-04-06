@@ -31,7 +31,7 @@ jobs:
       - name: Build and test
         id: build_and_test
         run: |
-          pnpm build:gh-pages && pnpm tp
+          pnpm build:gh-pages && pnpm run i18n
           echo "::set-output name=status::success"
 
       - name: Check for changes
