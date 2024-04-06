@@ -3,7 +3,6 @@ import type { Configuration } from '@rspack/cli'
 import rspack from '@rspack/core'
 import refreshPlugin from '@rspack/plugin-react-refresh'
 import { sentryWebpackPlugin } from '@sentry/webpack-plugin'
-import { GenerateSW }  from '@aaroon/workbox-rspack-plugin'
 const isDev: boolean = process.env.NODE_ENV === 'development'
 const isGithubPath: boolean = process.env.PUBLIC_PATH === '/shark/'
 const config: Configuration = {
@@ -170,40 +169,6 @@ const config: Configuration = {
             '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',
       })
       : false,
-      !isDev ?  new GenerateSW({
-          swDest: 'service-worker.js',
-          clientsClaim: true,
-          skipWaiting: true,
-          runtimeCaching: [
-            {
-              urlPattern: /\.(png|jpe?g|gif|svg)$/,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'images',
-                expiration: {
-                  maxEntries: 1000,
-                  maxAgeSeconds: 60 * 60 * 24 * 30
-                }
-              }
-            },
-            {
-              urlPattern: /\.(ttf|woff|woff2|eot)$/,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'fonts',
-                expiration: {
-                  maxEntries: 50,
-                  maxAgeSeconds: 60 * 60 * 24 * 30
-                }
-              }
-            },
-            {
-              urlPattern: /\.(proto|bin)$/,
-              handler: 'NetworkFirst'
-            }
-          ],
-          maximumFileSizeToCacheInBytes: 15 * 1024 * 1024
-    }) : undefined,
     // // or
     // new InjectManifest({
     //     // options
