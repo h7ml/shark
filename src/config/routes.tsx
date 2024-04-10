@@ -9,6 +9,7 @@ import {
   LockOutlined,
   TableOutlined,
   UserOutlined,
+  VideoCameraOutlined,
   WarningOutlined,
 } from '@ant-design/icons'
 import { lazy } from 'react'
@@ -72,6 +73,12 @@ export const routeConfig: MenuItem[] = [
     Component: lazy(() => import('@/pages/table')),
     title: t('nFPoUFZq'),
     icon: <TableOutlined />,
+  },
+  {
+    path: '/video',
+    Component: lazy(() => import('@/pages/video')),
+    title: t('video'),
+    icon: <VideoCameraOutlined />,
   },
   {
     path: '/exception',
