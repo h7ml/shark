@@ -1,11 +1,11 @@
-import { type FC, useEffect } from 'react'
+import type { FC } from 'react'
 import { Button, Result } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { CloseCircleOutlined } from '@ant-design/icons'
-import { i18n, t } from '@/utils'
-import { useGlobalStore } from '@/store/global'
+import { useTranslation } from 'react-i18next'
 const NotFoundPage: FC = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const handleGoBack = () => {
     navigate(-1) // 返回上一页
@@ -14,13 +14,6 @@ const NotFoundPage: FC = () => {
   const handleGoHome = () => {
     navigate('/') // 返回首页
   }
-  const { lang } = useGlobalStore()
-  useEffect(() => {
-    const changeLanguage = async () => {
-      await i18n.changeLanguage(lang)
-    }
-    changeLanguage()
-  }, [lang])
   return (
     <Result
       status="404"

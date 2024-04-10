@@ -2,6 +2,7 @@ import { BellOutlined, MenuOutlined, SettingOutlined } from '@ant-design/icons'
 import { Avatar, Dropdown, Input } from 'antd'
 import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Icon3 } from '@/assets/icons/3'
 import { IconBuguang } from '@/assets/icons/buguang'
 import { IconFangdajing } from '@/assets/icons/fangdajing'
@@ -10,10 +11,10 @@ import { IconShuyi_fanyi36 } from '@/assets/icons/shuyi_fanyi-36'
 import { defaultSetting } from '@/default-setting'
 import { useStorage } from '@/hooks'
 import { useGlobalStore } from '@/store/global'
-import { i18n, t } from '@/utils'
 
 function Header() {
   const navigate = useNavigate()
+  const { t, i18n } = useTranslation()
   const { data: userName = '' } = useStorage('userName')
   const { darkMode, collapsed, setCollapsed, setDarkMode, setLang, lang }
     = useGlobalStore()

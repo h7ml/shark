@@ -28,8 +28,8 @@ function generateRandomString(length) {
  */
 async function checkAndInsertContent(
   filePath,
-  searchString = 'import { t } from \'@/utils\'',
-  insertContent = 'import { t } from \'@/utils\'',
+  searchString = 'import { useTranslation } from \'react-i18next\'',
+  insertContent = 'import { useTranslation } from \'react-i18next\'',
 ) {
   try {
     loading.succeed(chalk.green(`检查${filePath} i18n组件导入情况 ...`))

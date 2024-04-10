@@ -8,22 +8,14 @@ import {
 } from '@ant-design/icons'
 import { Col, Divider, Dropdown, Row, Select, Tooltip } from 'antd'
 
-import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import DemoColumn from './column'
 import DemoTinyArea from './tiny-area'
 import DemoTinyColumn from './tiny-column'
 import DemoTinyLine from './tiny-line'
-import { i18n, t } from '@/utils'
-import { useGlobalStore } from '@/store/global'
 
 function Dashboard() {
-  const { lang } = useGlobalStore()
-  useEffect(() => {
-    const changeLanguage = async () => {
-      await i18n.changeLanguage(lang)
-    }
-    changeLanguage()
-  }, [lang])
+  const { t } = useTranslation()
   return (
     <div>
       <Row gutter={[16, 16]}>

@@ -1,11 +1,10 @@
 import debounce from 'lodash/debounce'
 import throttle from 'lodash/throttle'
 import type { ChangeEvent } from 'react'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Button, Form, Input, message } from 'antd'
-import { i18n, t } from '@/utils'
+import { useTranslation } from 'react-i18next'
 import VideoPlayer from '@/components/video-player'
-import { useGlobalStore } from '@/store/global'
 
 const VideoPage: React.FC = () => {
   const [videoSrc, setVideoSrc] = useState<string>(
@@ -13,13 +12,7 @@ const VideoPage: React.FC = () => {
   )
   const [isValidUrl, setIsValidUrl] = useState<boolean>(true)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const { lang } = useGlobalStore()
-  useEffect(() => {
-    const changeLanguage = async () => {
-      await i18n.changeLanguage(lang)
-    }
-    changeLanguage()
-  }, [lang])
+  const { t } = useTranslation()
   const handleUrlChangeDebounced = debounce((url: string) => {
     // Use regular expression to validate URL format
     const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i

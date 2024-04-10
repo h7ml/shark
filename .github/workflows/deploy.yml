@@ -83,12 +83,12 @@ jobs:
           branch: gh-pages
           folder: dist
 
-      - name: Build sourceMap
-        env:
-          SOURCEMAP: 'true'
-        run: |
-            echo "SOURCEMAP=${{ env.SOURCEMAP }}"
-            pnpm build
+      # - name: Build sourceMap
+      #   env:
+      #     SOURCEMAP: 'true'
+      #   run: |
+      #       echo "SOURCEMAP=${{ env.SOURCEMAP }}"
+      #       pnpm build
   sync:
     runs-on: ubuntu-latest
     needs: pages

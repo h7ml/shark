@@ -15,8 +15,7 @@ import type { ColumnsType } from 'antd/es/table'
 import axios from 'axios'
 import type { FC, SetStateAction } from 'react'
 import { useEffect, useState } from 'react'
-import { i18n, t } from '@/utils'
-import { useGlobalStore } from '@/store/global'
+import { useTranslation } from 'react-i18next'
 
 export interface DataType {
   key: string
@@ -28,7 +27,7 @@ export interface DataType {
 
 const TablePage: FC = () => {
   const [messageApi, contextHolder] = message.useMessage()
-
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [confirmLoading, setConfirmLoading] = useState(false)
   const [modalText, setModalText] = useState('Content of the modal')
@@ -36,13 +35,6 @@ const TablePage: FC = () => {
     setModalText(t('qnhgwihA') + record.name + t('iuBlQeDg'))
     setOpen(true)
   }
-  const { lang } = useGlobalStore()
-  useEffect(() => {
-    const changeLanguage = async () => {
-      await i18n.changeLanguage(lang)
-    }
-    changeLanguage()
-  }, [lang])
   const handleOk = () => {
     messageApi.open({
       type: 'success',

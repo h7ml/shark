@@ -29,9 +29,9 @@ import type { CSSProperties, FC } from 'react'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { useTranslation } from 'react-i18next'
 import Shark from '@/assets/icons/shark.svg'
 import { useStorage } from '@/hooks'
-import { i18n, t } from '@/utils'
 import { IconGitee } from '@/assets/icons/gitee'
 import { useGlobalStore } from '@/store/global'
 
@@ -58,16 +58,12 @@ interface LoginDTO {
 type AuthType = 'github' | 'gitee'
 const Page: FC = () => {
   const navigate = useNavigate()
+  const { i18n, t } = useTranslation()
+
   const { token } = theme.useToken()
   const [data, setData] = useState<DataType>({})
   const { setData: setUser } = useStorage('userName')
   const { lang, setLang } = useGlobalStore()
-  useEffect(() => {
-    const changeLanguage = async () => {
-      await i18n.changeLanguage(lang)
-    }
-    changeLanguage()
-  }, [lang])
   // 时间戳
   const timestamp = Date.now()
   const refreshCaptcha = (timestamp: number) => {

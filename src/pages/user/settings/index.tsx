@@ -12,6 +12,7 @@ import { Spin, Tabs, message } from 'antd'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
+import { useTranslation } from 'react-i18next'
 import {
   AccountBindingForm,
   BasicSettingsForm,
@@ -23,19 +24,11 @@ import {
   SocialAccountsForm,
 } from './components'
 import type { BasicSettingsFormProps } from './components/BasicSettingsForm'
-import { i18n, t } from '@/utils'
-import { useGlobalStore } from '@/store/global'
 function SettingsPage() {
   const [data, setData] = useState<BasicSettingsFormProps['initialValues']>({})
   const [loading, setLoading] = useState(true)
   const [tabPosition, setTabPosition] = useState<'left' | 'top'>('left')
-  const { lang } = useGlobalStore()
-  useEffect(() => {
-    const changeLanguage = async () => {
-      await i18n.changeLanguage(lang)
-    }
-    changeLanguage()
-  }, [lang])
+  const { t } = useTranslation()
   const fetchUser = async () => {
     setLoading(true)
     try {
