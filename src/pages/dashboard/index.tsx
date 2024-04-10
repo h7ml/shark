@@ -7,6 +7,7 @@ import {
   InfoCircleOutlined,
 } from '@ant-design/icons'
 import { Col, Divider, Dropdown, Row, Select, Tooltip } from 'antd'
+import { useQueryClient } from 'react-query'
 
 import { useTranslation } from 'react-i18next'
 import DemoColumn from './column'
@@ -16,6 +17,10 @@ import DemoTinyLine from './tiny-line'
 
 function Dashboard() {
   const { t } = useTranslation()
+  const queryClient = useQueryClient()
+  const handleRefresh = () => {
+    queryClient.invalidateQueries('column')
+  }
   return (
     <div>
       <Row gutter={[16, 16]}>
@@ -123,6 +128,9 @@ function Dashboard() {
                     value: 'year',
                   },
                 ]}
+                onChange={() => {
+                  handleRefresh()
+                }}
                 defaultValue="today"
                 size="large"
                 popupMatchSelectWidth={false}

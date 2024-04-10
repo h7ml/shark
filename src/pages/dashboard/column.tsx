@@ -1,28 +1,36 @@
 import { Column } from '@ant-design/plots'
 import React, { useEffect, useState } from 'react'
 
-import axios from 'axios'
 import columnDarkTheme from './theme/dark-column-theme.json'
 import columnLightTheme from './theme/light-column-theme.json'
 import { useGlobalStore } from '@/store/global'
+import { useAxios } from '@/hooks'
+
+interface ListProps {
+  year: string
+  value: number
+  type: string
+}
+interface ColumnData {
+  data: ListProps[]
+}
 
 function DemoColumn() {
-  const [data, setData] = useState([])
   const { darkMode } = useGlobalStore()
+  const { data, isLoading, error } = useAxios<ColumnData>({
+    queryKey: 'column',
+    url: '/api/column/dashboard',
+  })
 
-  const asyncFetch = async () => {
-    const {
-      data: { data: list },
-    } = await axios.get('/api/column/dashboard')
-    setData(list)
-  }
+  const [columnData, setColumnData] = useState<ListProps[]>([])
 
   useEffect(() => {
-    asyncFetch()
-  }, [])
+    if (!isLoading && !error && data?.data)
+      setColumnData(data.data)
+  }, [data, isLoading, error])
 
   const config = {
-    data,
+    data: columnData,
     isStack: true,
     xField: 'year',
     yField: 'value',
