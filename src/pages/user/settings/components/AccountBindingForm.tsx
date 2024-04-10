@@ -5,34 +5,35 @@ import {
 } from '@ant-design/icons'
 import { Button, List, message } from 'antd'
 import type { FC } from 'react'
+import { t } from '@/utils'
 
 const AccountBindingForm: FC = () => {
   const handleBinding = (type: string) => {
     // 处理绑定操作
-    message.info(`开始绑定${type}`)
+    message.info(t('SgVWDhMx') + type)
   }
 
   const accountBindings = [
     {
-      label: '淘宝',
-      description: '当前未绑定淘宝账号',
-      actionText: '绑定',
+      label: t('XhPgzZQz'),
+      description: t('SIRRAXfv'),
+      actionText: t('xPHnIQKB'),
       icon: <TaobaoCircleOutlined />,
-      onClick: () => handleBinding('淘宝'),
+      onClick: () => handleBinding(t('XhPgzZQz')),
     },
     {
-      label: '支付宝',
-      description: '当前未绑定支付宝账号',
-      actionText: '绑定',
+      label: t('RipNIbTf'),
+      description: t('QrQOyTVU'),
+      actionText: t('xPHnIQKB'),
       icon: <AlipayCircleOutlined />,
-      onClick: () => handleBinding('支付宝'),
+      onClick: () => handleBinding(t('RipNIbTf')),
     },
     {
-      label: '钉钉',
-      description: '当前未绑定钉钉账号',
-      actionText: '绑定',
+      label: t('qWdQvZAh'),
+      description: t('GjPQtzZg'),
+      actionText: t('xPHnIQKB'),
       icon: <DingdingOutlined />,
-      onClick: () => handleBinding('钉钉'),
+      onClick: () => handleBinding(t('qWdQvZAh')),
     },
   ]
 

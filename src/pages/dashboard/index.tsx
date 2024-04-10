@@ -8,13 +8,22 @@ import {
 } from '@ant-design/icons'
 import { Col, Divider, Dropdown, Row, Select, Tooltip } from 'antd'
 
+import { useEffect } from 'react'
 import DemoColumn from './column'
 import DemoTinyArea from './tiny-area'
 import DemoTinyColumn from './tiny-column'
 import DemoTinyLine from './tiny-line'
-import { t } from '@/utils'
+import { i18n, t } from '@/utils'
+import { useGlobalStore } from '@/store/global'
 
 function Dashboard() {
+  const { lang } = useGlobalStore()
+  useEffect(() => {
+    const changeLanguage = async () => {
+      await i18n.changeLanguage(lang)
+    }
+    changeLanguage()
+  }, [lang])
   return (
     <div>
       <Row gutter={[16, 16]}>
@@ -124,7 +133,7 @@ function Dashboard() {
                 ]}
                 defaultValue="today"
                 size="large"
-                dropdownMatchSelectWidth={false}
+                popupMatchSelectWidth={false}
                 placement="bottomRight"
               />
             </div>

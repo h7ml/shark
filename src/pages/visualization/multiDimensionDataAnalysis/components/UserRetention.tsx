@@ -1,9 +1,9 @@
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { Column } from '@antv/g2plot'
 import { Col, Divider, Tooltip } from 'antd'
-import { t } from 'i18next'
 import type { FC } from 'react'
 import { useEffect, useRef } from 'react'
+import { t } from '@/utils'
 
 export interface UserRetentionItem {
   name: string
@@ -76,7 +76,7 @@ const UserRetention: FC<UserRetentionProps> = ({ data }) => {
           </Tooltip>
         </div>
         <div className="text-white text-[16px]">
-          用户留存量
+          {t('JyQfodSl')}
           {' '}
           {data[0]?.sales}
         </div>

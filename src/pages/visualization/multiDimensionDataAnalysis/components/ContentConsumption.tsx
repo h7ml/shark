@@ -1,9 +1,9 @@
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { Column } from '@antv/g2plot'
 import { Col, Divider, Tooltip } from 'antd'
-import { t } from 'i18next'
 import type { FC } from 'react'
 import { useEffect, useRef } from 'react'
+import { t } from '@/utils'
 
 export interface ContentConsumptionItem {
   name: string
@@ -67,7 +67,7 @@ const ContentConsumption: FC<ContentConsumptionProps> = ({ data }) => {
           </Tooltip>
         </div>
         <div className="text-white text-[16px]">
-          内容消费量
+          {t('pqONtvkK')}
           {' '}
           {data[0]?.sales}
         </div>

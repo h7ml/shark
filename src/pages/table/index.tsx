@@ -15,6 +15,8 @@ import type { ColumnsType } from 'antd/es/table'
 import axios from 'axios'
 import type { FC, SetStateAction } from 'react'
 import { useEffect, useState } from 'react'
+import { i18n, t } from '@/utils'
+import { useGlobalStore } from '@/store/global'
 
 export interface DataType {
   key: string
@@ -31,14 +33,20 @@ const TablePage: FC = () => {
   const [confirmLoading, setConfirmLoading] = useState(false)
   const [modalText, setModalText] = useState('Content of the modal')
   const showModal = (record: DataType) => {
-    setModalText(`确定要删除 ${record.name} 吗?`)
+    setModalText(t('qnhgwihA') + record.name + t('iuBlQeDg'))
     setOpen(true)
   }
-
+  const { lang } = useGlobalStore()
+  useEffect(() => {
+    const changeLanguage = async () => {
+      await i18n.changeLanguage(lang)
+    }
+    changeLanguage()
+  }, [lang])
   const handleOk = () => {
     messageApi.open({
       type: 'success',
-      content: `删除成功`,
+      content: t('QlwEBiLq'),
       duration: 1,
     })
     setConfirmLoading(true)
@@ -54,24 +62,28 @@ const TablePage: FC = () => {
   }
   const columns: ColumnsType<DataType> = [
     {
-      title: '名称',
+      title: t('gtRVLkTF'),
       dataIndex: 'name',
       key: 'name',
+      align: 'center',
       render: text => <a>{text}</a>,
     },
     {
-      title: '年龄',
+      title: t('exDcSRog'),
       dataIndex: 'age',
+      align: 'center',
       key: 'age',
     },
     {
-      title: '地址',
+      title: t('YXDPCCtv'),
+      align: 'center',
       dataIndex: 'address',
       key: 'address',
     },
     {
-      title: '职业',
+      title: t('JtpuFUhm'),
       key: 'tags',
+      align: 'center',
       dataIndex: 'tags',
       render: (_, { tags, id }) => (
         <>
@@ -79,7 +91,6 @@ const TablePage: FC = () => {
             let color = tag.length > 5 ? 'geekblue' : 'green'
             if (tag === 'loser')
               color = 'volcano'
-
             return (
               <Tag color={color} key={tag + id}>
                 {tag}
@@ -90,11 +101,12 @@ const TablePage: FC = () => {
       ),
     },
     {
-      title: '操作',
+      title: t('oPENPbuO'),
       key: 'action',
+      align: 'center',
       render: (_, record) => (
         <Space size="middle">
-          <Button type="primary">编辑</Button>
+          <Button type="primary">{t('fAWmvClP')}</Button>
           <Button
             danger
             type="primary"
@@ -102,7 +114,7 @@ const TablePage: FC = () => {
               showModal(record)
             }}
           >
-            删除
+            {t('UseQXSFf')}
           </Button>
         </Space>
       ),
@@ -127,11 +139,11 @@ const TablePage: FC = () => {
     <div>
       {contextHolder}
       <Modal
-        title="删除确认"
+        title={t('rwgJkNNx')}
         open={open}
         onOk={handleOk}
-        cancelText="取消"
-        okText="确认"
+        cancelText={t('hAxbfvSF')}
+        okText={t('hGYTYdGu')}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
@@ -143,19 +155,19 @@ const TablePage: FC = () => {
       >
         <Row gutter={24}>
           <Col className="w-[100%]" lg={24} xl={8}>
-            <Form.Item name="name" label="名称">
+            <Form.Item name="name" label={t('gtRVLkTF')}>
               <Input />
             </Form.Item>
           </Col>
           <Col className="w-[100%]" lg={24} xl={8}>
-            <Form.Item name="age" label="年龄">
+            <Form.Item name="age" label={t('exDcSRog')}>
               <InputNumber style={{ width: '100%' }} />
             </Form.Item>
           </Col>
           <Col className="w-[100%] text-right" lg={24} xl={8}>
             <Space>
-              <Button type="primary">搜索</Button>
-              <Button>清除</Button>
+              <Button type="primary">{t('tXytgkBI')}</Button>
+              <Button>{t('fDiHzaqR')}</Button>
             </Space>
           </Col>
         </Row>

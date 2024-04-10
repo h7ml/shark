@@ -1,11 +1,9 @@
 import {
-  AlipayOutlined,
+  GithubOutlined,
   LockOutlined,
   MobileOutlined,
   SafetyOutlined,
-  TaobaoOutlined,
   UserOutlined,
-  WeiboOutlined,
 } from '@ant-design/icons'
 import {
   LoginFormPage,
@@ -16,22 +14,26 @@ import {
 } from '@ant-design/pro-components'
 import {
   Button,
+  Col,
   Divider,
   Form,
   Input,
   Space,
+  Switch,
   Tabs,
   message,
   theme,
 } from 'antd'
 import axios from 'axios'
 import type { CSSProperties, FC } from 'react'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Shark from '@/assets/icons/shark.svg'
 import { useStorage } from '@/hooks'
-import { t } from '@/utils'
+import { i18n, t } from '@/utils'
+import { IconGitee } from '@/assets/icons/gitee'
+import { useGlobalStore } from '@/store/global'
 
 type LoginType = 'phone' | 'account'
 
@@ -41,18 +43,6 @@ const iconStyles: CSSProperties = {
   verticalAlign: 'middle',
   cursor: 'pointer',
 }
-const TabPaneItem = [
-  {
-    label: '账号密码登录',
-    key: 'account',
-    icon: <UserOutlined />,
-  },
-  {
-    key: 'phone',
-    icon: <MobileOutlined />,
-    label: '手机号登录',
-  },
-]
 
 interface DataType {
   code?: string
@@ -65,12 +55,19 @@ interface LoginDTO {
   captcha?: string
 }
 
+type AuthType = 'github' | 'gitee'
 const Page: FC = () => {
   const navigate = useNavigate()
   const { token } = theme.useToken()
   const [data, setData] = useState<DataType>({})
   const { setData: setUser } = useStorage('userName')
-
+  const { lang, setLang } = useGlobalStore()
+  useEffect(() => {
+    const changeLanguage = async () => {
+      await i18n.changeLanguage(lang)
+    }
+    changeLanguage()
+  }, [lang])
   // 时间戳
   const timestamp = Date.now()
   const refreshCaptcha = (timestamp: number) => {
@@ -96,7 +93,7 @@ const Page: FC = () => {
     if (!values.captcha || !values.username)
       return
     if (values.captcha.toLowerCase() !== data.code?.toLowerCase()) {
-      message.error('验证码错误')
+      message.error(t('PsXEMkqN'))
       return
     }
     setUser('userName', values.username)
@@ -125,12 +122,12 @@ const Page: FC = () => {
                 />
               ),
             }}
-            placeholder="用户名: admin or user"
+            placeholder="admin or user"
             initialValue="admin"
             rules={[
               {
                 required: true,
-                message: '请输入用户名!',
+                message: t('yaItPdgK'),
               },
             ]}
           />
@@ -152,7 +149,7 @@ const Page: FC = () => {
             rules={[
               {
                 required: true,
-                message: '请输入密码！',
+                message: t('DjMcEMAe'),
               },
             ]}
           />
@@ -162,7 +159,7 @@ const Page: FC = () => {
             rules={[
               {
                 required: true,
-                message: '请输入验证码',
+                message: t('AiCRsRRY'),
                 max: 4,
               },
             ]}
@@ -170,7 +167,7 @@ const Page: FC = () => {
             <Input
               maxLength={4}
               prefix={<SafetyOutlined className="text-[20px]" />}
-              placeholder="验证码"
+              placeholder={t('YMLfCXFK')}
               suffix={(
                 <img
                   className="cursor-pointer"
@@ -201,15 +198,15 @@ const Page: FC = () => {
               ),
             }}
             name="mobile"
-            placeholder="手机号"
+            placeholder={t('reRQcmnZ')}
             rules={[
               {
                 required: true,
-                message: '请输入手机号！',
+                message: t('JuLbycyD'),
               },
               {
                 pattern: /^1\d{10}$/,
-                message: '手机号格式错误！',
+                message: t('lpFRkXwM'),
               },
             ]}
           />
@@ -228,28 +225,40 @@ const Page: FC = () => {
             captchaProps={{
               size: 'large',
             }}
-            placeholder="请输入验证码"
+            placeholder={t('AiCRsRRY')}
             captchaTextRender={(timing, count) => {
               if (timing)
-                return `${count} ${'获取验证码'}`
+                return `${count} ${t('sekEcgEb')}`
 
-              return '获取验证码'
+              return t('sekEcgEb')
             }}
             name="captcha"
             rules={[
               {
                 required: true,
-                message: '请输入验证码！',
+                message: t('AiCRsRRY'),
               },
             ]}
             onGetCaptcha={async () => {
-              message.success('获取验证码成功！验证码为：1234')
+              const messageText = `${t('gTqSmcGA') + t('PxwlwFAw')}1234`
+              message.success(messageText)
             }}
           />
         </>
       )
     }
     return null
+  }
+
+  const handleAuth = (type: AuthType) => {
+    const redirect_uri = encodeURIComponent('https://shark.h7ml.cn')
+
+    const AuthUrl = {
+      gitee: `https://gitee.com/oauth/authorize?client_id=28a98fa051266a304805ab7f8c562475136e6b0fab1bd61d0c5bdf6349a830fd&redirect_uri=${redirect_uri}&response_type=code`,
+      github:
+        'https://github.com/login/oauth/authorize?client_id=2a315440d44092e42065&redirect_uri=https://shark.h7ml.cn&scope=user&state=75223d30d27f03a5565103f5f87a00d7bde18664',
+    }
+    window.open(AuthUrl[type], '_blank') //
   }
 
   return (
@@ -270,7 +279,9 @@ const Page: FC = () => {
           backgroundColor: 'rgba(0, 0, 0,0.65)',
           backdropFilter: 'blur(4px)',
         }}
-        subTitle="一个用于管理和可视化鲨鱼数据的 Web 应用程序。"
+        subTitle={t(
+          'wbTMzvDM' /* 一个用于管理和可视化鲨鱼数据的 Web 应用程序 */,
+        )}
         activityConfig={{
           style: {
             boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.2)',
@@ -282,21 +293,24 @@ const Page: FC = () => {
           title: 'Shark Data App',
           subTitle: 'A web application for managing and visualizing shark data',
           action: (
-            <Button
-              type="primary"
-              onClick={() => {
-                window.open('https://github.com/h7ml/shark')
-              }}
-              size="large"
-              style={{
-                borderRadius: 20,
-                background: token.colorBgElevated,
-                color: token.colorPrimary,
-                width: 120,
-              }}
-            >
-              Github
-            </Button>
+            <>
+              {' '}
+              <Button
+                type="primary"
+                onClick={() => {
+                  window.open('https://github.com/h7ml/shark')
+                }}
+                size="large"
+                style={{
+                  borderRadius: 20,
+                  background: token.colorBgElevated,
+                  color: token.colorPrimary,
+                  width: 120,
+                }}
+              >
+                Github
+              </Button>
+            </>
           ),
         }}
         actions={(
@@ -308,6 +322,20 @@ const Page: FC = () => {
               flexDirection: 'column',
             }}
           >
+            <Space direction="vertical">
+              <Switch
+                className="mt-5"
+                value={lang === 'zh'}
+                onChange={async (key) => {
+                  const lan = key ? 'zh' : 'en'
+                  await i18n.changeLanguage(lan)
+                  setLang(lan)
+                }}
+                checkedChildren={t('5iwzry')}
+                unCheckedChildren={t('hGtEfNnp')}
+                defaultChecked
+              />
+            </Space>
             <Divider plain>
               <span
                 style={{
@@ -316,11 +344,14 @@ const Page: FC = () => {
                   fontSize: 14,
                 }}
               >
-                其他登录方式
+                {t('ZuFSBNBR')}
               </span>
             </Divider>
             <Space align="center" size={24}>
-              <div
+              <Col
+                onClick={() => {
+                  handleAuth('gitee')
+                }}
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
@@ -332,9 +363,12 @@ const Page: FC = () => {
                   borderRadius: '50%',
                 }}
               >
-                <AlipayOutlined style={getIconStyle('#1677FF')} />
-              </div>
-              <div
+                <IconGitee style={getIconStyle('#1677FF')} />
+              </Col>
+              <Col
+                onClick={() => {
+                  handleAuth('github')
+                }}
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
@@ -346,28 +380,25 @@ const Page: FC = () => {
                   borderRadius: '50%',
                 }}
               >
-                <TaobaoOutlined style={{ ...iconStyles, color: '#FF6A10' }} />
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  height: 40,
-                  width: 40,
-                  border: `1px solid ${token.colorPrimaryBorder}`,
-                  borderRadius: '50%',
-                }}
-              >
-                <WeiboOutlined style={{ ...iconStyles, color: '#1890ff' }} />
-              </div>
+                <GithubOutlined style={{ ...iconStyles, color: '#FF6A10' }} />
+              </Col>
             </Space>
           </div>
         )}
       >
         <Tabs
-          items={TabPaneItem}
+          items={[
+            {
+              label: t('qPkNCnDl'),
+              key: 'account',
+              icon: <UserOutlined />,
+            },
+            {
+              key: 'phone',
+              icon: <MobileOutlined />,
+              label: t('jJIiZmVN'),
+            },
+          ]}
           centered
           activeKey={loginType}
           onChange={activeKey => setLoginType(activeKey as LoginType)}
@@ -381,14 +412,14 @@ const Page: FC = () => {
           }}
         >
           <ProFormCheckbox noStyle name="autoLogin">
-            自动登录
+            {t('jppgmQsa')}
           </ProFormCheckbox>
           <a
             style={{
               float: 'right',
             }}
           >
-            忘记密码
+            {t('tCJkfSMg')}
           </a>
         </div>
       </LoginFormPage>

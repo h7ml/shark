@@ -1,6 +1,7 @@
 import { Col, Row, message } from 'antd'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import type { FC } from 'react'
+import { useEffect, useState } from 'react'
 
 import {
   ContentConsumption,
@@ -16,6 +17,8 @@ import type { ContentDistributionDataItem } from './components/ContentDistributi
 import type { ContentSourceProps } from './components/ContentSource'
 import type { DataItem } from './components/OverviewStatistics'
 import type { TodayDataItem } from './components/TodayMetrics'
+import { useGlobalStore } from '@/store/global'
+import { i18n } from '@/utils'
 const MultiDimensionDataAnalysis: FC = () => {
   const [overviewData, setOverviewData] = useState<DataItem[]>([])
   const [todayData, setTodayData] = useState<TodayDataItem[]>([]) // 今日数据
@@ -27,8 +30,8 @@ const MultiDimensionDataAnalysis: FC = () => {
   const [contentSourceData, setContentSourceData] = useState<
     ContentSourceProps['data']
   >({}) // 内容来源数据
-  const [userRetention, setUserRetention] = useState([]) // 用户留存趋势
-  const [contentConsumption, setContentConsumption] = useState([]) // 内容消费趋势
+  const [userRetention, setUserRetention] = useState([]) // {t('wpVTrIbg')}
+  const [contentConsumption, setContentConsumption] = useState([]) // {t('fHAcoQib')}
   const fetchOverData = async () => {
     try {
       const {
@@ -57,7 +60,13 @@ const MultiDimensionDataAnalysis: FC = () => {
       message.error(`Failed to fetch overview data${error}`)
     }
   }
-
+  const { lang } = useGlobalStore()
+  useEffect(() => {
+    const changeLanguage = async () => {
+      await i18n.changeLanguage(lang)
+    }
+    changeLanguage()
+  }, [lang])
   useEffect(() => {
     fetchOverData()
   }, [])

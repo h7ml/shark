@@ -5,6 +5,8 @@ on:
     - cron: '30 06 * * *'
   push:
     branches: [master, dev]
+    paths:
+      - 'src/**'
   workflow_dispatch:
 
 env:

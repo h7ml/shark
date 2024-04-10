@@ -2,6 +2,7 @@ import { Line } from '@antv/g2plot'
 import { Card } from 'antd'
 import type { FC } from 'react'
 import { useEffect, useRef } from 'react'
+import { t } from '@/utils'
 
 export interface DataItem {
   name: string
@@ -53,7 +54,7 @@ const OverviewStatistics: FC<OverviewStatisticsProps> = ({ data }) => {
   }, [data])
   return (
     <Card
-      title="数据总览"
+      title={t('eyGOrIXr')}
       className="overview-statistics h-[500px]"
       key={data.length}
     >

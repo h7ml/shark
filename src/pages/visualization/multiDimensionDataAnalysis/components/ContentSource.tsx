@@ -2,6 +2,7 @@ import { Pie } from '@antv/g2plot'
 import { Card, Col, Row } from 'antd'
 import type { FC } from 'react'
 import { useEffect, useRef } from 'react'
+import { t } from '@/utils'
 
 export interface ContentSourceProps {
   data: {
@@ -110,7 +111,7 @@ const ContentSource: FC<ContentSourceProps> = ({ data }) => {
   }, [data, data.image, data.text, data.video])
 
   return (
-    <Card title="内容发布来源" className="h-[500px]">
+    <Card title={t('esuMZlgc')} className="h-[500px]">
       <Row gutter={[16, 16]} className="flex items-center justify-center">
         {containers.map((container, index) => (
           <Col span={6} key={index}>

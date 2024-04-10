@@ -1,7 +1,7 @@
 import i18n from 'i18next'
 
-import enUS from '@/assets/locales/en-US'
-import zhCN from '@/assets/locales/zh-CN'
+import enUS from '@/assets/locales/en-US.json'
+import zhCN from '@/assets/locales/zh-CN.json'
 import { defaultSetting } from '@/default-setting'
 
 i18n.init({

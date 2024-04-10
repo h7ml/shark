@@ -23,19 +23,25 @@ jobs:
         run: npm install -g npm-check-updates pnpm
 
       - name: Update Dependencies
-        run: npx ncu -u
+        run: npx ncu -u --reject chalk,ora,eslint
 
       - name: Install updated dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build and test
+        id: build_and_test
+        run: |
+          pnpm build:gh-pages && pnpm run i18n
+          echo "::set-output name=status::success"
 
       - name: Check for changes
         id: check_changes
         run: |
-          if git diff --quiet --exit-code package.json pnpm-lock.yaml; then
-            echo "No changes in package.json or pnpm-lock.yaml. Exiting."
-            exit 0
+          if [ "${{ steps.build_and_test.outputs.status }}" == "success" ]; then
+            echo "Changes detected and build successful. Proceeding with commit and push."
           else
-            echo "Changes detected. Proceeding with commit and push."
+            echo "Build failed or no changes detected. Exiting."
+            exit 1
           fi
 
       - name: Commit changes

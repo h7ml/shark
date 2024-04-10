@@ -9,6 +9,7 @@ import {
   LockOutlined,
   TableOutlined,
   UserOutlined,
+  VideoCameraOutlined,
   WarningOutlined,
 } from '@ant-design/icons'
 import { lazy } from 'react'
@@ -27,25 +28,25 @@ export interface MenuItem {
 export const routeConfig: MenuItem[] = [
   {
     path: '/dashboard',
-    title: '驾驶舱',
+    title: 'dashboard',
     icon: <DashboardOutlined />,
     Component: lazy(() => import('@/pages/dashboard')),
   },
   {
     path: '/user',
     // Component: lazy(() => import('@/pages/user')),
-    title: '用户中心',
+    title: 'ueiriPPJ',
     icon: <UserOutlined />,
     children: [
       {
         path: '/user/account',
-        title: '个人中心',
+        title: 'pUWDlNFY',
         icon: <AimOutlined />,
         Component: lazy(() => import('@/pages/user/account')),
       },
       {
         path: '/user/settings',
-        title: '个人设置',
+        title: 'nKmJjYdX',
         icon: <ContactsOutlined />,
         Component: lazy(() => import('@/pages/user/settings')),
       },
@@ -53,12 +54,12 @@ export const routeConfig: MenuItem[] = [
   },
   {
     path: '/visualization',
-    title: '数据可视化',
+    title: 'oViTwVZs',
     icon: <EyeOutlined />,
     children: [
       {
         path: '/visualization/multiDimensionDataAnalysis',
-        title: '多维数据分析',
+        title: 'ZGzgIIjL',
         icon: <DeploymentUnitOutlined />,
         Component: lazy(
           () => import('@/pages/visualization/multiDimensionDataAnalysis'),
@@ -69,12 +70,18 @@ export const routeConfig: MenuItem[] = [
   {
     path: '/table',
     Component: lazy(() => import('@/pages/table')),
-    title: '表格',
+    title: 'nFPoUFZq',
     icon: <TableOutlined />,
   },
   {
+    path: '/video',
+    Component: lazy(() => import('@/pages/video')),
+    title: 'FZogKjGC',
+    icon: <VideoCameraOutlined />,
+  },
+  {
     path: '/exception',
-    title: '异常页',
+    title: 'mVCBkHUZ',
     icon: <WarningOutlined />,
     children: [
       {
