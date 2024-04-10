@@ -14,7 +14,6 @@ import {
 } from '@ant-design/icons'
 import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
-import { t } from '@/utils'
 
 export interface MenuItem {
   path: string
@@ -29,25 +28,25 @@ export interface MenuItem {
 export const routeConfig: MenuItem[] = [
   {
     path: '/dashboard',
-    title: t('dashboard'),
+    title: 'dashboard',
     icon: <DashboardOutlined />,
     Component: lazy(() => import('@/pages/dashboard')),
   },
   {
     path: '/user',
     // Component: lazy(() => import('@/pages/user')),
-    title: t('ueiriPPJ'),
+    title: 'ueiriPPJ',
     icon: <UserOutlined />,
     children: [
       {
         path: '/user/account',
-        title: t('pUWDlNFY'),
+        title: 'pUWDlNFY',
         icon: <AimOutlined />,
         Component: lazy(() => import('@/pages/user/account')),
       },
       {
         path: '/user/settings',
-        title: t('nKmJjYdX'),
+        title: 'nKmJjYdX',
         icon: <ContactsOutlined />,
         Component: lazy(() => import('@/pages/user/settings')),
       },
@@ -55,12 +54,12 @@ export const routeConfig: MenuItem[] = [
   },
   {
     path: '/visualization',
-    title: t('oViTwVZs'),
+    title: 'oViTwVZs',
     icon: <EyeOutlined />,
     children: [
       {
         path: '/visualization/multiDimensionDataAnalysis',
-        title: t('ZGzgIIjL'),
+        title: 'ZGzgIIjL',
         icon: <DeploymentUnitOutlined />,
         Component: lazy(
           () => import('@/pages/visualization/multiDimensionDataAnalysis'),
@@ -71,18 +70,18 @@ export const routeConfig: MenuItem[] = [
   {
     path: '/table',
     Component: lazy(() => import('@/pages/table')),
-    title: t('nFPoUFZq'),
+    title: 'nFPoUFZq',
     icon: <TableOutlined />,
   },
   {
     path: '/video',
     Component: lazy(() => import('@/pages/video')),
-    title: t('FZogKjGC'),
+    title: 'FZogKjGC',
     icon: <VideoCameraOutlined />,
   },
   {
     path: '/exception',
-    title: t('mVCBkHUZ'),
+    title: 'mVCBkHUZ',
     icon: <WarningOutlined />,
     children: [
       {

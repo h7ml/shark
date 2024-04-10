@@ -19,6 +19,7 @@ import {
   Form,
   Input,
   Space,
+  Switch,
   Tabs,
   message,
   theme,
@@ -30,8 +31,9 @@ import { useNavigate } from 'react-router-dom'
 
 import Shark from '@/assets/icons/shark.svg'
 import { useStorage } from '@/hooks'
-import { t } from '@/utils'
+import { i18n, t } from '@/utils'
 import { IconGitee } from '@/assets/icons/gitee'
+import { useGlobalStore } from '@/store/global'
 
 type LoginType = 'phone' | 'account'
 
@@ -59,7 +61,13 @@ const Page: FC = () => {
   const { token } = theme.useToken()
   const [data, setData] = useState<DataType>({})
   const { setData: setUser } = useStorage('userName')
-
+  const { lang, setLang } = useGlobalStore()
+  useEffect(() => {
+    const changeLanguage = async () => {
+      await i18n.changeLanguage(lang)
+    }
+    changeLanguage()
+  }, [lang])
   // 时间戳
   const timestamp = Date.now()
   const refreshCaptcha = (timestamp: number) => {
@@ -285,21 +293,24 @@ const Page: FC = () => {
           title: 'Shark Data App',
           subTitle: 'A web application for managing and visualizing shark data',
           action: (
-            <Button
-              type="primary"
-              onClick={() => {
-                window.open('https://github.com/h7ml/shark')
-              }}
-              size="large"
-              style={{
-                borderRadius: 20,
-                background: token.colorBgElevated,
-                color: token.colorPrimary,
-                width: 120,
-              }}
-            >
-              Github
-            </Button>
+            <>
+              {' '}
+              <Button
+                type="primary"
+                onClick={() => {
+                  window.open('https://github.com/h7ml/shark')
+                }}
+                size="large"
+                style={{
+                  borderRadius: 20,
+                  background: token.colorBgElevated,
+                  color: token.colorPrimary,
+                  width: 120,
+                }}
+              >
+                Github
+              </Button>
+            </>
           ),
         }}
         actions={(
@@ -311,6 +322,20 @@ const Page: FC = () => {
               flexDirection: 'column',
             }}
           >
+            <Space direction="vertical">
+              <Switch
+                className="mt-5"
+                value={lang === 'zh'}
+                onChange={async (key) => {
+                  const lan = key ? 'zh' : 'en'
+                  await i18n.changeLanguage(lan)
+                  setLang(lan)
+                }}
+                checkedChildren={t('5iwzry')}
+                unCheckedChildren={t('hGtEfNnp')}
+                defaultChecked
+              />
+            </Space>
             <Divider plain>
               <span
                 style={{

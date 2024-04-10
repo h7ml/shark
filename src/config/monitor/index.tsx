@@ -9,10 +9,7 @@ interface MonitorProps {
 const Monitor: FC<MonitorProps> = ({ children }) => {
   return (
     <SentryMonitor>
-      <RollbarMonitor>
-        \
-        {children}
-      </RollbarMonitor>
+      <RollbarMonitor>{children}</RollbarMonitor>
     </SentryMonitor>
   )
 }

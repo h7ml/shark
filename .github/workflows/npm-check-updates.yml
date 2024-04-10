@@ -23,7 +23,7 @@ jobs:
         run: npm install -g npm-check-updates pnpm
 
       - name: Update Dependencies
-        run: npx ncu -u --reject chalk,ora
+        run: npx ncu -u --reject chalk,ora,eslint
 
       - name: Install updated dependencies
         run: pnpm install --no-frozen-lockfile

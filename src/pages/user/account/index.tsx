@@ -21,7 +21,8 @@ import type { FC } from 'react'
 import React, { useEffect, useState } from 'react'
 import type { HeaderProps } from './header'
 import UserInfoHeader from './header'
-import { t } from '@/utils'
+import { i18n, t } from '@/utils'
+import { useGlobalStore } from '@/store/global'
 import DemoColumn from '@/pages/dashboard/column'
 
 interface AccountPageProps {
@@ -35,6 +36,13 @@ const AccountPage: FC<AccountPageProps> = () => {
   const [projectData, setProjectData] = useState<any[]>([])
   const [teamsData, setTeamsData] = useState<any[]>([])
   const [activitiesData, setActivitiesData] = useState<any[]>([])
+  const { lang } = useGlobalStore()
+  useEffect(() => {
+    const changeLanguage = async () => {
+      await i18n.changeLanguage(lang)
+    }
+    changeLanguage()
+  }, [lang])
   const fetchUser = async () => {
     setLoading(true)
     try {

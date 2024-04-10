@@ -1,8 +1,9 @@
-import type { FC } from 'react'
+import { type FC, useEffect } from 'react'
 import { Button, Result } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { WarningOutlined } from '@ant-design/icons'
-import { t } from '@/utils'
+import { i18n, t } from '@/utils'
+import { useGlobalStore } from '@/store/global'
 
 const ForbiddenPage: FC = () => {
   const navigate = useNavigate()
@@ -14,7 +15,13 @@ const ForbiddenPage: FC = () => {
   const handleGoHome = () => {
     navigate('/')
   }
-
+  const { lang } = useGlobalStore()
+  useEffect(() => {
+    const changeLanguage = async () => {
+      await i18n.changeLanguage(lang)
+    }
+    changeLanguage()
+  }, [lang])
   return (
     <Result
       status="403"

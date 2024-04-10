@@ -6,11 +6,12 @@ import { Link, useLocation, useMatches } from 'react-router-dom'
 import type { MenuItem } from '@/config/routes'
 import { routeConfig } from '@/config/routes'
 import { useGlobalStore } from '@/store/global'
+import { t } from '@/utils'
 
 function SlideMenu() {
   const location = useLocation()
   const matches = useMatches()
-
+  const { lang } = useGlobalStore()
   const [openKeys, setOpenKeys] = useState<string[]>([])
 
   const { collapsed } = useGlobalStore()
@@ -22,24 +23,28 @@ function SlideMenu() {
   }, [matches, collapsed])
 
   const getMenuTitle = (menu: MenuItem) => {
-    if (menu.children)
-      return menu.title
+    if (menu.children && menu.title)
+      return t(menu.title)
 
-    return <Link to={menu.path}>{menu.title}</Link>
+    return <Link to={menu.path}>{menu.title ? t(menu.title) : ''}</Link>
   }
 
-  const treeMenuData = useCallback((menus: MenuItem[]): ItemType[] => {
-    return menus
-      .filter(o => o.title)
-      .map((menu: MenuItem) => {
-        return {
-          key: menu.path,
-          label: getMenuTitle(menu),
-          icon: menu.icon,
-          children: menu.children ? treeMenuData(menu.children) : null,
-        }
-      })
-  }, [])
+  const treeMenuData = useCallback(
+    (menus: MenuItem[]): ItemType[] => {
+      return menus
+        .filter(o => o.title)
+        .map((menu: MenuItem) => {
+          return {
+            key: menu.path,
+            label: getMenuTitle(menu),
+            icon: menu.icon,
+            children: menu.children ? treeMenuData(menu.children) : null,
+          }
+        })
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [lang],
+  )
 
   const menuData = useMemo(() => {
     return treeMenuData(routeConfig || [])

@@ -1,6 +1,6 @@
 import { BellOutlined, MenuOutlined, SettingOutlined } from '@ant-design/icons'
 import { Avatar, Dropdown, Input } from 'antd'
-import { memo, useEffect } from 'react'
+import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Icon3 } from '@/assets/icons/3'
 import { IconBuguang } from '@/assets/icons/buguang'
@@ -15,11 +15,9 @@ import { i18n, t } from '@/utils'
 function Header() {
   const navigate = useNavigate()
   const { data: userName = '' } = useStorage('userName')
-  useEffect(() => {
-    console.log(userName)
-  })
   const { darkMode, collapsed, setCollapsed, setDarkMode, setLang, lang }
     = useGlobalStore()
+
   const handleLogout = (handerInfo: { key: any }) => {
     const { key } = handerInfo
     navigate(`/user/${key}`)
@@ -98,9 +96,6 @@ function Header() {
               })),
               onClick: async ({ key }) => {
                 await i18n.changeLanguage(key)
-                // 切换语言后，重新渲染页面
-                // 刷新当前页面
-                window.location.reload()
                 setLang(key)
               },
             }}

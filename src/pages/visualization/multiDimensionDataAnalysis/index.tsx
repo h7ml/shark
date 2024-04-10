@@ -17,6 +17,8 @@ import type { ContentDistributionDataItem } from './components/ContentDistributi
 import type { ContentSourceProps } from './components/ContentSource'
 import type { DataItem } from './components/OverviewStatistics'
 import type { TodayDataItem } from './components/TodayMetrics'
+import { useGlobalStore } from '@/store/global'
+import { i18n } from '@/utils'
 const MultiDimensionDataAnalysis: FC = () => {
   const [overviewData, setOverviewData] = useState<DataItem[]>([])
   const [todayData, setTodayData] = useState<TodayDataItem[]>([]) // 今日数据
@@ -58,7 +60,13 @@ const MultiDimensionDataAnalysis: FC = () => {
       message.error(`Failed to fetch overview data${error}`)
     }
   }
-
+  const { lang } = useGlobalStore()
+  useEffect(() => {
+    const changeLanguage = async () => {
+      await i18n.changeLanguage(lang)
+    }
+    changeLanguage()
+  }, [lang])
   useEffect(() => {
     fetchOverData()
   }, [])
