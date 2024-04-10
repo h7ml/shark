@@ -83,7 +83,7 @@ const config: Configuration = {
     },
   },
   // devtool: isDev ? "eval-cheap-module-source-map" : false,
-  devtool: !isDev ? 'source-map' : false,
+  devtool: !isDev && isSourceMap ? 'source-map' : false,
   // devtool: false,
   module: {
     rules: [

@@ -3,7 +3,7 @@ import './message-box'
 import './table'
 import './auth'
 import './visualization'
-
+import './dashboard'
 import Mock from 'mockjs'
 
 import { isSSR } from '@/utils'
