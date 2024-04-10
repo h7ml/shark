@@ -1,3 +1,7 @@
+## [1.1.2](https://github.com/h7ml/shark/compare/1.2.0...1.1.2) (2024-4-10)
+
+# [1.1.0](https://github.com/h7ml/shark/compare/1.2.0...1.1.2) (2024-3-30)
+
 # 1.2.0 (2024-4-10)
 
 ### Bug Fixes
