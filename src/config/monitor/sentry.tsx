@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/react'
 import type { FC, ReactNode } from 'react'
+import { t } from '@/utils'
 import '@/config/nprogress'
 Sentry.init({
   dsn: 'https://41ab9ee3a8eb92a3bdfdb1526de176ce@o933014.ingest.us.sentry.io/4507003679145984',
@@ -26,7 +27,7 @@ Sentry.init({
  * @returns 返回一个包含提示信息的 JSX.Element 对象
  */
 function FallbackComponent() {
-  return <h2>请刷新页面重新操作</h2>
+  return <h2>{t('uUapODir')}</h2>
 }
 
 interface SentryMonitorProps {

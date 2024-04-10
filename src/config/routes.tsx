@@ -77,7 +77,7 @@ export const routeConfig: MenuItem[] = [
   {
     path: '/video',
     Component: lazy(() => import('@/pages/video')),
-    title: t('video'),
+    title: t('FZogKjGC'),
     icon: <VideoCameraOutlined />,
   },
   {

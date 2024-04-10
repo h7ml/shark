@@ -114,7 +114,7 @@ const Page: FC = () => {
                 />
               ),
             }}
-            placeholder="用户名: admin or user"
+            placeholder="admin or user"
             initialValue="admin"
             rules={[
               {
@@ -159,7 +159,7 @@ const Page: FC = () => {
             <Input
               maxLength={4}
               prefix={<SafetyOutlined className="text-[20px]" />}
-              placeholder="验证码"
+              placeholder={t('YMLfCXFK')}
               suffix={(
                 <img
                   className="cursor-pointer"
@@ -190,7 +190,7 @@ const Page: FC = () => {
               ),
             }}
             name="mobile"
-            placeholder="手机号"
+            placeholder={t('reRQcmnZ')}
             rules={[
               {
                 required: true,
@@ -217,7 +217,7 @@ const Page: FC = () => {
             captchaProps={{
               size: 'large',
             }}
-            placeholder="请输入验证码"
+            placeholder={t('AiCRsRRY')}
             captchaTextRender={(timing, count) => {
               if (timing)
                 return `${count} ${t('sekEcgEb')}`

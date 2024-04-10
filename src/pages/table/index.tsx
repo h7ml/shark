@@ -132,11 +132,11 @@ const TablePage: FC = () => {
     <div>
       {contextHolder}
       <Modal
-        title="删除确认"
+        title={t('rwgJkNNx')}
         open={open}
         onOk={handleOk}
-        cancelText="取消"
-        okText="确认"
+        cancelText={t('hAxbfvSF')}
+        okText={t('hGYTYdGu')}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >

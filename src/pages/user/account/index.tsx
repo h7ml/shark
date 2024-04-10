@@ -138,8 +138,8 @@ const AccountPage: FC<AccountPageProps> = () => {
                         name="Enable"
                         noStyle
                         value={item.status === 'active'}
-                        checkedChildren="启用"
-                        unCheckedChildren="禁用"
+                        checkedChildren={t('CNjonVfr')}
+                        unCheckedChildren={t('uTxLCTDT')}
                       />
                     </ProFormGroup>
                   )}

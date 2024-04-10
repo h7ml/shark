@@ -7,4 +7,5 @@ module.exports = {
     zh: path.join('src', 'assets', 'locales', 'zh-CN.json'),
     en: path.join('src', 'assets', 'locales', 'en-US.json'),
   },
+  forceUpdate: true,
 }

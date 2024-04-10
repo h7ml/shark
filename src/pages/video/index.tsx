@@ -1,6 +1,6 @@
 import debounce from 'lodash/debounce'
 import throttle from 'lodash/throttle'
-import type { ChangeEvent, FormEvent } from 'react'
+import type { ChangeEvent } from 'react'
 import React, { useRef, useState } from 'react'
 import { Button, Form, Input, message } from 'antd'
 import { t } from '@/utils'
@@ -37,7 +37,7 @@ const VideoPage: React.FC = () => {
     else message.error(`${`${t('eKfCNkqq')}videoPlayer${t('bikocJSR')}`}`)
   }, 1000) // 1000ms throttle interval
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = () => {
     handlePlayThrottled()
   }
 

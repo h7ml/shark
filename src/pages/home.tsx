@@ -58,7 +58,7 @@ function Home() {
       }}
     >
       <ProCard
-        title="数据概览"
+        title={t('VXGVzvwc')}
         extra={extra}
         split={responsive ? 'horizontal' : 'vertical'}
         headerBordered
@@ -108,7 +108,7 @@ function Home() {
             </ProCard>
           </ProCard>
           <StatisticCard
-            title="流量走势"
+            title={t('evEeYiWL')}
             chart={(
               <img
                 src="https://gw.alipayobjects.com/zos/alicdn/_dZIob2NB/zhuzhuangtu.svg"
@@ -118,11 +118,11 @@ function Home() {
           />
         </ProCard>
         <StatisticCard
-          title="流量占用情况"
+          title={t('MbDJXyEd')}
           chart={(
             <img
               src="https://gw.alipayobjects.com/zos/alicdn/qoYmFMxWY/jieping2021-03-29%252520xiawu4.32.34.png"
-              alt="大盘"
+              alt={t('HVkBPAGd')}
               width="100%"
             />
           )}

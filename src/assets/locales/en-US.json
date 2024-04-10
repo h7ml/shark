@@ -2,7 +2,7 @@
   "wbTMzvDM": "A web application for managing and visualizing shark data",
   "wVzXBuYs": "Please enter your account number",
   "RNISycbR": "Account",
-  "DjMcEMAe": "Please enter the password",
+  "DjMcEMAe": "Please enter password",
   "HplkKxdY": "password",
   "dDdqAAve": "Login",
   "5iwzry": "Chinese",
@@ -333,5 +333,6 @@
   "eKfCNkqq": "can't find",
   "NvDIWzLK": "Please enter",
   "EOtrIDGy": "Video link",
-  "OWuSVBcv": "Play video"
+  "OWuSVBcv": "Play video",
+  "FZogKjGC": "Video player"
 }

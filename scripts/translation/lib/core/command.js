@@ -3,6 +3,7 @@ const fs = require('node:fs').promises
 const { program } = require('commander')
 const ora = require('ora')
 const chalk = require('chalk')
+const { isEmpty } = require('lodash')
 const { translationAction, translateText } = require('./action')
 
 const rootDir = process.cwd() // 获取当前工作目录
@@ -52,11 +53,24 @@ async function checkTranslationPathExist(filePath) {
  * @param {string} fileContent - 文件内容
  */
 async function evalConfig(fileContent) {
-  // eslint-disable-next-line no-eval
+  /* eslint-disable no-eval */
   const config = eval(fileContent)
+  const i18nConfig = await readTranslationFile(await joinPath('i18n.json'))
+  const loading = ora('i18n...').start()
+
+  if (isEmpty(i18nConfig)) {
+    loading.succeed(chalk.green('i18n.json 为空，不更新数据'))
+    return
+  }
+
   const { zh, en } = config.i18nPath
   const zhContent = await readTranslationFile(await joinPath(zh))
   const enContent = await readTranslationFile(await joinPath(en))
+
+  if (config.i18nPath.forceUpdate)
+    loading.succeed(chalk.green(`强制更新:${zh},${en}`))
+  else loading.succeed(chalk.green(`默认更新:${zh},${en}`))
+
   await translation(config.i18nPath, zhContent, enContent)
 }
 
