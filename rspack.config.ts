@@ -5,6 +5,7 @@ import refreshPlugin from '@rspack/plugin-react-refresh'
 import { sentryWebpackPlugin } from '@sentry/webpack-plugin'
 const isDev: boolean = process.env.NODE_ENV === 'development'
 const isGithubPath: boolean = process.env.PUBLIC_PATH === '/shark/'
+const isSourceMap: boolean = process.env.SOURCEMAP === 'true'
 const config: Configuration = {
   context: __dirname, // 基础目录：该选项用于设置 Rspack 构建时所依赖的基础路径。
   entry: './src/main.tsx', // 入口文件：该选项用于设置 Rspack 构建时所依赖的入口文件。单个入口
@@ -82,7 +83,7 @@ const config: Configuration = {
     },
   },
   // devtool: isDev ? "eval-cheap-module-source-map" : false,
-  devtool: !isDev && !isGithubPath ? 'source-map' : false,
+  devtool: !isDev && isSourceMap ? 'source-map' : false,
   // devtool: false,
   module: {
     rules: [
@@ -160,7 +161,7 @@ const config: Configuration = {
         },
       ],
     }),
-    !isDev && !isGithubPath
+    !isDev && isSourceMap
       ? sentryWebpackPlugin({
         org: 'h7ml',
         project: 'shark',
