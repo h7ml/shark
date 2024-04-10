@@ -2,6 +2,16 @@ import { message } from 'antd'
 import type { ForwardedRef, MutableRefObject } from 'react'
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import { t } from '@/utils'
+import { IconVolumeUp } from '@/assets/icons/volume-up'
+import { IconVolumeMinus } from '@/assets/icons/volume-minus'
+import { IconVolumeMuted } from '@/assets/icons/volume-muted'
+import { IconPlay } from '@/assets/icons/play'
+import { IconStop } from '@/assets/icons/stop'
+import { IconReload } from '@/assets/icons/reload'
+import { IconPictureInPicture } from '@/assets/icons/picture-in-picture'
+import { IconFullScreen } from '@/assets/icons/full-screen'
+import { IconBackward } from '@/assets/icons/backward'
+import { IcontForwardCircleLight } from '@/assets/icons/fast-forward'
 
 interface VideoPlayerProps {
   src: string
@@ -11,10 +21,10 @@ interface VideoPlayerProps {
 
 const VideoPlayer = forwardRef(
   (props: VideoPlayerProps, ref: ForwardedRef<HTMLVideoElement>) => {
-    const { src, width = '100%', height = '90%' } = props
+    const { src, width = '100%', height = '88vh' } = props
     const videoRef = useRef<HTMLVideoElement>(null)
     const [isPlaying, setIsPlaying] = useState(false)
-    const [volume, setVolume] = useState(1)
+    const [volume, setVolume] = useState(0.5)
     const [progress, setProgress] = useState(0)
     const [isDragging, setIsDragging] = useState(false)
     const [currentTime, setCurrentTime] = useState('00:00')
@@ -110,7 +120,12 @@ const VideoPlayer = forwardRef(
         videoRef.current.volume = newVolume
       }
     }
-
+    const handleVolume = (volume: number) => {
+      if (videoRef.current) {
+        setVolume(volume)
+        videoRef.current.volume = volume
+      }
+    }
     const handleFullScreen = () => {
       videoRef.current?.requestFullscreen()
     }
@@ -172,7 +187,7 @@ const VideoPlayer = forwardRef(
     }
 
     return (
-      <div className="relative">
+      <div className="relative" style={{ width, height }}>
         <video
           ref={(videoElement) => {
             if (videoElement) {
@@ -189,56 +204,62 @@ const VideoPlayer = forwardRef(
               }
             }
           }}
-          style={{ width, height }}
           src={src}
-          className="w-full h-auto"
+          className="w-full h-full"
           onTimeUpdate={handleProgress}
           onEnded={() => setIsPlaying(false)}
         />
         <div className="absolute bottom-15 z-998 left-0 right-0 flex justify-center space-x-4">
-          <button className="cursor-pointer text-ccc" onClick={handlePlayPause}>
-            {isPlaying ? t('VSZdxVOM') : t('GTuxgysd')}
+          <button
+            title={isPlaying ? t('VSZdxVOM') : t('GTuxgysd')}
+            className="cursor-pointer text-ccc"
+            onClick={handlePlayPause}
+          >
+            {isPlaying ? <IconStop></IconStop> : <IconPlay></IconPlay>}
           </button>
-          <button className="cursor-pointer text-ccc" onClick={handleReload}>
-            {t('kYVkmXtK')}
-            {' '}
-            3
+          <button
+            className="cursor-pointer text-ccc"
+            onClick={handleReload}
+            title={t('kYVkmXtK')}
+          >
+            <IconReload />
           </button>
           <button
             className="cursor-pointer text-ccc"
             onClick={handleFastForward}
+            title={t('fZYVSWPZ') + 3 + t('lNCFQVIz')}
           >
-            {t('fZYVSWPZ')}
-            {' '}
-            3
-            {t('lNCFQVIz')}
-          </button>
-          <button className="cursor-pointer text-ccc" onClick={handleRewind}>
-            {t('KQExjfzI')}
-            {' '}
-            3
-            {t('lNCFQVIz')}
-          </button>
-          <button className="cursor-pointer text-ccc" onClick={handleVolumeUp}>
-            {t('tPLJAbEn')}
+            <IcontForwardCircleLight />
           </button>
           <button
             className="cursor-pointer text-ccc"
-            onClick={handleVolumeDown}
+            title={t('KQExjfzI') + 3 + t('lNCFQVIz')}
+            onClick={handleRewind}
           >
-            {t('UzSeBVPp')}
+            <IconBackward />
+          </button>
+          <button title={t('tPLJAbEn')} onClick={handleVolumeUp}>
+            <IconVolumeUp className="cursor-pointer"></IconVolumeUp>
+          </button>
+          <button title={t('UzSeBVPp')} onClick={handleVolumeDown}>
+            <IconVolumeMinus className="cursor-pointer"></IconVolumeMinus>
+          </button>
+          <button onClick={() => handleVolume(0)}>
+            <IconVolumeMuted className="cursor-pointer"></IconVolumeMuted>
           </button>
           <button
             className="cursor-pointer text-ccc"
             onClick={handleFullScreen}
+            title={t('pltSfqMA')}
           >
-            {t('pltSfqMA')}
+            <IconFullScreen />
           </button>
           <button
             className="cursor-pointer text-ccc"
             onClick={handleTogglePictureInPicture}
+            title={isPictureInPicture ? t('nKQaojFg') : t('LLefTaMy')}
           >
-            {isPictureInPicture ? t('nKQaojFg') : t('LLefTaMy')}
+            <IconPictureInPicture />
           </button>
         </div>
         <div className="absolute bottom-5 left-0 right-0 mb-4 px-4  z-999">
@@ -253,7 +274,7 @@ const VideoPlayer = forwardRef(
           >
           </progress>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 mb-2 px-4 flex justify-between text-white">
+        <div className="absolute bottom-0 left-0 right-0 mb-2 px-4 flex justify-between text-ccc">
           <span>{currentTime}</span>
           <span>{duration}</span>
         </div>

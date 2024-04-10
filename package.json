@@ -89,6 +89,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.12.1",
     "@antfu/eslint-plugin-prettier": "5.0.1-1",
+    "@iconify/json": "^2.2.199",
     "@release-it/conventional-changelog": "^8.0.1",
     "@rspack/cli": "0.5.9",
     "@rspack/core": "0.5.9",

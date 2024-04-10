@@ -38,11 +38,6 @@ const VideoPage: React.FC = () => {
   }, 1000) // 1000ms throttle interval
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    console.log(
-      '%c [ e ]-39',
-      'font-size:13px; background:pink; color:#bf2c9f;',
-      e,
-    )
     handlePlayThrottled()
   }
 
