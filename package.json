@@ -43,7 +43,7 @@
     "edgio:dev": "edgio dev",
     "eslint": "eslint . --fix --cache",
     "pre-commit": "pretty-quick --staged && npm run eslint",
-    "prepare": "husky install  && npm run build:utils && npm run build:ui && npm run build:docs",
+    "prepare": "husky install  && npm run build:utils && npm run build:ui",
     "prettier": "prettier --write . --log-level error",
     "preview": "npm run build && rspack preview",
     "stylelint": "stylelint \"**/*.{css,scss,sass}\" --fix --cache",
