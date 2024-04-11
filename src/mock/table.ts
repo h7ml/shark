@@ -7,7 +7,7 @@ if (!isSSR) {
     mock: true, // 是否开启mock 默认关闭
     setup: () => {
       Mock.mock('/api/table', {
-        'data|30-1000': [
+        'data|30-50': [
           {
             'key|+1': 1,
             'name': '@cname',

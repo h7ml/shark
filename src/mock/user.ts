@@ -92,7 +92,7 @@ if (!isSSR) {
               'desc': '@cparagraph(5, 8)',
               'updatedAt': '@datetime',
               'star': '@integer(10, 100)',
-              'status|1': ['active', 'exception', 'normal'],
+              'status': '@boolean',
               'percent': '@integer(10, 100)',
               'time': '@datetime',
               'title': '@cname(3, 5)',

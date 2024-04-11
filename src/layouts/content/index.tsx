@@ -13,10 +13,10 @@ const Content: FC<any> = ({ children }) => {
 
   return (
     <div
-      className="mt-[80px] w-[100%] bg-container !<lg:ml-[16px]"
+      className="color-transition mt-[80px] w-[100%] bg-container !<lg:ml-[16px]"
       style={{
         borderRadius: '8px',
-        marginLeft: collapsed ? 112 : defaultSetting.slideWidth,
+        marginLeft: isPC ? (collapsed ? 112 : defaultSetting.slideWidth) : 12,
         minHeight: 'calc(100vh - 80px)',
         transition: 'all 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms',
         width: `calc(100vw - ${isPC ? (collapsed ? 112 : defaultSetting.slideWidth) : 32}px)`,

@@ -83,7 +83,7 @@ const config: Configuration = {
     },
   },
   // devtool: isDev ? "eval-cheap-module-source-map" : false,
-  devtool: !isDev && isSourceMap ? 'source-map' : false,
+  devtool: isDev || isSourceMap ? 'source-map' : false,
   // devtool: false,
   module: {
     rules: [
@@ -165,6 +165,7 @@ const config: Configuration = {
       ? sentryWebpackPlugin({
         org: 'h7ml',
         project: 'shark',
+        telemetry: false,
         // Auth tokens can be obtained from https://sentry.io/orgredirect/organizations/:orgslug/settings/auth-tokens/
         authToken:
             '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',

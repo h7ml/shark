@@ -15,8 +15,7 @@ import type { ColumnsType } from 'antd/es/table'
 import type { FC } from 'react'
 import { createRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useQueryClient } from 'react-query'
-import { useAxios } from '@/hooks'
+import { useAxios, useQueryClient } from '@/hooks'
 
 export interface DataType {
   key?: string
@@ -234,7 +233,7 @@ const TablePage: FC = () => {
     formref.current?.setFieldsValue(editRecord)
   }, [editRecord, formref])
   return (
-    <div>
+    <div className="dark:bg-[rgb(33,41,70)] bg-white p-[24px] rounded-md">
       {contextHolder}
       <Modal
         title={t('Edit')}

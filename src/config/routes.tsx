@@ -16,8 +16,9 @@ import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 
 export interface MenuItem {
+  key?: string
   path: string
-  title?: string
+  title: string
   icon?: any
   element?: any
   children?: MenuItem[]
@@ -107,5 +108,6 @@ export const routeConfig: MenuItem[] = [
   {
     path: '/',
     element: <Navigate to="/dashboard" />,
+    title: 'dashboard',
   },
 ]

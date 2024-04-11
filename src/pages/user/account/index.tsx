@@ -1,3 +1,17 @@
+import type { FC } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import {
+  Avatar,
+  Button,
+  Col,
+  Form,
+  List,
+  Progress,
+  Row,
+  Space,
+  Tag,
+} from 'antd'
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons'
 import {
   ProCard,
@@ -5,109 +19,112 @@ import {
   ProFormSwitch,
   ProList,
 } from '@ant-design/pro-components'
-import {
-  Avatar,
-  Button,
-  Col,
-  List,
-  Progress,
-  Row,
-  Space,
-  Tag,
-  message,
-} from 'antd'
-import axios from 'axios'
-import type { FC } from 'react'
-import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import type { HeaderProps } from './header'
 import UserInfoHeader from './header'
 import DemoColumn from '@/pages/dashboard/column'
+import { useAxios } from '@/hooks'
 
 interface AccountPageProps {
   history: any
   match: any
 }
 
+interface ListItem {
+  id: number
+  name: string
+  desc: string
+  updatedAt: string
+  star: number
+  status: boolean
+  percent: number
+  time: string
+  title: string
+}
+
+interface MockData {
+  list: ListItem[]
+}
+
 const AccountPage: FC<AccountPageProps> = () => {
-  const [data, setData] = useState<HeaderProps['userInfo']>({})
+  const [infoData, setInfoData] = useState<HeaderProps['userInfo']>({})
   const [loading, setLoading] = useState(true)
-  const [projectData, setProjectData] = useState<any[]>([])
+  const [projectData, setProjectData] = useState<ListItem[]>([])
   const [teamsData, setTeamsData] = useState<any[]>([])
   const [activitiesData, setActivitiesData] = useState<any[]>([])
   const { t } = useTranslation()
-  const fetchUser = async () => {
+
+  // 获取用户信息数据
+  const { data, isLoading, handleReload } = useAxios<HeaderProps['userInfo']>({
+    queryKey: '/api/user/userInfo',
+    url: '/api/user/userInfo',
+  })
+
+  // 处理用户信息数据加载完成后的状态更新
+  useEffect(() => {
     setLoading(true)
-    try {
-      const response = await axios('/api/user/userInfo')
-      const data = await response.data
-      setData(data)
+    if (!isLoading && data) {
+      setLoading(isLoading)
+      setInfoData(data)
     }
-    catch (error: string | any) {
-      message.error('Error fetching data:', error)
-    }
-    finally {
-      setLoading(false)
-    }
+  }, [data, isLoading])
+
+  // 处理重新加载按钮点击事件，使数据失效并重新获取
+  const handleRelaod = () => {
+    handleReload([
+      '/api/user/projects',
+      '/api/user/teams',
+      '/api/user/activities',
+      '/api/user/userInfo',
+      'column',
+    ])
   }
 
-  const fetchProjects = async () => {
-    try {
-      const response = await axios('/api/user/projects')
-      const data = await response.data.list
-      setProjectData(data)
-    }
-    catch (error: string | any) {
-      message.error('Error fetching data:', error)
-    }
-    finally {
-      setLoading(false)
-    }
-  }
+  // 获取项目数据
+  const { data: projects } = useAxios<MockData>({
+    queryKey: '/api/user/projects',
+    url: '/api/user/projects',
+  })
 
-  const fetchTeams = async () => {
-    try {
-      const response = await axios('/api/user/teams')
-      const data = await response.data.list
-      setTeamsData(data)
-    }
-    catch (error: string | any) {
-      message.error('Error fetching data:', error)
-    }
-    finally {
-      setLoading(false)
-    }
-  }
+  // 处理项目数据加载完成后的状态更新
+  useEffect(() => {
+    if (projects)
+      setProjectData(projects.list)
+  }, [projects])
 
-  const fetachActivities = async () => {
-    try {
-      const response = await axios('/api/user/activities')
-      const data = await response.data.list
-      setActivitiesData(data)
-    }
-    catch (error: string | any) {
-      message.error('Error fetching data:', error)
-    }
-    finally {
-      setLoading(false)
-    }
-  }
+  // 获取团队数据
+  const { data: teams } = useAxios<MockData>({
+    queryKey: '/api/user/teams',
+    url: '/api/user/teams',
+  })
 
+  // 处理团队数据加载完成后的状态更新
+  useEffect(() => {
+    if (teams)
+      setTeamsData(teams.list)
+  }, [teams])
+
+  // 获取活动数据
+  const { data: activities } = useAxios<MockData>({
+    queryKey: '/api/user/activities',
+    url: '/api/user/activities',
+  })
+
+  // 处理活动数据加载完成后的状态更新
+  useEffect(() => {
+    if (activities)
+      setActivitiesData(activities.list)
+  }, [activities])
+
+  // 定义一个组件用于渲染图标和文本
   const IconText = ({ icon, text }: { icon: FC, text: string }) => (
     <Space>
       {React.createElement(icon)}
       {text}
     </Space>
   )
-  useEffect(() => {
-    fetchProjects()
-    fetchUser()
-    fetchTeams()
-    fetachActivities()
-  }, [])
   return (
     <Row gutter={[16, 16]}>
-      <UserInfoHeader userInfo={data} loading={loading} />
+      <UserInfoHeader userInfo={infoData} loading={loading} />
       <Col className="w-[100%]" lg={24} xl={16}>
         <div className="dark:bg-[rgb(33,41,70)] bg-white h-[550px] rounded-md p-[24px] relative">
           <div className="flex justify-between items-center">
@@ -115,12 +132,7 @@ const AccountPage: FC<AccountPageProps> = () => {
               <h1 className="text-2xl font-bold">{t('pUWDlNFY')}</h1>
             </div>
             <div>
-              <Button
-                type="default"
-                onClick={() => {
-                  fetchProjects()
-                }}
-              >
+              <Button type="primary" onClick={handleRelaod}>
                 {t('ePjvKKGm')}
               </Button>
             </div>
@@ -135,13 +147,14 @@ const AccountPage: FC<AccountPageProps> = () => {
                   title={item.title}
                   extra={(
                     <ProFormGroup>
-                      <ProFormSwitch
-                        name="Enable"
-                        noStyle
-                        value={item.status === 'active'}
-                        checkedChildren={t('CNjonVfr')}
-                        unCheckedChildren={t('uTxLCTDT')}
-                      />
+                      <Form>
+                        <ProFormSwitch
+                          noStyle
+                          name="status"
+                          checkedChildren={t('CNjonVfr')}
+                          unCheckedChildren={t('uTxLCTDT')}
+                        />
+                      </Form>
                     </ProFormGroup>
                   )}
                   className="cursor-pointer"
