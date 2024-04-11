@@ -4,7 +4,7 @@
   "description": "A react library developed with dumi",
   "repository": {
     "type": "git",
-    "url": "https://github.com/h7ml/hooks.git"
+    "url": "https://github.com/h7ml/shark.git"
   },
   "license": "MIT",
   "author": {
@@ -53,6 +53,7 @@
     ]
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.6",
     "@dext7r/translation": "workspace:^",
     "@dext7r/ui": "workspace:^",
     "@dext7r/utils": "workspace:^",

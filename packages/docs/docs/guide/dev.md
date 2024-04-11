@@ -8,7 +8,7 @@ group: 介绍
 
 ## 开发状态
 
-`@dext7r/hooks` 目前处于开发中，如果相关问题提 [issues](https://github.com/h7ml/hooks/issues) 反馈。
+`@dext7r/hooks` 目前处于开发中，如果相关问题提 [issues](https://github.com/h7ml/shark/issues) 反馈。
 
 ## 开发
 

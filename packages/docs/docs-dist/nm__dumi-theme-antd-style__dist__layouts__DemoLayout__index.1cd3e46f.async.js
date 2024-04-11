@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_shark_docs=self.webpackChunk_shark_docs||[]).push([[946],{90840:function(E,n,_){_.r(n);var s=_(93344),u=_(68077),t=_(97458);n.default=function(){var o=(0,s.pC)();return(0,t.jsx)(u.Z,{children:o})}}}]);

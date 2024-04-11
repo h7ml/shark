@@ -1,8 +1,8 @@
-import { defineConfig } from 'dumi';
-import { author, repository, version } from './package.json';
-const isProduction = process.env.NODE_ENV === 'production';
-const isWin = process.platform === 'win32';
-const logo: string = 'https://www.h7ml.cn/logo.svg';
+import { defineConfig } from 'dumi'
+import { author, repository, version } from './package.json'
+const isProduction = process.env.NODE_ENV === 'production'
+const isWin = process.platform === 'win32'
+const logo: string = 'https://www.h7ml.cn/logo.svg'
 const themeConfig = {
   name: '@dext7r/ui',
   github: repository.url.split('.git')[0],
@@ -22,12 +22,12 @@ const themeConfig = {
     github: repository.url.split('.git')[0],
   },
   apiHeader: {
-    docUrl: `{github}/tree/master/src/{atomId}/index.md`,
-    match: ['/components'],
+    docUrl: `{github}/tree/master/packages/docs/src/components/{atomId}/index.md`,
+    match: ['/components/'],
     pkg: '@dext7r/ui',
-    sourceUrl: `{github}/tree/master/src/{atomId}/index.tsx`,
+    sourceUrl: `{github}/tree/master/packages/docs/src/components/{atomId}/index.ts`,
   },
-};
+}
 const config = {
   styles: [
     `html, body { background: transparent;  }
@@ -48,7 +48,7 @@ const config = {
     ],
   },
   outputPath: 'docs-dist',
-  apiParser: isProduction ? {} : false,
+  // apiParser: isProduction ? {} : false,
   // resolve: isProduction
   //   ? {
   //       entryFile: './src/index.ts',
@@ -78,10 +78,10 @@ const config = {
   chainWebpack(
     memo: {
       plugin: (arg0: string) => {
-        (): any;
-        new (): any;
-        use: { (arg0: any, arg1: { banner: string }[]): void; new (): any };
-      };
+        (): any
+        new (): any
+        use: { (arg0: any, arg1: { banner: string }[]): void, new (): any }
+      }
     },
     { env, webpack }: any,
   ) {
@@ -91,7 +91,7 @@ const config = {
           author.name
         } <${author.mail}>. All rights reserved.`,
       },
-    ]);
+    ])
   },
   clickToComponent: {
     editor: 'vscode',
@@ -104,7 +104,7 @@ const config = {
     // 百度统计的 key
     baidu: '7cd6e5c368ce90c5f557d5770d437d4a',
   },
-  sitemap: { hostname: 'https://hooks.h7ml.cn' },
+  sitemap: { hostname: 'https://doc.h7ml.cn' },
   favicons: ['https://www.h7ml.cn/logo.svg'],
   headScripts: [
     {
@@ -113,5 +113,5 @@ const config = {
       id: 'LA_COLLECT',
     },
   ],
-} as any;
-export default defineConfig(config);
+} as any
+export default defineConfig(config)

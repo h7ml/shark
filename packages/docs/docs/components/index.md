@@ -14,4 +14,4 @@ group:
 
 ## 问题反馈
 
-如果在使用过程中发现任何问题、或者有改善建议，欢迎在 [**GitHub Issues**](https://github.com/h7ml/hooks/issues) 进行反馈
+如果在使用过程中发现任何问题、或者有改善建议，欢迎在 [**GitHub Issues**](https://github.com/h7ml/shark/issues) 进行反馈

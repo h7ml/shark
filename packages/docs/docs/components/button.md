@@ -1,24 +1,13 @@
 ---
-order: 2
-title: button
+order: 1
+title: Button
 group: 介绍
+
+apiHeader:
+  docUrl: https://github.com/h7ml/shark/blob/master/packages/docs/docs/components/Button.md
+  sourceUrl: https://github.com/h7ml/shark/blob/master/packages/docs/docs/components/demos/Button.tsx
 ---
-
-# 开发说明
-
-## 开发状态
-
-`@dext7r/hooks` 目前处于开发中，如果相关问题提 [issues](https://github.com/h7ml/hooks/issues) 反馈。
-
-## 开发
-
-```bash
-pnpm install
-
-# start @dext7r/hooks server
-pnpm run start
-```
 
 ## Default
 
-<code src="./demos/button.tsx" nopadding></code>
+<code src="./demos/Button.tsx" nopadding></code>

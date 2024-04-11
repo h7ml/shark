@@ -1,19 +1,9 @@
-import { Button, Calendar, Divider } from '@dext7r/ui';
-import { getCurrentDate } from '@dext7r/utils';
-import dayjs from 'dayjs';
-import React from 'react';
+import { Button } from '@dext7r/ui'
+import React from 'react'
+import './index.less'
 
 function App() {
-  const { ymd } = getCurrentDate({ type: 2 });
-  return (
-    <div className="App">
-      <Divider />
-      <section>
-        <Button>Click</Button>
-      </section>
-      <Calendar value={dayjs(ymd)} />
-    </div>
-  );
+  return <Button>Click</Button>
 }
 
-export default App;
+export default App
