@@ -1,5 +1,6 @@
 import { defineConfig } from 'dumi'
 import { author, repository, version } from './package.json'
+// eslint-disable-next-line unused-imports
 const isProduction = process.env.NODE_ENV === 'production'
 const isWin = process.platform === 'win32'
 const logo: string = 'https://www.h7ml.cn/logo.svg'
@@ -83,6 +84,7 @@ const config = {
         use: { (arg0: any, arg1: { banner: string }[]): void, new (): any }
       }
     },
+    // eslint-disable-next-line unused-imports
     { env, webpack }: any,
   ) {
     memo.plugin('copyright').use(webpack.BannerPlugin, [

@@ -5,9 +5,9 @@ import {
   MediumOutlined,
   TwitterOutlined,
   ZhihuOutlined,
-} from '@ant-design/icons';
-import { Footer } from 'dumi-theme-antd-style';
-import React from 'react';
+} from '@ant-design/icons'
+import { Footer } from 'dumi-theme-antd-style'
+import React from 'react'
 
 export default () => {
   const footerColumns = [
@@ -185,20 +185,25 @@ export default () => {
         },
       ],
     },
-  ];
-  const currentYear = new Date().getFullYear();
+  ]
+  const currentYear = new Date().getFullYear()
 
   return (
     <Footer
-      bottom={
+      bottom={(
         <p>
           <a href="/sitemap.xml" target="_blank">
             站点地图
-          </a>{' '}
-          |&copy; {currentYear} h7ml Company. All rights reserved.
+          </a>
+          {' '}
+          |&copy;
+          {' '}
+          {currentYear}
+          {' '}
+          h7ml Company. All rights reserved.
         </p>
-      }
+      )}
       columns={footerColumns}
     />
-  );
-};
+  )
+}

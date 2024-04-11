@@ -19,8 +19,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "prepare": "npm run build"
+    "preview": "vite preview"
   },
   "publishConfig": {
     "access": "public"
@@ -42,7 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@typescript-eslint/parser": "^7.6.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^9.0.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.29.1",
