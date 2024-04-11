@@ -1,40 +1,27 @@
-# @shark/docs
+## @shark/ui
 
-[![NPM version](https://img.shields.io/npm/v/@shark/docs.svg?style=flat)](https://npmjs.org/package/@shark/docs)
-[![NPM downloads](http://img.shields.io/npm/dm/@shark/docs.svg?style=flat)](https://npmjs.org/package/@shark/docs)
+[![NPM version](https://img.shields.io/npm/v/@dext7r/ui.svg?style=flat)](https://npmjs.org/package/@dext7r/ui)
+[![NPM downloads](http://img.shields.io/npm/dm/@dext7r/ui.svg?style=flat)](https://npmjs.org/package/@dext7r/ui)
 
-A react library developed with dumi
+## @shark/utils
 
-## Usage
+[![NPM version](https://img.shields.io/npm/v/@dext7r/utils.svg?style=flat)](https://npmjs.org/package/@dext7r/utils)
+[![NPM downloads](http://img.shields.io/npm/dm/@dext7r/utils.svg?style=flat)](https://npmjs.org/package/@dext7r/utils)
 
-TODO
+## @shark/translation
 
-## Options
+[![NPM version](https://img.shields.io/npm/v/@dext7r/translation.svg?style=flat)](https://npmjs.org/package/@dext7r/translation)
+[![NPM downloads](http://img.shields.io/npm/dm/@dext7r/translation.svg?style=flat)](https://npmjs.org/package/@dext7r/translation)
 
-TODO
+## @shark/verify-commit
 
-## Development
+[![NPM version](https://img.shields.io/npm/v/@dext7r/verify-commit.svg?style=flat)](https://npmjs.org/package/@dext7r/verify-commit)
+[![NPM downloads](http://img.shields.io/npm/dm/@dext7r/verify-commit.svg?style=flat)](https://npmjs.org/package/@dext7r/verify-commit)
 
-```bash
-# install dependencies
-$ pnpm install
+## @shark/hooks
 
-# develop library by docs demo
-$ pnpm start
+[![NPM version](https://img.shields.io/npm/v/@dext7r/hooks.svg?style=flat)](https://npmjs.org/package/@dext7r/hooks)
+[![NPM downloads](http://img.shields.io/npm/dm/@dext7r/hooks.svg?style=flat)](https://npmjs.org/package/@dext7r/hooks)
 
-# build library source code
-$ pnpm run build
 
-# build library source code in watch mode
-$ pnpm run build:watch
 
-# build docs
-$ pnpm run docs:build
-
-# check your project for potential problems
-$ pnpm run doctor
-```
-
-## LICENSE
-
-MIT
