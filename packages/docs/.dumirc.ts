@@ -55,10 +55,10 @@ const config = {
   //       entryFile: './src/index.ts',
   //     }
   //   : undefined,
-  analyze: {
-    enable: true,
-    analyzerPort: 8888,
-  },
+  // analyze: {
+  //   enable: true,
+  //   analyzerPort: 8888,
+  // },
   base: '/',
   define: {
     'process.env': process.env,
@@ -76,25 +76,25 @@ const config = {
   npmClient: 'pnpm',
   publicPath: '/',
   cacheDirectoryPath: './node_modules/.cache',
-  chainWebpack(
-    memo: {
-      plugin: (arg0: string) => {
-        (): any
-        new (): any
-        use: { (arg0: any, arg1: { banner: string }[]): void, new (): any }
-      }
-    },
-    // eslint-disable-next-line unused-imports
-    { env, webpack }: any,
-  ) {
-    memo.plugin('copyright').use(webpack.BannerPlugin, [
-      {
-        banner: `Version: ${version} - © ${new Date().getFullYear()} ${
-          author.name
-        } <${author.mail}>. All rights reserved.`,
-      },
-    ])
-  },
+  // chainWebpack(
+  //   memo: {
+  //     plugin: (arg0: string) => {
+  //       (): any
+  //       new (): any
+  //       use: { (arg0: any, arg1: { banner: string }[]): void, new (): any }
+  //     }
+  //   },
+  //   // eslint-disable-next-line unused-imports
+  //   { env, webpack }: any,
+  // ) {
+  //   memo.plugin('copyright').use(webpack.BannerPlugin, [
+  //     {
+  //       banner: `Version: ${version} - © ${new Date().getFullYear()} ${
+  //         author.name
+  //       } <${author.mail}>. All rights reserved.`,
+  //     },
+  //   ])
+  // },
   clickToComponent: {
     editor: 'vscode',
   },
@@ -106,7 +106,7 @@ const config = {
     // 百度统计的 key
     baidu: '7cd6e5c368ce90c5f557d5770d437d4a',
   },
-  sitemap: { hostname: 'https://doc.h7ml.cn' },
+  // sitemap: { hostname: 'https://doc.h7ml.cn' },
   favicons: ['https://www.h7ml.cn/logo.svg'],
   headScripts: [
     {
