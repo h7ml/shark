@@ -1,5 +1,5 @@
 {
-  "name": "@shark/translation",
+  "name": "@dext7r/translation",
   "version": "1.0.0",
   "private": false,
   "description": "shark translation package",
@@ -17,6 +17,9 @@
   },
   "bugs": {
     "url": "https://github.com/h7ml/shark/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "shark",

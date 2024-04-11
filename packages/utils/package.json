@@ -1,5 +1,5 @@
 {
-  "name": "@shark/utils",
+  "name": "@dext7r/utils",
   "type": "module",
   "version": "0.0.1",
   "description": "shark utils package",
@@ -15,6 +15,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/h7ml/shark.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "bugs": "https://github.com/h7ml/shark/issues",
   "keywords": [
@@ -57,7 +60,7 @@
     "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks && npm run build"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.13.3",

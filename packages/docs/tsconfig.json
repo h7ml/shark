@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@@/*": [".dumi/tmp/*"],
+      "@shark/docs": ["src"],
+      "@shark/docs/*": ["src/*", "*"],
+      "@dext7r/translation": ["../translation"],
+      "@dext7r/ui": ["../ui"],
+      "@dext7r/utils": ["../utils/dist"],
+      "@dext7r/ui/dist/style.css": ["../ui/dist/style.css"]
+    },
+    "resolveJsonModule": true,
+    "strict": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": [".dumirc.ts", "src/**/*"]
+}

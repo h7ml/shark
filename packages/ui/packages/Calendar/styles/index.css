@@ -1,0 +1,78 @@
+.calendar {
+  width: 100%;
+}
+.calendar-header-left {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  line-height: 28px;
+}
+.calendar-header-value {
+  font-size: 20px;
+}
+.calendar-header-btn {
+  background: #eee;
+  cursor: pointer;
+  border: 0;
+  padding: 0 15px;
+  line-height: 28px;
+}
+.calendar-header-btn:hover {
+  background: #ccc;
+}
+.calendar-header-icon {
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 12px;
+  user-select: none;
+  cursor: pointer;
+  margin-right: 12px;
+}
+.calendar-header-icon:not(:first-child) {
+  margin: 0 12px;
+}
+.calendar-header-icon:hover {
+  background: #ccc;
+}
+.calendar-month-week-list {
+  display: flex;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+}
+.calendar-month-week-list-item {
+  padding: 20px 16px;
+  text-align: left;
+  color: #7d7d7f;
+  flex: 1;
+}
+.calendar-month-body-row {
+  height: 100px;
+  display: flex;
+}
+.calendar-month-body-cell {
+  flex: 1;
+  border: 1px solid #eee;
+  color: #ccc;
+  overflow: hidden;
+}
+.calendar-month-body-cell-current {
+  color: #000;
+}
+.calendar-month-body-cell-date {
+  padding: 10px;
+}
+.calendar-month-body-cell-date-selected {
+  background: blue;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}

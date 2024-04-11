@@ -1,5 +1,5 @@
 {
-  "name": "@shark/verify-commit",
+  "name": "@dext7r/verify-commit",
   "version": "1.0.0",
   "private": false,
   "description": "shark verify-commit package",
@@ -17,6 +17,9 @@
   },
   "bugs": {
     "url": "https://github.com/h7ml/shark/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "shark",

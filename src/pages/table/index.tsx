@@ -15,7 +15,7 @@ import type { ColumnsType } from 'antd/es/table'
 import type { FC } from 'react'
 import { createRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { dateFormat, getCurrentWeek } from '@shark/utils'
+import { dateFormat, getCurrentWeek } from '@dext7r/utils'
 import { useAxios, useQueryClient } from '@/hooks'
 
 export interface DataType {
