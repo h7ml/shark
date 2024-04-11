@@ -50,23 +50,28 @@ const config = {
   },
   outputPath: 'docs-dist',
   // apiParser: isProduction ? {} : false,
-  analyze: {
-    enable: true,
-    analyzerPort: 8888,
-  },
+  // resolve: isProduction
+  //   ? {
+  //       entryFile: './src/index.ts',
+  //     }
+  //   : undefined,
+  // analyze: {
+  //   enable: true,
+  //   analyzerPort: 8888,
+  // },
   base: '/',
   define: {
     'process.env': process.env,
   },
-  demo: {
-    lazyLoading: true,
-  },
-  showLineNum: true,
-  nprogress: true,
-  prefersColor: { default: 'auto', switch: true },
-  editLink: true,
-  lastUpdated: true,
-  rtl: true,
+  // demo: {
+  //   lazyLoading: true,
+  // },
+  // showLineNum: true,
+  // nprogress: true,
+  // prefersColor: { default: 'auto', switch: true },
+  // editLink: true,
+  // lastUpdated: true,
+  // rtl: true,
   mfsu: isWin ? undefined : {},
   npmClient: 'pnpm',
   publicPath: '/',
@@ -101,7 +106,7 @@ const config = {
     // 百度统计的 key
     baidu: '7cd6e5c368ce90c5f557d5770d437d4a',
   },
-  sitemap: { hostname: 'https://doc.h7ml.cn' },
+  // sitemap: { hostname: 'https://doc.h7ml.cn' },
   favicons: ['https://www.h7ml.cn/logo.svg'],
   headScripts: [
     {
