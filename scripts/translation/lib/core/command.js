@@ -3,7 +3,7 @@ const fs = require('node:fs').promises
 const { program } = require('commander')
 const ora = require('ora')
 const chalk = require('chalk')
-const { isEmpty } = require('lodash')
+const { isEmpty } = require('radash')
 const { translationAction, translateText } = require('./action')
 
 const rootDir = process.cwd() // 获取当前工作目录
@@ -71,6 +71,10 @@ async function evalConfig(fileContent) {
     loading.succeed(chalk.green(`强制更新:${zh},${en}`))
   else loading.succeed(chalk.green(`默认更新:${zh},${en}`))
 
+  if (config.i18nPath.clear) {
+    loading.succeed(chalk.green(`清空 i18n.json 文件`))
+    fs.writeFileSync('i18n.json', JSON.stringify({}, null, 2))
+  }
   await translation(config.i18nPath, zhContent, enContent)
 }
 

@@ -1,5 +1,4 @@
-import debounce from 'lodash/debounce'
-import throttle from 'lodash/throttle'
+import { debounce, throttle } from 'radash'
 import type { ChangeEvent } from 'react'
 import React, { useRef, useState } from 'react'
 import { Button, Form, Input, message } from 'antd'
@@ -13,8 +12,8 @@ const VideoPage: React.FC = () => {
   const [isValidUrl, setIsValidUrl] = useState<boolean>(true)
   const videoRef = useRef<HTMLVideoElement>(null)
   const { t } = useTranslation()
-  const handleUrlChangeDebounced = debounce((url: string) => {
-    // Use regular expression to validate URL format
+  const handleUrlChangeDebounced = debounce({ delay: 500 }, (url: string) => {
+    // 使用正则表达式验证 URL 格式
     const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i
     if (urlRegex.test(url)) {
       setIsValidUrl(true)
@@ -24,18 +23,18 @@ const VideoPage: React.FC = () => {
       setIsValidUrl(false)
       message.error(t('qTvFdqOH'))
     }
-  }, 500) // 500ms debounce delay
+  })
 
   const handleUrlChange = (e: ChangeEvent<HTMLInputElement>) => {
     const url = e.target.value
     handleUrlChangeDebounced(url)
   }
 
-  const handlePlayThrottled = throttle(() => {
+  const handlePlayThrottled = throttle({ interval: 1000 }, () => {
     if (videoRef.current)
       videoRef.current.play()
     else message.error(`${`${t('eKfCNkqq')}videoPlayer${t('bikocJSR')}`}`)
-  }, 1000) // 1000ms throttle interval
+  }) // 1000ms throttle interval
 
   const handleSubmit = () => {
     handlePlayThrottled()

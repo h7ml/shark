@@ -8,4 +8,5 @@ module.exports = {
     en: path.join('src', 'assets', 'locales', 'en-US.json'),
   },
   forceUpdate: true,
+  clear: false,
 }

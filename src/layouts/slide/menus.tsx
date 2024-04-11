@@ -39,6 +39,7 @@ function SlideMenu() {
           const { Component, ...rest } = menu
           return {
             ...rest,
+            title: t(menu.title),
             key: menu.path,
             label: getMenuTitle(menu),
             icon: menu.icon,
