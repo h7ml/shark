@@ -1,8 +1,10 @@
-// @ts-check
-import { readFileSync } from 'node:fs'
-import path from 'node:path'
-import process from 'node:process'
+#!/usr/bin/env node
 
+const { readFileSync } = require('node:fs')
+const path = require('node:path')
+const process = require('node:process')
+// eslint-disable-next-line unused-imports/no-unused-vars
+const projectRoot = path.resolve(__dirname, '.')
 // Define raw escape codes for colors
 const reset = '\x1B[0m'
 const red = '\x1B[31m'

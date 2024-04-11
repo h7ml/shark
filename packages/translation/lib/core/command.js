@@ -120,6 +120,7 @@ async function processNestedKeys(zhObj, enObj) {
  * 注册命令行参数和选项，并执行翻译操作
  */
 async function registerCommands() {
+  console.log('2')
   const translationPath = await joinPath('translation.config.js')
   await checkTranslationPathExist(translationPath)
 

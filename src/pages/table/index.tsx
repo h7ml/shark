@@ -15,6 +15,7 @@ import type { ColumnsType } from 'antd/es/table'
 import type { FC } from 'react'
 import { createRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { dateFormat, getCurrentWeek } from '@shark/utils'
 import { useAxios, useQueryClient } from '@/hooks'
 
 export interface DataType {
@@ -235,6 +236,7 @@ const TablePage: FC = () => {
   return (
     <div className="dark:bg-[rgb(33,41,70)] bg-white p-[24px] rounded-md">
       {contextHolder}
+      <p>{`${dateFormat('YYYY/MM/DD HH:mm')} ${getCurrentWeek()}`}</p>
       <Modal
         title={t('Edit')}
         rootClassName="mt-22vh"

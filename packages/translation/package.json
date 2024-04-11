@@ -1,0 +1,52 @@
+{
+  "name": "@shark/translation",
+  "version": "1.0.0",
+  "private": false,
+  "description": "shark translation package",
+  "author": {
+    "name": "h7ml",
+    "email": "h7ml@qq.com",
+    "url": "https://shark.h7ml.cn",
+    "github": "https://github.com/h7ml"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://shark.h7ml.cn",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h7ml/shark.git"
+  },
+  "bugs": {
+    "url": "https://github.com/h7ml/shark/issues"
+  },
+  "keywords": [
+    "shark",
+    "web",
+    "application",
+    "data visualization",
+    "React",
+    "Ant Design",
+    "Zustand"
+  ],
+  "main": "index.js",
+  "bin": {
+    "translation": "./index.js",
+    "i18n": "./start.js"
+  },
+  "scripts": {
+    "start": "npm run extract && npm run replace && npm run translation",
+    "extract": "node extract.js",
+    "replace": "node replace.js",
+    "translation": "node index.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^12.0.0",
+    "ora": "^5.4.1"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ]
+}

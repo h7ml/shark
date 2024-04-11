@@ -2,9 +2,11 @@
 const { program } = require('commander')
 const { registerCommands } = require('./lib/core/command')
 
+console.log(1)
+
 registerCommands()
 program.version(
-  require('../../package.json').version,
+  require('./package.json').version,
   '-v, --version',
   '打印版本号',
 )

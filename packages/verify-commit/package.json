@@ -1,0 +1,43 @@
+{
+  "name": "@shark/verify-commit",
+  "version": "1.0.0",
+  "private": false,
+  "description": "shark verify-commit package",
+  "author": {
+    "name": "h7ml",
+    "email": "h7ml@qq.com",
+    "url": "https://shark.h7ml.cn",
+    "github": "https://github.com/h7ml"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://shark.h7ml.cn",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h7ml/shark.git"
+  },
+  "bugs": {
+    "url": "https://github.com/h7ml/shark/issues"
+  },
+  "keywords": [
+    "shark",
+    "web",
+    "application",
+    "data visualization",
+    "React",
+    "Ant Design",
+    "Zustand"
+  ],
+  "main": "index.js",
+  "bin": {
+    "verifyCommit": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ]
+}
