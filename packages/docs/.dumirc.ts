@@ -106,7 +106,7 @@ const config = {
     // 百度统计的 key
     baidu: '7cd6e5c368ce90c5f557d5770d437d4a',
   },
-  // sitemap: { hostname: 'https://doc.h7ml.cn' },
+  sitemap: { hostname: 'https://doc.h7ml.cn' },
   favicons: ['https://www.h7ml.cn/logo.svg'],
   headScripts: [
     {
