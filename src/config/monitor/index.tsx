@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from "react";
 import QueryClientWrapper from "./react-query";
-import { MonitorContextProvider, Monitor, Button } from "@dext7r/ui";
+import { MonitorContextProvider, Monitor } from "@dext7r/ui";
 import { t } from "@/utils";
 interface MonitorProps {
   children: ReactNode;
