@@ -45,6 +45,7 @@
     "pre-commit": "pretty-quick --staged && npm run eslint",
     "prepare": "husky install  && npm run build:utils && npm run build:ui",
     "prettier": "prettier --write . --log-level error",
+    "lint": "npm run prettier && npm run eslint && npm run stylelint",
     "preview": "npm run build && rspack preview",
     "stylelint": "stylelint \"**/*.{css,scss,sass}\" --fix --cache",
     "release": "release-it",

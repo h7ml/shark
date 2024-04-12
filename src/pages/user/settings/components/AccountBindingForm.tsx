@@ -2,45 +2,45 @@ import {
   AlipayCircleOutlined,
   DingdingOutlined,
   TaobaoCircleOutlined,
-} from '@ant-design/icons'
-import { Button, List, message } from 'antd'
-import type { FC } from 'react'
-import { t } from '@/utils'
+} from "@ant-design/icons";
+import { Button, List, message } from "antd";
+import type { FC } from "react";
+import { t } from "@/utils";
 
 const AccountBindingForm: FC = () => {
   const handleBinding = (type: string) => {
     // 处理绑定操作
-    message.info(t('SgVWDhMx') + type)
-  }
+    message.info(t("SgVWDhMx") + type);
+  };
 
   const accountBindings = [
     {
-      label: t('XhPgzZQz'),
-      description: t('SIRRAXfv'),
-      actionText: t('xPHnIQKB'),
+      label: t("XhPgzZQz"),
+      description: t("SIRRAXfv"),
+      actionText: t("xPHnIQKB"),
       icon: <TaobaoCircleOutlined />,
-      onClick: () => handleBinding(t('XhPgzZQz')),
+      onClick: () => handleBinding(t("XhPgzZQz")),
     },
     {
-      label: t('RipNIbTf'),
-      description: t('QrQOyTVU'),
-      actionText: t('xPHnIQKB'),
+      label: t("RipNIbTf"),
+      description: t("QrQOyTVU"),
+      actionText: t("xPHnIQKB"),
       icon: <AlipayCircleOutlined />,
-      onClick: () => handleBinding(t('RipNIbTf')),
+      onClick: () => handleBinding(t("RipNIbTf")),
     },
     {
-      label: t('qWdQvZAh'),
-      description: t('GjPQtzZg'),
-      actionText: t('xPHnIQKB'),
+      label: t("qWdQvZAh"),
+      description: t("GjPQtzZg"),
+      actionText: t("xPHnIQKB"),
       icon: <DingdingOutlined />,
-      onClick: () => handleBinding(t('qWdQvZAh')),
+      onClick: () => handleBinding(t("qWdQvZAh")),
     },
-  ]
+  ];
 
   return (
     <List
       dataSource={accountBindings}
-      renderItem={item => (
+      renderItem={(item) => (
         <List.Item
           actions={[
             <Button
@@ -61,7 +61,7 @@ const AccountBindingForm: FC = () => {
         </List.Item>
       )}
     />
-  )
-}
+  );
+};
 
-export default AccountBindingForm
+export default AccountBindingForm;

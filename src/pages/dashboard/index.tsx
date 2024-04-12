@@ -1,57 +1,57 @@
-import '@/index.css'
+import "@/index.css";
 
 import {
   CaretDownOutlined,
   CaretUpOutlined,
   DashOutlined,
   InfoCircleOutlined,
-} from '@ant-design/icons'
-import { Col, Divider, Dropdown, Row, Select, Tooltip } from 'antd'
-import { useQueryClient } from 'react-query'
+} from "@ant-design/icons";
+import { Col, Divider, Dropdown, Row, Select, Tooltip } from "antd";
+import { useQueryClient } from "react-query";
 
-import { useTranslation } from 'react-i18next'
-import DemoColumn from './column'
-import DemoTinyArea from './tiny-area'
-import DemoTinyColumn from './tiny-column'
-import DemoTinyLine from './tiny-line'
+import { useTranslation } from "react-i18next";
+import DemoColumn from "./column";
+import DemoTinyArea from "./tiny-area";
+import DemoTinyColumn from "./tiny-column";
+import DemoTinyLine from "./tiny-line";
 
 function Dashboard() {
-  const { t } = useTranslation()
-  const queryClient = useQueryClient()
+  const { t } = useTranslation();
+  const queryClient = useQueryClient();
   const handleRefresh = () => {
-    queryClient.invalidateQueries('column')
-  }
+    queryClient.invalidateQueries("column");
+  };
   return (
     <div>
       <Row gutter={[16, 16]}>
         <Col lg={24} xl={8} className="w-[100%]">
           <div className="dark:bg-[rgb(33,41,70)] w-[100%] bg-[rgb(94,53,177)] overflow-hidden h-[241px] relative rounded-md bg-card p-[32px] box-border">
             <div className="absolute top-[24px] right-[24px] z-10">
-              <Tooltip title={t('yAdJryjx' /* 指标说明 */)}>
+              <Tooltip title={t("yAdJryjx" /* 指标说明 */)}>
                 <InfoCircleOutlined className="text-[rgb(179,157,219)] text-[20px]" />
               </Tooltip>
             </div>
             <div className="text-[rgba(229,224,216,0.45)] text-[16px]">
-              {t('nKMAkrqJ' /* 总销售额 */)}
+              {t("nKMAkrqJ" /* 总销售额 */)}
             </div>
             <div className="text-white text-2xl mt-[28px] text-[30px]">
               ¥ 126,560
             </div>
             <div className="mt-[50px] text-[rgba(229,224,216,0.85)] text-[16px] flex gap-[24px]">
               <div className="flex items-center">
-                <span>{t('NpRFMJyD' /* 周同比 */)}</span>
+                <span>{t("NpRFMJyD" /* 周同比 */)}</span>
                 <span className="ml-[12px]">12%</span>
                 <CaretDownOutlined className="ml-[6px] text-red-500" />
               </div>
               <div className="flex items-center">
-                <span>{t('WOQnwYUS' /* 日同比 */)}</span>
+                <span>{t("WOQnwYUS" /* 日同比 */)}</span>
                 <span className="ml-[12px]">12%</span>
                 <CaretUpOutlined className="ml-[6px] text-green-500" />
               </div>
             </div>
             <Divider className="dark:bg-[rgb(189,200,240)] bg-[rgb(227,232,239)] opacity-[0.2] my-[16px]" />
             <div className="text-[rgba(229,224,216,0.85)] text-[16px]">
-              <span>{t('ZPCQOWAn' /* 日销售额 */)}</span>
+              <span>{t("ZPCQOWAn" /* 日销售额 */)}</span>
               <span className="ml-[8px]">￥12,423</span>
             </div>
           </div>
@@ -59,12 +59,12 @@ function Dashboard() {
         <Col lg={24} xl={8} className="w-[100%]">
           <div className="dark:bg-[rgb(33,41,70)] bg-[rgb(30,136,229)] theme1 overflow-hidden h-[241px] relative rounded-md bg-card p-[32px] box-border">
             <div className="absolute top-[24px] right-[24px] z-10">
-              <Tooltip title={t('iLyPEqwQ' /* 指标说明 */)}>
+              <Tooltip title={t("iLyPEqwQ" /* 指标说明 */)}>
                 <InfoCircleOutlined className="text-[rgb(179,157,219)] text-[20px]" />
               </Tooltip>
             </div>
             <div className="text-[rgba(229,224,216,0.45)] text-[16px]">
-              {t('ftuxZMpL' /* 访问量 */)}
+              {t("ftuxZMpL" /* 访问量 */)}
             </div>
             <div className="text-white text-2xl mt-[20px] text-[30px]">
               8,930
@@ -74,7 +74,7 @@ function Dashboard() {
             </div>
             <Divider className="dark:bg-[rgb(189,200,240)] bg-[rgb(227,232,239)] opacity-[0.2] my-[16px]" />
             <div className="text-[rgba(229,224,216,0.85)] text-[16px]">
-              <span>{t('sehypRaO' /* 日访问量 */)}</span>
+              <span>{t("sehypRaO" /* 日访问量 */)}</span>
               <span className="ml-[8px]">9,431</span>
             </div>
           </div>
@@ -82,12 +82,12 @@ function Dashboard() {
         <Col lg={24} xl={8} className="w-[100%]">
           <div className="dark:bg-[rgb(33,41,70)] bg-[rgb(94,53,177)] theme2 overflow-hidden h-[241px] relative rounded-md bg-card p-[32px] box-border">
             <div className="absolute top-[24px] right-[24px] z-10">
-              <Tooltip title={t('sdOusITo' /* 指标说明 */)}>
+              <Tooltip title={t("sdOusITo" /* 指标说明 */)}>
                 <InfoCircleOutlined className="text-[rgb(179,157,219)] text-[20px]" />
               </Tooltip>
             </div>
             <div className="text-[rgba(229,224,216,0.45)] text-[16px]">
-              {t('PIYkoguj' /* 支付笔数 */)}
+              {t("PIYkoguj" /* 支付笔数 */)}
             </div>
             <div className="text-white text-2xl mt-[20px] text-[30px]">
               8,943
@@ -97,7 +97,7 @@ function Dashboard() {
             </div>
             <Divider className="dark:bg-[rgb(189,200,240)] bg-[rgb(227,232,239)] opacity-[0.2] my-[16px]" />
             <div className="text-[rgba(229,224,216,0.85)] text-[16px]">
-              <span>{t('BUjwpMzX' /* 转化率 */)}</span>
+              <span>{t("BUjwpMzX" /* 转化率 */)}</span>
               <span className="ml-[8px]">2,421</span>
             </div>
           </div>
@@ -107,7 +107,7 @@ function Dashboard() {
             <div className="flex justify-between items-center">
               <div>
                 <div className="text-[rgb(132,146,196)]">
-                  {t('fHpiDHYH' /* 总增长 */)}
+                  {t("fHpiDHYH" /* 总增长 */)}
                 </div>
                 <div className="dark:text-white text-[rgb(18,25,38)] mt-[8px] text-[18px]">
                   ￥12,423
@@ -116,20 +116,20 @@ function Dashboard() {
               <Select
                 options={[
                   {
-                    label: t('yLkZTWbn' /* 今日 */),
-                    value: 'today',
+                    label: t("yLkZTWbn" /* 今日 */),
+                    value: "today",
                   },
                   {
-                    label: t('QFqMuZiD' /* 本月 */),
-                    value: 'mouth',
+                    label: t("QFqMuZiD" /* 本月 */),
+                    value: "mouth",
                   },
                   {
-                    label: t('lGOcGyrv' /* 本年 */),
-                    value: 'year',
+                    label: t("lGOcGyrv" /* 本年 */),
+                    value: "year",
                   },
                 ]}
                 onChange={() => {
-                  handleRefresh()
+                  handleRefresh();
                 }}
                 defaultValue="today"
                 size="large"
@@ -146,22 +146,22 @@ function Dashboard() {
           <div className="dark:bg-[rgb(33,41,70)] bg-white h-[550px] rounded-md p-[24px] relative">
             <div className="flex justify-between">
               <span className="dark:text-[rgb(215,220,236)] text-[18px] text-[rgb(18,25,38)]">
-                {t('yzUIyMhr' /* 门店销售额 */)}
+                {t("yzUIyMhr" /* 门店销售额 */)}
               </span>
               <Dropdown
                 menu={{
                   items: [
                     {
-                      label: t('aSPCUBcK' /* 今日 */),
-                      key: 'today',
+                      label: t("aSPCUBcK" /* 今日 */),
+                      key: "today",
                     },
                     {
-                      label: t('EhTpnarX' /* 本月 */),
-                      key: 'mouth',
+                      label: t("EhTpnarX" /* 本月 */),
+                      key: "mouth",
                     },
                     {
-                      label: t('AGGPEAdX' /* 本年 */),
-                      key: 'year',
+                      label: t("AGGPEAdX" /* 本年 */),
+                      key: "year",
                     },
                   ],
                 }}
@@ -174,12 +174,12 @@ function Dashboard() {
             <div className="dark:bg-[rgb(209,196,233)] bg-[rgb(237,231,246)] px-[16px] pt-[16px] mt-[24px] rounded-t-lg">
               <div className="flex justify-between items-center">
                 <span className="text-[rgb(101,31,255)] text-[16px]">
-                  {t('jTSvVuJx' /* 上海分店 */)}
+                  {t("jTSvVuJx" /* 上海分店 */)}
                 </span>
                 <span className="text-[rgb(66,66,66)]">￥12,423</span>
               </div>
               <div className="mt-[10px] text-[rgb(66,66,66)]">
-                {t('SwsawJhB' /* 20% 利润 */)}
+                {t("SwsawJhB" /* 20% 利润 */)}
               </div>
             </div>
             <div className="dark:bg-[rgb(209,196,233)] bg-[rgb(237,231,246)] rounded-b-lg">
@@ -189,7 +189,7 @@ function Dashboard() {
               <div>
                 <div className="flex justify-between items-center">
                   <span className="dark:text-[rgb(189,200,240)] text-[rgb(54,65,82)] font-medium">
-                    {t('JYSgIJHD' /* 上海分店 */)}
+                    {t("JYSgIJHD" /* 上海分店 */)}
                   </span>
                   <div>
                     <span className="mr-[8px] dark:text-[rgb(189,200,240)] text-[rgb(54,65,82)] font-medium">
@@ -199,14 +199,14 @@ function Dashboard() {
                   </div>
                 </div>
                 <div className="text-[rgb(0,200,83)] text-[12px] mt-[6px]">
-                  {t('yELACPnu' /* 20% 利润 */)}
+                  {t("yELACPnu" /* 20% 利润 */)}
                 </div>
               </div>
               <Divider className="dark:bg-[rgb(189,200,240)] bg-[rgb(227,232,239)] dark:opacity-[0.2] my-[16px]" />
               <div>
                 <div className="flex justify-between items-center">
                   <span className="dark:text-[rgb(189,200,240)] text-[rgb(54,65,82)]font-medium">
-                    {t('WAiyAuwV' /* 合肥分店 */)}
+                    {t("WAiyAuwV" /* 合肥分店 */)}
                   </span>
                   <div>
                     <span className="mr-[8px] dark:text-[rgb(189,200,240)] text-[rgb(54,65,82)] font-medium">
@@ -216,14 +216,14 @@ function Dashboard() {
                   </div>
                 </div>
                 <div className="text-[rgb(0,200,83)] text-[12px] mt-[6px]">
-                  {t('HpNzGyBz' /* 6% 利润 */)}
+                  {t("HpNzGyBz" /* 6% 利润 */)}
                 </div>
               </div>
               <Divider className="dark:bg-[rgb(189,200,240)] bg-[rgb(227,232,239)] dark:opacity-[0.2] my-[16px]" />
               <div>
                 <div className="flex justify-between items-center">
                   <span className="dark:text-[rgb(189,200,240)] text-[rgb(54,65,82)] font-medium">
-                    {t('nGvTAQld' /* 北京分店 */)}
+                    {t("nGvTAQld" /* 北京分店 */)}
                   </span>
                   <div>
                     <span className="mr-[8px] dark:text-[rgb(189,200,240)] text-[rgb(54,65,82)] font-medium">
@@ -233,14 +233,14 @@ function Dashboard() {
                   </div>
                 </div>
                 <div className="text-[rgb(216,67,21)] text-[12px] mt-[6px]">
-                  {t('EeunYupT' /* 8% 亏损 */)}
+                  {t("EeunYupT" /* 8% 亏损 */)}
                 </div>
               </div>
               <Divider className="dark:bg-[rgb(189,200,240)] bg-[rgb(227,232,239)] dark:opacity-[0.2] my-[16px]" />
               <div>
                 <div className="flex justify-between items-center">
                   <span className="dark:text-[rgb(189,200,240)] text-[rgb(54,65,82)] font-medium">
-                    {t('usCBUdwp' /* 苏州分店 */)}
+                    {t("usCBUdwp" /* 苏州分店 */)}
                   </span>
                   <div>
                     <span className="mr-[8px] dark:text-[rgb(189,200,240)] text-[rgb(54,65,82)] font-medium">
@@ -250,14 +250,14 @@ function Dashboard() {
                   </div>
                 </div>
                 <div className="text-[rgb(0,200,83)] text-[12px] mt-[6px]">
-                  {t('TacOGPiP' /* 14% 利润 */)}
+                  {t("TacOGPiP" /* 14% 利润 */)}
                 </div>
               </div>
               <Divider className="dark:bg-[rgb(189,200,240)] bg-[rgb(227,232,239)] dark:opacity-[0.2] my-[16px]" />
               <div>
                 <div className="flex justify-between items-center">
                   <span className="dark:text-[rgb(189,200,240)] text-[rgb(54,65,82)] font-medium">
-                    {t('Imkllizi' /* 南京分店 */)}
+                    {t("Imkllizi" /* 南京分店 */)}
                   </span>
                   <div>
                     <span className="mr-[8px] dark:text-[rgb(189,200,240)] text-[rgb(54,65,82)] font-medium">
@@ -267,7 +267,7 @@ function Dashboard() {
                   </div>
                 </div>
                 <div className="text-[rgb(0,200,83)] text-[12px] mt-[6px] text-[rgb(216,67,21)]">
-                  {t('MzCxBxLH' /* 6% 亏损 */)}
+                  {t("MzCxBxLH" /* 6% 亏损 */)}
                 </div>
               </div>
             </div>
@@ -275,7 +275,7 @@ function Dashboard() {
         </Col>
       </Row>
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

@@ -1,11 +1,11 @@
-import { TinyColumn } from '@antv/g2plot'
-import { useLayoutEffect, useRef } from 'react'
+import { TinyColumn } from "@antv/g2plot";
+import { useLayoutEffect, useRef } from "react";
 
 function DemoTinyColumn() {
-  const container = useRef(null)
+  const container = useRef(null);
 
   useLayoutEffect(() => {
-    const data = [50, 40, 81, 400, 300, 219, 269]
+    const data = [50, 40, 81, 400, 300, 219, 269];
 
     const tinyColumn = new TinyColumn(container.current!, {
       height: 50,
@@ -13,19 +13,19 @@ function DemoTinyColumn() {
       data,
       tooltip: {
         customContent(x, data) {
-          return `NO.${x}: ${data[0]?.data?.y.toFixed(2)}`
+          return `NO.${x}: ${data[0]?.data?.y.toFixed(2)}`;
         },
       },
-    })
+    });
 
-    tinyColumn.render()
+    tinyColumn.render();
 
     return () => {
-      tinyColumn.destroy()
-    }
-  }, [])
+      tinyColumn.destroy();
+    };
+  }, []);
 
-  return <div ref={container} className="w-[100%]" />
+  return <div ref={container} className="w-[100%]" />;
 }
 
-export default DemoTinyColumn
+export default DemoTinyColumn;

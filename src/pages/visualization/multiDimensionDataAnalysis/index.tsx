@@ -1,9 +1,9 @@
-import { Col, Row, message } from 'antd'
-import axios from 'axios'
-import type { FC } from 'react'
-import { useEffect, useState } from 'react'
+import { Col, Row, message } from "antd";
+import axios from "axios";
+import type { FC } from "react";
+import { useEffect, useState } from "react";
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from "react-i18next";
 import {
   ContentConsumption,
   ContentConsumptionTrend,
@@ -13,26 +13,26 @@ import {
   TodayMetrics,
   UserRetention,
   UserRetentionTrend,
-} from './components'
-import type { ContentDistributionDataItem } from './components/ContentDistribution'
-import type { ContentSourceProps } from './components/ContentSource'
-import type { DataItem } from './components/OverviewStatistics'
-import type { TodayDataItem } from './components/TodayMetrics'
-import { useGlobalStore } from '@/store/global'
+} from "./components";
+import type { ContentDistributionDataItem } from "./components/ContentDistribution";
+import type { ContentSourceProps } from "./components/ContentSource";
+import type { DataItem } from "./components/OverviewStatistics";
+import type { TodayDataItem } from "./components/TodayMetrics";
+import { useGlobalStore } from "@/store/global";
 
 const MultiDimensionDataAnalysis: FC = () => {
-  const [overviewData, setOverviewData] = useState<DataItem[]>([])
-  const [todayData, setTodayData] = useState<TodayDataItem[]>([]) // 今日数据
+  const [overviewData, setOverviewData] = useState<DataItem[]>([]);
+  const [todayData, setTodayData] = useState<TodayDataItem[]>([]); // 今日数据
   const [contentDistributionData, setContentDistributionData] = useState<
     ContentDistributionDataItem[]
-  >([]) // 内容分布数据
-  const [userRetentionData, setUserRetentionData] = useState([]) // 用户留存数据
-  const [contentConsumptionData, setContentConsumptionData] = useState([]) // 内容消费数据
+  >([]); // 内容分布数据
+  const [userRetentionData, setUserRetentionData] = useState([]); // 用户留存数据
+  const [contentConsumptionData, setContentConsumptionData] = useState([]); // 内容消费数据
   const [contentSourceData, setContentSourceData] = useState<
-    ContentSourceProps['data']
-  >({}) // 内容来源数据
-  const [userRetention, setUserRetention] = useState([]) // {t('wpVTrIbg')}
-  const [contentConsumption, setContentConsumption] = useState([]) // {t('fHAcoQib')}
+    ContentSourceProps["data"]
+  >({}); // 内容来源数据
+  const [userRetention, setUserRetention] = useState([]); // {t('wpVTrIbg')}
+  const [contentConsumption, setContentConsumption] = useState([]); // {t('fHAcoQib')}
   const fetchOverData = async () => {
     try {
       const {
@@ -46,32 +46,31 @@ const MultiDimensionDataAnalysis: FC = () => {
           contentConsumptionData,
           contentSource,
         },
-      } = await axios.get('/api/visualization/overview')
-      setOverviewData(overview)
-      setTodayData(today)
-      setContentDistributionData(contentDistribution)
-      setUserRetention(userRetention)
-      setContentConsumptionData(contentConsumptionData)
-      setContentSourceData(contentSource)
-      setUserRetentionData(userRetentionData)
-      setContentConsumption(contentConsumptionTrend)
+      } = await axios.get("/api/visualization/overview");
+      setOverviewData(overview);
+      setTodayData(today);
+      setContentDistributionData(contentDistribution);
+      setUserRetention(userRetention);
+      setContentConsumptionData(contentConsumptionData);
+      setContentSourceData(contentSource);
+      setUserRetentionData(userRetentionData);
+      setContentConsumption(contentConsumptionTrend);
+    } catch (error) {
+      console.error("Error fetching overview data:", error);
+      message.error(`Failed to fetch overview data${error}`);
     }
-    catch (error) {
-      console.error('Error fetching overview data:', error)
-      message.error(`Failed to fetch overview data${error}`)
-    }
-  }
-  const { lang } = useGlobalStore()
-  const { i18n } = useTranslation()
+  };
+  const { lang } = useGlobalStore();
+  const { i18n } = useTranslation();
   useEffect(() => {
     const changeLanguage = async () => {
-      await i18n.changeLanguage(lang)
-    }
-    changeLanguage()
-  }, [lang, i18n])
+      await i18n.changeLanguage(lang);
+    };
+    changeLanguage();
+  }, [lang, i18n]);
   useEffect(() => {
-    fetchOverData()
-  }, [])
+    fetchOverData();
+  }, []);
 
   return (
     <div className="multi-dimension-data-analysis w-full h-full">
@@ -106,7 +105,7 @@ const MultiDimensionDataAnalysis: FC = () => {
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
-export default MultiDimensionDataAnalysis
+export default MultiDimensionDataAnalysis;

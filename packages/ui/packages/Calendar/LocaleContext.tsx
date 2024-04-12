@@ -1,11 +1,11 @@
-import { createContext } from 'react'
+import { createContext } from "react";
 
 export interface LocaleContextType {
-  locale: string
+  locale: string;
 }
 
 const LocaleContext = createContext<LocaleContextType>({
-  locale: 'zh-CN',
-})
+  locale: "zh-CN",
+});
 
-export default LocaleContext
+export default LocaleContext;

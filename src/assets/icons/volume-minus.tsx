@@ -1,6 +1,6 @@
-import Icon from '@ant-design/icons'
-import type { CustomIconComponentProps } from '@ant-design/icons/lib/components/Icon'
-import type { SVGProps } from 'react'
+import Icon from "@ant-design/icons";
+import type { CustomIconComponentProps } from "@ant-design/icons/lib/components/Icon";
+import type { SVGProps } from "react";
 export function MdiLightVolumeMinus(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -13,11 +13,10 @@ export function MdiLightVolumeMinus(props: SVGProps<SVGSVGElement>) {
       <path
         fill="currentColor"
         d="M2 9h4l4-4h2v15h-2l-4-4H2zm1 6h3.41l4 4H11V6h-.59l-4 4H3zm11-2v-1h7v1z"
-      >
-      </path>
+      ></path>
     </svg>
-  )
+  );
 }
 export function IconVolumeMinus(props: Partial<CustomIconComponentProps>) {
-  return <Icon component={MdiLightVolumeMinus} {...props} />
+  return <Icon component={MdiLightVolumeMinus} {...props} />;
 }

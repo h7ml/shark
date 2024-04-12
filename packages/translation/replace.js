@@ -1,23 +1,23 @@
-const fs = require('node:fs').promises
-const path = require('node:path')
-const ora = require('ora')
-const chalk = require('chalk')
-const { joinPath, readTranslationFile } = require('./lib/core/command')
+const fs = require("node:fs").promises;
+const path = require("node:path");
+const ora = require("ora");
+const chalk = require("chalk");
+const { joinPath, readTranslationFile } = require("./lib/core/command");
 
-let loading = null
+let loading = null;
 /**
  * 生成指定长度的英文字符串
  * @param {number} length - 字符串长度
  * @returns {string} - 生成的英文字符串
  */
 function generateRandomString(length) {
-  let result = ''
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  let result = "";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
   for (let i = 0; i < length; i++)
-    result += characters.charAt(Math.floor(Math.random() * characters.length))
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
 
-  return result
+  return result;
 }
 
 /**
@@ -28,29 +28,27 @@ function generateRandomString(length) {
  */
 async function checkAndInsertContent(
   filePath,
-  searchString = 'import { useTranslation } from \'react-i18next\'',
-  insertContent = 'import { useTranslation } from \'react-i18next\'',
+  searchString = "import { useTranslation } from 'react-i18next'",
+  insertContent = "import { useTranslation } from 'react-i18next'",
 ) {
   try {
-    loading.succeed(chalk.green(`检查${filePath} i18n组件导入情况 ...`))
+    loading.succeed(chalk.green(`检查${filePath} i18n组件导入情况 ...`));
     // 读取文件内容
-    const fileData = await fs.readFile(filePath, 'utf8')
+    const fileData = await fs.readFile(filePath, "utf8");
 
     // 检查文件内容是否包含特定字符串
     if (!fileData.includes(searchString)) {
       // 如果文件内容中不存在特定内容，则在文件第一行插入特定内容
-      const newFileData = `${insertContent}\n${fileData}`
+      const newFileData = `${insertContent}\n${fileData}`;
 
       // 将新的文件内容写回文件
-      fs.writeFile(filePath, newFileData, 'utf8')
-      loading.succeed(chalk.green(`${filePath} 导入i18n组件成功`))
+      fs.writeFile(filePath, newFileData, "utf8");
+      loading.succeed(chalk.green(`${filePath} 导入i18n组件成功`));
+    } else {
+      loading.succeed(chalk.green(`${filePath} 导入i18n组件成功`));
     }
-    else {
-      loading.succeed(chalk.green(`${filePath} 导入i18n组件成功`))
-    }
-  }
-  catch (err) {
-    loading.fail(chalk.red(`${filePath} 导入i18n失败: ${err.message}`))
+  } catch (err) {
+    loading.fail(chalk.red(`${filePath} 导入i18n失败: ${err.message}`));
   }
 }
 
@@ -79,11 +77,10 @@ async function checkAndInsertContent(
  */
 async function writeFileContent(filePath, content) {
   try {
-    loading.succeed(chalk.green(`写入文件 ${filePath} ...`))
-    await fs.writeFile(filePath, content, 'utf8')
-  }
-  catch (err) {
-    loading.fail(chalk.red(`写入 ${filePath} 出错： ${err.message}`))
+    loading.succeed(chalk.green(`写入文件 ${filePath} ...`));
+    await fs.writeFile(filePath, content, "utf8");
+  } catch (err) {
+    loading.fail(chalk.red(`写入 ${filePath} 出错： ${err.message}`));
   }
 }
 
@@ -93,55 +90,55 @@ async function writeFileContent(filePath, content) {
  * @returns 处理后的翻译内容
  */
 async function processTranslationFiles() {
-  loading.succeed(chalk.green('处理翻译内容 ...'))
+  loading.succeed(chalk.green("处理翻译内容 ..."));
   // 读取 i18n.json 文件的内容
-  const fileContent = await readTranslationFile(await joinPath('i18n.json'))
-  const processedContent = {}
+  const fileContent = await readTranslationFile(await joinPath("i18n.json"));
+  const processedContent = {};
 
   for (const key in fileContent) {
-    const filePath = await joinPath(key)
-    await checkAndInsertContent(filePath)
-    const strArr = fileContent[key].split(',')
+    const filePath = await joinPath(key);
+    await checkAndInsertContent(filePath);
+    const strArr = fileContent[key].split(",");
     strArr.forEach((item) => {
-      processedContent[generateRandomString(8)] = item
-    })
+      processedContent[generateRandomString(8)] = item;
+    });
   }
-  loading.succeed(chalk.green('处理翻译内容完成'))
-  return processedContent
+  loading.succeed(chalk.green("处理翻译内容完成"));
+  return processedContent;
 }
 
 async function updateZhJson(processedContent) {
   const zhJson = await joinPath(
-    path.join('src', 'assets', 'locales', 'zh-CN.json'),
-  )
-  const zhContent = await readTranslationFile(zhJson)
-  const updatedContent = { ...zhContent, ...processedContent }
+    path.join("src", "assets", "locales", "zh-CN.json"),
+  );
+  const zhContent = await readTranslationFile(zhJson);
+  const updatedContent = { ...zhContent, ...processedContent };
   // 去除值中的重复项
-  const uniqueValues = Array.from(new Set(Object.values(updatedContent)))
+  const uniqueValues = Array.from(new Set(Object.values(updatedContent)));
 
   // 根据值的唯一性更新键值对关系
-  const updatedContentWithoutDuplicates = {}
+  const updatedContentWithoutDuplicates = {};
   for (const [key, value] of Object.entries(updatedContent)) {
     if (uniqueValues.includes(value)) {
-      updatedContentWithoutDuplicates[key] = value
-      uniqueValues.splice(uniqueValues.indexOf(value), 1)
+      updatedContentWithoutDuplicates[key] = value;
+      uniqueValues.splice(uniqueValues.indexOf(value), 1);
     }
   }
 
-  const updatedEnContent = `${JSON.stringify(updatedContentWithoutDuplicates, null, 2)}\n`
-  await writeFileContent(zhJson, updatedEnContent)
-  loading.succeed(chalk.green('zhCN.json 文件更新完成'))
+  const updatedEnContent = `${JSON.stringify(updatedContentWithoutDuplicates, null, 2)}\n`;
+  await writeFileContent(zhJson, updatedEnContent);
+  loading.succeed(chalk.green("zhCN.json 文件更新完成"));
 }
 
 /**
  * 主函数，用于处理主要逻辑
  */
 async function main() {
-  loading = ora('Starting...').start()
-  const processedContent = await processTranslationFiles()
-  loading.succeed(chalk.green('开始更新 zh-CN.json 文件...'))
-  await updateZhJson(processedContent)
+  loading = ora("Starting...").start();
+  const processedContent = await processTranslationFiles();
+  loading.succeed(chalk.green("开始更新 zh-CN.json 文件..."));
+  await updateZhJson(processedContent);
 }
 
 // 执行主函数
-main()
+main();

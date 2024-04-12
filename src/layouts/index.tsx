@@ -1,9 +1,9 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 
-import type { FC } from 'react'
-import Content from '@/layouts/content'
-import Header from '@/layouts/header'
-import Slide from '@/layouts/slide'
+import type { FC } from "react";
+import Content from "@/layouts/content";
+import Header from "@/layouts/header";
+import Slide from "@/layouts/slide";
 
 const BasicLayout: FC = () => {
   return (
@@ -14,6 +14,6 @@ const BasicLayout: FC = () => {
         <Outlet />
       </Content>
     </div>
-  )
-}
-export default BasicLayout
+  );
+};
+export default BasicLayout;

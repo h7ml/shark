@@ -5,56 +5,56 @@ import {
   MediumOutlined,
   TwitterOutlined,
   ZhihuOutlined,
-} from '@ant-design/icons'
-import React from 'react'
+} from "@ant-design/icons";
+import React from "react";
 
 export const footer = [
   {
-    title: '相关资源',
+    title: "相关资源",
     items: [
       {
-        title: 'Ant Design Pro',
-        url: 'https://pro.ant.design',
+        title: "Ant Design Pro",
+        url: "https://pro.ant.design",
         openExternal: true,
       },
       {
-        title: 'Ant Design Pro Components',
-        url: 'https://procomponents.ant.design',
+        title: "Ant Design Pro Components",
+        url: "https://procomponents.ant.design",
         openExternal: true,
       },
       {
-        title: 'Umi',
-        description: 'React 应用开发框架',
-        url: 'https://umijs.org',
+        title: "Umi",
+        description: "React 应用开发框架",
+        url: "https://umijs.org",
         openExternal: true,
       },
       {
-        title: 'Dumi',
-        description: '组件/文档研发工具',
-        url: 'https://d.umijs.org',
+        title: "Dumi",
+        description: "组件/文档研发工具",
+        url: "https://d.umijs.org",
         openExternal: true,
       },
       {
-        title: 'qiankun',
-        description: '微前端框架',
-        url: 'https://qiankun.umijs.org',
+        title: "qiankun",
+        description: "微前端框架",
+        url: "https://qiankun.umijs.org",
         openExternal: true,
       },
     ],
   },
   {
-    title: '社区',
+    title: "社区",
     items: [
       {
         icon: <MediumOutlined />,
-        title: 'Medium',
-        url: 'http://medium.com/ant-design/',
+        title: "Medium",
+        url: "http://medium.com/ant-design/",
         openExternal: true,
       },
       {
-        icon: <TwitterOutlined style={{ color: '#1DA1F2' }} />,
-        title: 'Twitter',
-        url: 'http://twitter.com/antdesignui',
+        icon: <TwitterOutlined style={{ color: "#1DA1F2" }} />,
+        title: "Twitter",
+        url: "http://twitter.com/antdesignui",
         openExternal: true,
       },
       {
@@ -64,20 +64,20 @@ export const footer = [
             alt="yuque"
           />
         ),
-        title: 'Ant Design 语雀专栏',
-        url: 'https://yuque.com/ant-design/ant-design',
+        title: "Ant Design 语雀专栏",
+        url: "https://yuque.com/ant-design/ant-design",
         openExternal: true,
       },
       {
-        icon: <ZhihuOutlined style={{ color: '#056de8' }} />,
-        title: 'Ant Design 知乎专栏',
-        url: 'https://www.zhihu.com/column/c_1564262000561106944',
+        icon: <ZhihuOutlined style={{ color: "#056de8" }} />,
+        title: "Ant Design 知乎专栏",
+        url: "https://www.zhihu.com/column/c_1564262000561106944",
         openExternal: true,
       },
       {
-        icon: <ZhihuOutlined style={{ color: '#056de8' }} />,
-        title: '体验科技专栏',
-        url: 'http://zhuanlan.zhihu.com/xtech',
+        icon: <ZhihuOutlined style={{ color: "#056de8" }} />,
+        title: "体验科技专栏",
+        url: "http://zhuanlan.zhihu.com/xtech",
         openExternal: true,
       },
       {
@@ -87,33 +87,33 @@ export const footer = [
             alt="seeconf"
           />
         ),
-        title: 'SEE Conf',
-        description: 'SEE Conf-蚂蚁体验科技大会',
-        url: 'https://seeconf.antfin.com/',
+        title: "SEE Conf",
+        description: "SEE Conf-蚂蚁体验科技大会",
+        url: "https://seeconf.antfin.com/",
         openExternal: true,
       },
     ],
   },
   {
-    title: '帮助',
+    title: "帮助",
     items: [
       {
         icon: <GithubOutlined />,
-        title: 'GitHub',
-        url: 'https://github.com/ant-design/antd-style',
+        title: "GitHub",
+        url: "https://github.com/ant-design/antd-style",
         openExternal: true,
       },
       {
         icon: <HistoryOutlined />,
-        title: '更新日志',
-        url: '/changelog',
+        title: "更新日志",
+        url: "/changelog",
         // LinkComponent: Link,
       },
 
       {
         icon: <IssuesCloseOutlined />,
-        title: '讨论',
-        url: 'https://github.com/ant-design/antd-style/issues',
+        title: "讨论",
+        url: "https://github.com/ant-design/antd-style/issues",
         openExternal: true,
       },
     ],
@@ -125,7 +125,7 @@ export const footer = [
         alt="more products"
       />
     ),
-    title: '更多产品',
+    title: "更多产品",
     items: [
       {
         icon: (
@@ -134,9 +134,9 @@ export const footer = [
             alt="yuque"
           />
         ),
-        title: '语雀',
-        url: 'https://yuque.com',
-        description: '知识创作与分享工具',
+        title: "语雀",
+        url: "https://yuque.com",
+        description: "知识创作与分享工具",
         openExternal: true,
       },
       {
@@ -146,16 +146,16 @@ export const footer = [
             alt="AntV"
           />
         ),
-        title: 'AntV',
-        url: 'https://antv.vision',
-        description: '数据可视化解决方案',
+        title: "AntV",
+        url: "https://antv.vision",
+        description: "数据可视化解决方案",
         openExternal: true,
       },
       {
         icon: <img src="https://www.eggjs.org/logo.svg" alt="Egg" />,
-        title: 'Egg',
-        url: 'https://eggjs.org',
-        description: '企业级 Node.js 框架',
+        title: "Egg",
+        url: "https://eggjs.org",
+        description: "企业级 Node.js 框架",
         openExternal: true,
       },
       {
@@ -165,9 +165,9 @@ export const footer = [
             alt="kitchen"
           />
         ),
-        title: 'Kitchen',
-        description: 'Sketch 工具集',
-        url: 'https://kitchen.alipay.com',
+        title: "Kitchen",
+        description: "Sketch 工具集",
+        url: "https://kitchen.alipay.com",
         openExternal: true,
       },
       {
@@ -177,10 +177,10 @@ export const footer = [
             alt="xtech"
           />
         ),
-        title: '蚂蚁体验科技',
-        url: 'https://xtech.antfin.com/',
+        title: "蚂蚁体验科技",
+        url: "https://xtech.antfin.com/",
         openExternal: true,
       },
     ],
   },
-]
+];

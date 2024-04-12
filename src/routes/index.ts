@@ -1,13 +1,13 @@
-import { routeConfig } from '@/config/routes'
+import { routeConfig } from "@/config/routes";
 
 export function generatePermission(role: string) {
   console.log(
-    '%c [ role ]-4',
-    'font-size:13px; background:pink; color:#bf2c9f;',
+    "%c [ role ]-4",
+    "font-size:13px; background:pink; color:#bf2c9f;",
     role,
-  )
+  );
   // const actions = role === 'admin' ? ['*'] : ['read'];
-  const result = routeConfig
+  const result = routeConfig;
   // routeConfig.forEach((item) => {
   // if (item.children) {
   //   item.children.forEach((child) => {
@@ -15,5 +15,5 @@ export function generatePermission(role: string) {
   //   });
   // }
   // });
-  return result
+  return result;
 }

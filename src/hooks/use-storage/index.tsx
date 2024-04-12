@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
-import { Storage } from '@/utils'
+import { Storage } from "@/utils";
 
 export function useStorage(key: string) {
-  const [data, setData] = useState<any | null>(null)
+  const [data, setData] = useState<any | null>(null);
 
   useEffect(() => {
     /**
      * 从Storage中获取数据，并设置到setData中
      */
     async function fetchData() {
-      const storedData = await Storage.get(key)
-      setData(storedData)
+      const storedData = await Storage.get(key);
+      setData(storedData);
     }
 
-    fetchData()
-  }, [key])
+    fetchData();
+  }, [key]);
 
   /**
    * 将数据存入缓存，并调用setData函数将数据存储到状态中
@@ -27,8 +27,8 @@ export function useStorage(key: string) {
    */
 
   async function setDataAndStore(key: string, value: any, dieTime?: number) {
-    await Storage.set(key, value, dieTime)
-    setData(value)
+    await Storage.set(key, value, dieTime);
+    setData(value);
   }
 
   /**
@@ -37,8 +37,8 @@ export function useStorage(key: string) {
    * @returns Promise<void>
    */
   async function clearData() {
-    await Storage.remove(key)
-    setData(null)
+    await Storage.remove(key);
+    setData(null);
   }
 
   /**
@@ -47,9 +47,9 @@ export function useStorage(key: string) {
    * @returns Promise<void>
    */
   async function getAllKeys() {
-    const keys = await Storage.keys()
-    console.log(keys)
+    const keys = await Storage.keys();
+    console.log(keys);
   }
 
-  return { data, setData: setDataAndStore, clearData, getAllKeys }
+  return { data, setData: setDataAndStore, clearData, getAllKeys };
 }

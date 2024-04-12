@@ -1,36 +1,35 @@
-import { Line } from '@antv/g2plot'
-import { Card } from 'antd'
-import type { FC } from 'react'
-import { useEffect, useRef } from 'react'
-import { t } from '@/utils'
+import { Line } from "@antv/g2plot";
+import { Card } from "antd";
+import type { FC } from "react";
+import { useEffect, useRef } from "react";
+import { t } from "@/utils";
 
 export interface DataItem {
-  name: string
-  year: string
-  gdp: number
+  name: string;
+  year: string;
+  gdp: number;
 }
 interface OverviewStatisticsProps {
-  data: DataItem[]
+  data: DataItem[];
 }
 
 const OverviewStatistics: FC<OverviewStatisticsProps> = ({ data }) => {
-  const container = useRef<HTMLDivElement>(null)
+  const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!container.current || !data.length)
-      return
+    if (!container.current || !data.length) return;
 
     const line = new Line(container.current, {
       data,
-      xField: 'year',
-      yField: 'gdp',
-      seriesField: 'name',
+      xField: "year",
+      yField: "gdp",
+      seriesField: "name",
       yAxis: {
         label: {
-          formatter: v => `${(v / 10e8).toFixed(1)} B`,
+          formatter: (v) => `${(v / 10e8).toFixed(1)} B`,
         },
       },
       legend: {
-        position: 'top',
+        position: "top",
       },
       smooth: true,
       // 配置折线趋势填充
@@ -41,26 +40,25 @@ const OverviewStatistics: FC<OverviewStatisticsProps> = ({ data }) => {
       },
       animation: {
         appear: {
-          animation: 'wave-in',
+          animation: "wave-in",
           duration: 3000,
         },
       },
-    })
-    line.render()
+    });
+    line.render();
     return () => {
-      if (line)
-        line.destroy()
-    }
-  }, [data])
+      if (line) line.destroy();
+    };
+  }, [data]);
   return (
     <Card
-      title={t('eyGOrIXr')}
+      title={t("eyGOrIXr")}
       className="overview-statistics h-[500px]"
       key={data.length}
     >
       <div ref={container} className="w-full" key={data.length} />
     </Card>
-  )
-}
+  );
+};
 
-export default OverviewStatistics
+export default OverviewStatistics;

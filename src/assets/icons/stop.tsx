@@ -1,7 +1,7 @@
-import Icon from '@ant-design/icons'
-import type { CustomIconComponentProps } from '@ant-design/icons/lib/components/Icon'
-import React from 'react'
-import type { SVGProps } from 'react'
+import Icon from "@ant-design/icons";
+import type { CustomIconComponentProps } from "@ant-design/icons/lib/components/Icon";
+import React from "react";
+import type { SVGProps } from "react";
 
 export function GgPlayStopO(props: SVGProps<SVGSVGElement>) {
   return (
@@ -18,12 +18,11 @@ export function GgPlayStopO(props: SVGProps<SVGSVGElement>) {
           fillRule="evenodd"
           d="M23 12c0 6.075-4.925 11-11 11S1 18.075 1 12S5.925 1 12 1s11 4.925 11 11m-2 0a9 9 0 1 1-18 0a9 9 0 0 1 18 0"
           clipRule="evenodd"
-        >
-        </path>
+        ></path>
       </g>
     </svg>
-  )
+  );
 }
 export function IconStop(props: Partial<CustomIconComponentProps>) {
-  return <Icon component={GgPlayStopO} {...props} />
+  return <Icon component={GgPlayStopO} {...props} />;
 }

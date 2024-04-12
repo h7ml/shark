@@ -1,35 +1,35 @@
-import type { FC } from 'react'
-import { Button, Result } from 'antd'
-import { useNavigate } from 'react-router-dom'
-import { WarningOutlined } from '@ant-design/icons'
-import { useTranslation } from 'react-i18next'
+import type { FC } from "react";
+import { Button, Result } from "antd";
+import { useNavigate } from "react-router-dom";
+import { WarningOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 const ForbiddenPage: FC = () => {
-  const navigate = useNavigate()
-  const { t } = useTranslation()
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleGoBack = () => {
-    navigate(-1) // 返回上一页
-  }
+    navigate(-1); // 返回上一页
+  };
 
   const handleGoHome = () => {
-    navigate('/')
-  }
+    navigate("/");
+  };
   return (
     <Result
       status="403"
-      title={`403${t('IHtHHFwM')}`}
-      subTitle={t('JapstXpH') + t('syZUDjJA')}
+      title={`403${t("IHtHHFwM")}`}
+      subTitle={t("JapstXpH") + t("syZUDjJA")}
       icon={<WarningOutlined />}
       extra={[
         <Button key="goBack" onClick={handleGoBack}>
-          {t('nWeztsqz')}
+          {t("nWeztsqz")}
         </Button>,
         <Button key="goHome" type="primary" onClick={handleGoHome}>
-          {t('bJlOPeuE')}
+          {t("bJlOPeuE")}
         </Button>,
       ]}
     />
-  )
-}
+  );
+};
 
-export default ForbiddenPage
+export default ForbiddenPage;
