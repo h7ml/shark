@@ -80,7 +80,7 @@ jobs:
           export GITHUB_SHA=${{ github.sha }}
           export GITHUB_SHA_SUB=${GITHUB_SHA:0:7}
           export DEPLOY_DOMAIN=https://dext7r-$GITHUB_SHA_SUB.surge.sh
-          npx surge --project ./dist --domain $DEPLOY_DOMAIN --token ${{ secrets.surge_token }}
+          npx surge --project ./packages/docs/docs-dist --domain $DEPLOY_DOMAIN --token ${{ secrets.surge_token }}
           echo the preview URL is $DEPLOY_DOMAIN
           echo "::set-output name=url::$DEPLOY_DOMAIN"
 
