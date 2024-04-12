@@ -66,6 +66,17 @@ jobs:
           CLEAN: true
           TARGET_FOLDER: ./
 
+      - name: Deploy to dext7r.github.io docs-dist
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          FOLDER: packages/docs/docs-dist
+          REPOSITORY_NAME: dext7r/dext7r.github.io
+          GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
+          BRANCH: master
+          CLEAN: true
+          TARGET_FOLDER: ./
+
+
       - name: Deploy to surge
         uses: dswistowski/surge-sh-action@v1
         with:
@@ -80,7 +91,7 @@ jobs:
           export GITHUB_SHA=${{ github.sha }}
           export GITHUB_SHA_SUB=${GITHUB_SHA:0:7}
           export DEPLOY_DOMAIN=https://dext7r-$GITHUB_SHA_SUB.surge.sh
-          npx surge --project ./packages/docs/docs-dist --domain $DEPLOY_DOMAIN --token ${{ secrets.surge_token }}
+          npx surge --project ./dist --domain $DEPLOY_DOMAIN --token ${{ secrets.surge_token }}
           echo the preview URL is $DEPLOY_DOMAIN
           echo "::set-output name=url::$DEPLOY_DOMAIN"
 
