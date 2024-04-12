@@ -1,64 +1,93 @@
 {
   "name": "@dext7r/ui",
-  "type": "module",
-  "version": "0.0.2",
-  "private": false,
-  "exports": {
-    ".": {
-      "import": "./dist/shark-ui.js",
-      "require": "./dist/shark-ui.umd.cjs"
-    }
+  "version": "0.1.3",
+  "description": "shark is a web application designed to help users manage and visualize shark data. The project is built using the React framework for the frontend interface, utilizing the component library provided by Ant Design to create a user-friendly interface, and managing state using Zustand. Through these technologies, shark provides a powerful and easy-to-use platform for users to effectively manage and display shark data. Additionally, the project uses rspack for building to achieve project bundling and optimization.",
+  "main": "./dist/lib/index.js",
+  "module": "./dist/es/index.js",
+  "unpkg": "./dist/umd/index.js",
+  "types": "./dist/types/index.d.ts",
+  "author": {
+    "name": "h7ml",
+    "email": "h7ml@qq.com",
+    "url": "https://shark.h7ml.cn",
+    "github": "https://github.com/h7ml"
   },
-  "main": "./dist/shark-ui.umd.cjs",
-  "module": "./dist/shark-ui.js",
-  "files": [
-    "dist"
+  "license": "Apache-2.0",
+  "homepage": "https://shark.h7ml.cn",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h7ml/shark.git"
+  },
+  "bugs": {
+    "url": "https://github.com/h7ml/shark/issues"
+  },
+  "keywords": [
+    "shark",
+    "web",
+    "application",
+    "data visualization",
+    "React",
+    "Ant Design",
+    "Zustand"
   ],
-  "typings": "./dist/index.d.ts",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "build": "rimraf dist && modern build",
+    "build:watch": "modern build -w",
+    "bump": "modern bump",
+    "change": "modern change",
+    "change-status": "modern change-status",
+    "dev": "modern dev",
+    "gen-release-note": "modern gen-release-note",
+    "lint": "modern lint",
+    "new": "modern new",
+    "pre": "modern pre",
+    "prepare": "modern build && husky install",
+    "release": "modern release",
+    "reset": "rimraf ./**/node_modules",
+    "upgrade": "modern upgrade"
   },
-  "publishConfig": {
-    "access": "public"
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,cjs}": [
+      "node --max_old_space_size=8192 ./node_modules/eslint/bin/eslint.js --fix --color --cache --quiet"
+    ]
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "eslintIgnore": [
+    "node_modules/",
+    "dist/"
+  ],
+  "devDependencies": {
+    "@modern-js/core": "^2.48.5",
+    "@modern-js/eslint-config": "2.48.5",
+    "@modern-js/module-tools": "2.48.5",
+    "@modern-js/plugin-rspress": "^1.18.0",
+    "@modern-js/types": "^2.48.5",
+    "@types/node": "~20.12.7",
+    "@types/react": "^18.2.77",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "~3.2.5",
+    "rimraf": "~5.0.5",
+    "typescript": "^5.4.5"
   },
   "peerDependencies": {
-    "react": ">=16.0.0",
-    "react-dom": ">=16.0.0"
-  },
-  "dependencies": {
+    "@rollbar/react": "0.12.0-beta",
+    "@sentry/react": "^7.110.0",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.10",
-    "vite-plugin-dts": "^3.8.1"
-  },
-  "devDependencies": {
-    "@rollup/plugin-typescript": "^11.1.6",
-    "@types/lodash-es": "^4.17.12",
-    "@types/node": "^20.12.7",
-    "@types/react": "^18.2.75",
-    "@types/react-dom": "^18.2.24",
-    "@typescript-eslint/eslint-plugin": "^7.6.0",
-    "@typescript-eslint/parser": "^7.6.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-babel": "^5.3.1",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
-    "husky": "^9.0.11",
+    "fundebug-javascript": "^2.8.8",
+    "fundebug-revideo": "^0.8.0",
     "less": "^4.2.0",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
-    "react": "^18.x",
-    "react-dom": "^18.x",
-    "stylelint": "^16.3.1",
-    "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-standard": "^36.0.0",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.8"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

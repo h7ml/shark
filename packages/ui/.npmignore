@@ -9,23 +9,27 @@
 
 node_modules/
 .yarn-integrity
-.pnpm-store/
 *.tsbuildinfo
 .eslintcache
-.changeset/pre.json
 
-dist/
 coverage/
 release/
 output/
 output_resource/
-log/
+tests/
 
 .vscode/**/*
 !.vscode/settings.json
 !.vscode/extensions.json
 .idea/
 
-**/*/typings/auto-generated
+src/
 
-modern.config.local.*
+modern.config.*
+jest.config.js
+.eslintrc.js
+.eslintrc
+tsconfig.json
+CHANGELOG.md
+
+**/*/api/typings/auto-generated

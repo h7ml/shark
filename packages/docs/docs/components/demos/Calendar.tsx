@@ -6,7 +6,7 @@ import React from "react";
 function App() {
   const { ymd } = getCurrentDate({ type: 2 });
   return (
-    <div className="App">
+    <div className="App" style={{ background: "#fff" }}>
       <Calendar value={dayjs(ymd)} />
     </div>
   );

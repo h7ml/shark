@@ -51,12 +51,8 @@ const Monitor: FC<MonitorProps> = ({
       default:
         return (
           <SentryMonitor {...configValue}>
-            <FundebugMonitor {...configValue}>
-              {fundebug}
-            </FundebugMonitor>
-            <RollbarMonitor {...configValue}>
-              {rollbar}
-            </RollbarMonitor>
+            <FundebugMonitor {...configValue}>{fundebug}</FundebugMonitor>
+            <RollbarMonitor {...configValue}>{rollbar}</RollbarMonitor>
             {sentry || children}
           </SentryMonitor>
         );

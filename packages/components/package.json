@@ -1,0 +1,66 @@
+{
+  "name": "@dext7r/components",
+  "type": "module",
+  "version": "0.0.4",
+  "private": false,
+  "exports": {
+    ".": {
+      "import": "./dist/shark-ui.js",
+      "require": "./dist/shark-ui.umd.cjs"
+    }
+  },
+  "main": "./dist/shark-ui.umd.cjs",
+  "module": "./dist/shark-ui.js",
+  "files": [
+    "dist"
+  ],
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0",
+    "fundebug-javascript": ">=1.0.2",
+    "fundebug-revideo": ">=0.8.0",
+    "@sentry/react": ">=7.110.0",
+    "@rollbar/react": ">=0.12.0-beta",
+    "classnames": ">=2.5.1",
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "vite-plugin-dts": "^3.8.1",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.2.75",
+    "@types/react-dom": "^18.2.24",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "husky": "^9.0.11",
+    "less": "^4.2.0",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "react": "^18.x",
+    "react-dom": "^18.x",
+    "stylelint": "^16.3.1",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-standard": "^36.0.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.8"
+  }
+}
