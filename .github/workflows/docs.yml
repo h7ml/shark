@@ -61,7 +61,7 @@ jobs:
         with:
           FOLDER: packages/docs/docs-dist
           REPOSITORY_NAME: dext7r/dext7r
-          GITHUB_TOKEN: ${{ secrets.VISUAL_DRAG_DEMO }}
+          GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
           BRANCH: docs-dist
           CLEAN: true
           TARGET_FOLDER: ./
