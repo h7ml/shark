@@ -57,11 +57,14 @@ jobs:
           folder: packages/docs/docs-dist
 
       - name: Deploy to dext7r docs-dist
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
-          branch: docs-dist
-          folder: packages/docs/docs-dist
-          repository-name: dext7r/dext7r
+          FOLDER: packages/docs/docs-dist
+          REPOSITORY_NAME: dext7r/dext7r
+          GITHUB_TOKEN: ${{ secrets.VISUAL_DRAG_DEMO }}
+          BRANCH: docs-dist
+          CLEAN: true
+          TARGET_FOLDER: ./
 
       - name: Deploy to surge
         uses: dswistowski/surge-sh-action@v1
