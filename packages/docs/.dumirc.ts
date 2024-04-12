@@ -8,6 +8,7 @@ const themeConfig = {
   name: "@dext7r/ui",
   github: repository.url.split(".git")[0],
   logo,
+  prefersColor: { default: 'light', switch: false },
   nav: [
     {
       title: "起步",
