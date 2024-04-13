@@ -1,0 +1,123 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "name": "Install Dependencies",
+      "command": "pnpm install"
+    }
+  ],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "build": {
+      "name": "build",
+      "command": "pnpm build",
+      "runAtStart": false
+    },
+    "build:analyze": {
+      "name": "build:analyze",
+      "command": "pnpm build:analyze",
+      "runAtStart": false
+    },
+    "build:gh-pages": {
+      "name": "build:gh-pages",
+      "command": "pnpm build:gh-pages",
+      "runAtStart": false
+    },
+    "build:utils": {
+      "name": "build:utils",
+      "command": "pnpm build:utils",
+      "runAtStart": false
+    },
+    "build:ui": {
+      "name": "build:ui",
+      "command": "pnpm build:ui",
+      "runAtStart": false
+    },
+    "build:docs": {
+      "name": "build:docs",
+      "command": "pnpm build:docs",
+      "runAtStart": false
+    },
+    "dev:docs": {
+      "name": "dev:docs",
+      "command": "pnpm dev:docs",
+      "runAtStart": false
+    },
+    "commit": {
+      "name": "commit",
+      "command": "pnpm commit",
+      "runAtStart": false
+    },
+    "dev": {
+      "name": "dev",
+      "command": "pnpm dev",
+      "runAtStart": true
+    },
+    "edgio:build": {
+      "name": "edgio:build",
+      "command": "pnpm edgio:build",
+      "runAtStart": false
+    },
+    "edgio:deploy": {
+      "name": "edgio:deploy",
+      "command": "pnpm edgio:deploy",
+      "runAtStart": false
+    },
+    "edgio:dev": {
+      "name": "edgio:dev",
+      "command": "pnpm edgio:dev",
+      "runAtStart": false
+    },
+    "eslint": {
+      "name": "eslint",
+      "command": "pnpm eslint",
+      "runAtStart": false
+    },
+    "pre-commit": {
+      "name": "pre-commit",
+      "command": "pnpm pre-commit",
+      "runAtStart": false
+    },
+    "prepare": {
+      "name": "prepare",
+      "command": "pnpm prepare",
+      "runAtStart": false
+    },
+    "prettier": {
+      "name": "prettier",
+      "command": "pnpm prettier",
+      "runAtStart": false
+    },
+    "lint": {
+      "name": "lint",
+      "command": "pnpm lint",
+      "runAtStart": false
+    },
+    "preview": {
+      "name": "preview",
+      "command": "pnpm preview",
+      "runAtStart": false
+    },
+    "stylelint": {
+      "name": "stylelint",
+      "command": "pnpm stylelint",
+      "runAtStart": false
+    },
+    "release": {
+      "name": "release",
+      "command": "pnpm release",
+      "runAtStart": false
+    },
+    "sentry:sourcemaps": {
+      "name": "sentry:sourcemaps",
+      "command": "pnpm sentry:sourcemaps",
+      "runAtStart": false
+    },
+    "i18n": {
+      "name": "i18n",
+      "command": "pnpm i18n",
+      "runAtStart": false
+    }
+  }
+}
