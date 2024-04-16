@@ -56,7 +56,7 @@ jobs:
           BRANCH: docs-dist
           FOLDER: packages/docs/docs-dist
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
-          GIT_CONFIG_NAME: 'github-actions[bot]'
+          GIT_CONFIG_NAME: 'dextr7'
           GIT_CONFIG_EMAIL: 'action@h7ml.cn'
           COMMIT_MESSAGE: '[Bot] Deploy to GitHub Pages 🚀'
           CLEAN: true
@@ -68,7 +68,7 @@ jobs:
           FOLDER: packages/docs/docs-dist
           REPOSITORY_NAME: dext7r/dext7r
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
-          GIT_CONFIG_NAME: 'github-actions[bot]'
+          GIT_CONFIG_NAME: 'dextr7'
           GIT_CONFIG_EMAIL: 'action@h7ml.cn'
           COMMIT_MESSAGE: '[Bot] Deploy to GitHub Pages 🚀'
           BRANCH: docs-dist
@@ -81,7 +81,7 @@ jobs:
           FOLDER: packages/docs/docs-dist
           REPOSITORY_NAME: dext7r/dext7r.github.io
           GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
-          GIT_CONFIG_NAME: 'github-actions[bot]'
+          GIT_CONFIG_NAME: 'dextr7'
           GIT_CONFIG_EMAIL: 'action@h7ml.cn'
           COMMIT_MESSAGE: '[Bot] Deploy to GitHub Pages 🚀'
           BRANCH: master
