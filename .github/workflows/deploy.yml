@@ -55,7 +55,7 @@ jobs:
         with:
           BRANCH: static
           FOLDER: dist
-          GIT_CONFIG_NAME: 'github-actions[bot]'
+          GIT_CONFIG_NAME: 'dextr7'
           GIT_CONFIG_EMAIL: 'action@h7ml.cn'
           COMMIT_MESSAGE: '[Bot] Deploy to GitHub Pages 🚀'
 
@@ -85,7 +85,7 @@ jobs:
         with:
           BRANCH: gh-pages
           FOLDER: dist
-          GIT_CONFIG_NAME: 'github-actions[bot]'
+          GIT_CONFIG_NAME: 'dextr7'
           GIT_CONFIG_EMAIL: 'action@h7ml.cn'
           COMMIT_MESSAGE: '[Bot] Deploy to GitHub Pages 🚀'
       # - name: Build sourceMap
