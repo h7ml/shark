@@ -8,7 +8,10 @@ on:
 jobs:
   update-dependencies:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node-version: [21.6.2]
+        pnpm-version: [8.15.5]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -16,18 +19,37 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4.0.2
         with:
-          node-version: 21.6.2
-          registry-url: https://registry.npmmirror.com
+          node-version: ${{ matrix.node-version }}
 
-      - name: Install npm-check-updates
-        run: npm install -g npm-check-updates pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ matrix.pnpm-version }}
+          run_install: false
 
+      - name: Get pnpm store directory
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-ncu-store-${{ matrix.node-version }}-${{ matrix.pnpm-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-ncu-store-${{ matrix.node-version }}-${{ matrix.pnpm-version }}-
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+          npx envinfo --system --browsers --npmPackages -y
       - name: Update Dependencies
-        run: npx ncu -u --reject chalk,ora,eslint
+        run: pnpm ncu
 
       - name: Install updated dependencies
-        run: pnpm install --no-frozen-lockfile
-
+        run: |
+          pnpm install --no-frozen-lockfile
+          npx envinfo --npmPackages -y
       - name: Build and test
         id: build_and_test
         run: |

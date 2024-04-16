@@ -51,10 +51,13 @@ jobs:
       - name: Build static
         run: pnpm build
       - name: Deploy to GitHub static
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
-          branch: static
-          folder: dist
+          BRANCH: static
+          FOLDER: dist
+          GIT_CONFIG_NAME: 'github-actions[bot]'
+          GIT_CONFIG_EMAIL: 'action@h7ml.cn'
+          COMMIT_MESSAGE: '[Bot] Deploy to GitHub Pages 🚀'
 
       - name: Deploy to surge
         uses: dswistowski/surge-sh-action@v1
@@ -78,11 +81,13 @@ jobs:
         run: pnpm build:gh-pages
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
-          branch: gh-pages
-          folder: dist
-
+          BRANCH: gh-pages
+          FOLDER: dist
+          GIT_CONFIG_NAME: 'github-actions[bot]'
+          GIT_CONFIG_EMAIL: 'action@h7ml.cn'
+          COMMIT_MESSAGE: '[Bot] Deploy to GitHub Pages 🚀'
       # - name: Build sourceMap
       #   env:
       #     SOURCEMAP: 'true'
