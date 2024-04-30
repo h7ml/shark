@@ -76,18 +76,18 @@ jobs:
       #     CLEAN: true
       #     TARGET_FOLDER: ./
 
-      - name: Deploy to dext7r.github.io docs-dist
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          FOLDER: packages/docs/docs-dist
-          REPOSITORY_NAME: dext7r/dext7r.github.io
-          # GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
-          GIT_CONFIG_NAME: 'dextr7'
-          GIT_CONFIG_EMAIL: 'action@h7ml.cn'
-          COMMIT_MESSAGE: '[Bot] Deploy to GitHub Pages 🚀'
-          BRANCH: master
-          CLEAN: true
-          TARGET_FOLDER: ./
+      # - name: Deploy to dext7r.github.io docs-dist
+      #   uses: JamesIves/github-pages-deploy-action@3.7.1
+      #   with:
+      #     FOLDER: packages/docs/docs-dist
+      #     REPOSITORY_NAME: dext7r/dext7r.github.io
+      #     # GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
+      #     GIT_CONFIG_NAME: 'dextr7'
+      #     GIT_CONFIG_EMAIL: 'action@h7ml.cn'
+      #     COMMIT_MESSAGE: '[Bot] Deploy to GitHub Pages 🚀'
+      #     BRANCH: master
+      #     CLEAN: true
+      #     TARGET_FOLDER: ./
 
 
       - name: Deploy to surge
