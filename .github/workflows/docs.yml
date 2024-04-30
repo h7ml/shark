@@ -63,6 +63,7 @@ jobs:
           TARGET_FOLDER: ./
 
       - name: Deploy to dext7r docs-dist
+        if: failure()
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           FOLDER: packages/docs/docs-dist
@@ -125,13 +126,13 @@ jobs:
           source-repo: git@github.com:dext7r/dext7r.git
           destination-repo: git@gitee.com:dext7r/dext7r.git
 
-      - name: Build Gitee Pages
-        uses: yanglbme/gitee-pages-action@main
-        with:
-          gitee-username: h7ml@qq.com
-          gitee-password: ${{ secrets.GITEE_PASSWORD }}
-          gitee-repo: dext7r/dext7r
-          branch: docs-dist
+      # - name: Build Gitee Pages
+      #   uses: yanglbme/gitee-pages-action@main
+      #   with:
+      #     gitee-username: h7ml@qq.com
+      #     gitee-password: ${{ secrets.GITEE_PASSWORD }}
+      #     gitee-repo: dext7r/dext7r
+      #     branch: docs-dist
 
   clean:
     name: Clean

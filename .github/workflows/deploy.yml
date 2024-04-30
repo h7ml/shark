@@ -153,13 +153,13 @@ jobs:
           source-repo: git@github.com:h7ml/shark.git
           destination-repo: git@gitee.com:h7ml/shark.git
 
-      - name: Build Gitee Pages
-        uses: yanglbme/gitee-pages-action@main
-        with:
-          gitee-username: h7ml@qq.com
-          gitee-password: ${{ secrets.GITEE_PASSWORD }}
-          gitee-repo: h7ml/shark
-          branch: gh-pages
+      # - name: Build Gitee Pages
+      #   uses: yanglbme/gitee-pages-action@main
+      #   with:
+      #     gitee-username: h7ml@qq.com
+      #     gitee-password: ${{ secrets.GITEE_PASSWORD }}
+      #     gitee-repo: h7ml/shark
+      #     branch: gh-pages
 
       - name: Echo page
         run: |
